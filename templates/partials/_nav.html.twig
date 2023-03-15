@@ -20,14 +20,23 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Réserver une table</a>
         </li>
-       
+       {% if not app.user %}
+			<ul class="navbar-nav me-1 d-lg-flex align-items-lg-end">
+				<li class="nav-item me-2 fs-5 fw-bold lg-ms-4">
+					<a class="nav-link" href="/login">Connexion</a>
+				</li>
+				{# <li class="nav-item me-4 fs-5 fw-bold">
+					<a class="nav-link" href="/registration">Inscription</a>
+				</li> #}
+			</ul>
+			{% endif %}
       </ul>
       <div class="d-flex">
 		<ul class="navbar-nav me-auto">
 			{# {% if app.user %} #}
 				<li class="nav-item dropdown" style="margin-right: 5rem;">
 					<a class="nav-link dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">Dropdown
-          {# {{ app.user.firstname }} {{ app.user.lastname }} #}
+           {{ app.user.fullName }}
           </a>
 					<div class="dropdown-menu">
 						{# {% if 'ROLE_ADMIN' in app.user.roles %} #}
