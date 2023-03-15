@@ -3,6 +3,12 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-<h1>Restaurant</h1>
+<div class="container mt-4 text-center">
+<h1 class="main_title"> Quai Antique</h1>
+<h2 class="main_sub_title">Chef Arnaud Michant</h2>
 
+{% include "partials/_gallery.html.twig" %}
+<button type="button" class="btn btn-reservation btn-lg">Réserver la table</button>
+
+</div>
 {% endblock %}

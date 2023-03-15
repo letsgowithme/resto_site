@@ -1,0 +1,89 @@
+/* Headline text */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+/* text body*/
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap');
+/* font p */
+  @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&display=swap');
+
+  /* Title*/
+  @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+
+
+:root {
+  --main_bg_color: rgb(0, 0, 0);
+  --nav_bg_color: #B6AC97;
+  --gold: #906427;
+  --darkbrown: #392C1E;
+}
+
+
+.body
+ {
+  /* flex-direction: column; */
+ 
+  min-height: 100vh;
+  /* justify-content: space-between; */
+  width: 100%;
+  background-color:  var(--main_bg_color);
+  
+  /* font-family: 'Lora', serif; */
+  /* font-family: 'Hind Madurai', sans-serif; */
+  
+}
+.container {
+   display: flex; 
+flex-direction: column;
+
+}
+.navbar,
+.footer {
+  background-color: var(--nav_bg_color);
+ 
+}
+.navbar a,
+.footer a {
+  color: white;
+  
+}
+.nav-link  {
+  font-family: 'Lora', serif;
+  font-size: 1.2em;
+}
+
+.main_title {
+  font-family: 'Pinyon Script', cursive;
+  font-weight: 500;
+  font-size: 5em;
+  letter-spacing: 2px;
+  color: rgb(208, 206, 206);
+}
+
+.main_sub_title {
+ font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+.btn-reservation {
+background-color: var(--gold);
+color: white;
+font-size: 1.8em;
+font-weight: 500;
+font-family: 'Lora', serif;
+}
+.btn-reservation:hover {
+  background-color: var(--nav_bg_color);
+ border: 2px solid var(--gold);
+ color: var(--darkbrown);
+
+ transition: ease-in;
+ font-weight: 700;
+}
+
+
+.hidden {
+  display: none;
+}
+.img-fluid:hover  {
+cursor: pointer;
+}
