@@ -1,13 +1,54 @@
-{% extends 'base.html.twig' %}
+<h3>NOS<br>Horaires d'ouverture</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Jour</th>
+                <th>Heures d'ouverture</th>
+               
+            </tr>
+        </thead>
+        <tbody>
 
-{% block title %}Edit Schedule{% endblock %}
+            <tr>
+                <td>Lundi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+             <tr>
+                <td>Mardi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+             <tr>
+                <td>Mercredi</td>
+                <td>Fermé</td>
+            </tr>
+             <tr>
+                <td>Jeudi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+             <tr>
+                <td>Vendredi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+            <tr>
+                <td>Samedi</td>
+                <td>19:00 - 23:00</td>
+            </tr>
+            <tr>
+                <td>Dimanche</td>
+                <td>12:00 - 14:00</td>
+            </tr>
+            {# {% if app.user %} #}
+            <tr>
+                <td></td>
+                <td><a href="{{ path('schedule.edit') }}">Modifier</a></td>
+            </tr>
+    {# {% endif %} #}
+      
+        </tbody>
+    </table>
+   
 
-{% block body %}
-    <h1>Edit Schedule</h1>
-
-    {{ include('schedule/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_schedule_index') }}">back to list</a>
-
-    {{ include('schedule/_delete_form.html.twig') }}
-{% endblock %}

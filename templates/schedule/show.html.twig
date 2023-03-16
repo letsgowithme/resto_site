@@ -8,27 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ schedule.id }}</td>
-            </tr>
-            <tr>
                 <th>Day</th>
+                <th>Horaies d'ouverture</th>
+                
+            </tr>
+            <tr>
+                
                 <td>{{ schedule.day }}</td>
-            </tr>
-            <tr>
-                <th>OpeningTime</th>
-                <td>{{ schedule.openingTime }}</td>
-            </tr>
-            <tr>
-                <th>ClosingTime</th>
-                <td>{{ schedule.closingTime }}</td>
+                <td>{{ schedule.openingTimeAm }} - {{ schedule.closingTimeAm }}
+                <br>
+                {{ schedule.openingTimePm }} - {{ schedule.closingTimePm }}
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_schedule_index') }}">back to list</a>
-
-    <a href="{{ path('app_schedule_edit', {'id': schedule.id}) }}">edit</a>
-
-    {{ include('schedule/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,39 +1,54 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Schedule index{% endblock %}
-
-{% block body %}
-    
-<div class="container lg-w-50">
-<h1>NOS<br>Horaires d'ouverture</h1>
+<h3>NOS<br>Horaires d'ouverture</h3>
     <table class="table">
         <thead>
             <tr>
-                <th>Day</th>
+                <th>Jour</th>
                 <th>Heures d'ouverture</th>
-            
-                <th>actions</th>
+               
             </tr>
         </thead>
         <tbody>
-        {% for schedule in schedules %}
+
             <tr>
-                <td>{{ schedule.day }}</td>
-                <td>{{ schedule.openingTime }} - {{ schedule.closingTime }}<br>
-               {{ schedule.openingTime }} - {{ schedule.closingTime }}</td>
-                <td>
-                    <a href="{{ path('app_schedule_show', {'id': schedule.id}) }}">show</a>
-                    <a href="{{ path('app_schedule_edit', {'id': schedule.id}) }}">edit</a>
-                </td>
+                <td>Lundi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
             </tr>
-        {% else %}
+             <tr>
+                <td>Mardi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+             <tr>
+                <td>Mercredi</td>
+                <td>Fermé</td>
+            </tr>
+             <tr>
+                <td>Jeudi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
+             <tr>
+                <td>Vendredi</td>
+                <td>9:00 - 12:00<br>
+               19:00 - 23:00</td>
+            </tr>
             <tr>
-                <td colspan="5">no records found</td>
+                <td>Samedi</td>
+                <td>19:00 - 23:00</td>
             </tr>
-        {% endfor %}
+            <tr>
+                <td>Dimanche</td>
+                <td>12:00 - 14:00</td>
+            </tr>
+            {# {% if app.user %} #}
+            {# <tr>
+                <td></td>
+                <td><a href="{{ path('schedule.edit') }}">Modifier</a></td>
+            </tr> #}
+    {# {% endif %} #}
+      
         </tbody>
     </table>
+   
 
-    <a href="{{ path('app_schedule_new') }}">Create new</a>
-    </div>
-{% endblock %}

@@ -18,10 +18,16 @@ class Schedule
     private ?string $day = null;
 
     #[ORM\Column]
-    private ?string $openingTime = null;
+    private ?string $openingTimeAm = null;
 
     #[ORM\Column]
-    private ?string $closingTime = null;
+    private ?string $closingTimeAM = null;
+
+    #[ORM\Column]
+    private ?string $openingTimePm = null;
+
+    #[ORM\Column]
+    private ?string $closingTimePm = null;
 
     public function getId(): ?int
     {
@@ -41,39 +47,84 @@ class Schedule
     }
 
    
-    public function getOpeningTime()
+    
+
+    /**
+     * Get the value of openingTimeAm
+     */ 
+    public function getOpeningTimeAm()
     {
-        return $this->openingTime;
+        return $this->openingTimeAm;
     }
 
     /**
-     * Set the value of openingTime
+     * Set the value of openingTimeAm
      *
      * @return  self
      */ 
-    public function setOpeningTime($openingTime)
+    public function setOpeningTimeAm($openingTimeAm)
     {
-        $this->openingTime = $openingTime;
+        $this->openingTimeAm = $openingTimeAm;
 
         return $this;
     }
 
     /**
-     * Get the value of closingTime
+     * Get the value of closingTimeAM
      */ 
-    public function getClosingTime()
+    public function getClosingTimeAM()
     {
-        return $this->closingTime;
+        return $this->closingTimeAM;
     }
 
     /**
-     * Set the value of closingTime
+     * Set the value of closingTimeAM
      *
      * @return  self
      */ 
-    public function setClosingTime($closingTime)
+    public function setClosingTimeAM($closingTimeAM)
     {
-        $this->closingTime = $closingTime;
+        $this->closingTimeAM = $closingTimeAM;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of openingTimePm
+     */ 
+    public function getOpeningTimePm()
+    {
+        return $this->openingTimePm;
+    }
+
+    /**
+     * Set the value of openingTimePm
+     *
+     * @return  self
+     */ 
+    public function setOpeningTimePm($openingTimePm)
+    {
+        $this->openingTimePm = $openingTimePm;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of closingTimePm
+     */ 
+    public function getClosingTimePm()
+    {
+        return $this->closingTimePm;
+    }
+
+    /**
+     * Set the value of closingTimePm
+     *
+     * @return  self
+     */ 
+    public function setClosingTimePm($closingTimePm)
+    {
+        $this->closingTimePm = $closingTimePm;
 
         return $this;
     }

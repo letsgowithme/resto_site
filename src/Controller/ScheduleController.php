@@ -10,18 +10,35 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 #[Route('/schedule')]
 class ScheduleController extends AbstractController
 {
-    #[Route('/', name: 'app_schedule_index', methods: ['GET'])]
+     /**
+     * This function shows the schedule
+     *  @param ScheduleRepository $scheduleRepository
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/', name: 'schedule.index', methods: ['GET'])]
+    //  #[IsGranted('ROLE_USER')]
     public function index(ScheduleRepository $scheduleRepository): Response
     {
+        $schedules = $scheduleRepository->findAll();
         return $this->render('schedule/index.html.twig', [
-            'schedules' => $scheduleRepository->findAll(),
+            'schedules' => $schedules,
         ]);
     }
-
-    #[Route('/new', name: 'app_schedule_new', methods: ['GET', 'POST'])]
+  
+    /**
+     * This function creates the schedule
+     * @param Schedule $schedule
+     *  @param ScheduleRepository $scheduleRepository
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/new', name: 'schedule.new', methods: ['GET', 'POST'])]
     public function new(Request $request, ScheduleRepository $scheduleRepository): Response
     {
         $schedule = new Schedule();
@@ -31,7 +48,7 @@ class ScheduleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $scheduleRepository->save($schedule, true);
 
-            return $this->redirectToRoute('app_schedule_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('schedule.index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('schedule/new.html.twig', [
@@ -40,7 +57,7 @@ class ScheduleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_schedule_show', methods: ['GET'])]
+    #[Route('/show', name: 'schedule.show', methods: ['GET'])]
     public function show(Schedule $schedule): Response
     {
         return $this->render('schedule/show.html.twig', [
@@ -48,8 +65,18 @@ class ScheduleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_schedule_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Schedule $schedule, ScheduleRepository $scheduleRepository): Response
+    /**
+     * This function edits the schedule
+     * @param Schedule $schedule
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/edit', name: 'schedule.edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Request $request, 
+        Schedule $schedule, 
+        ScheduleRepository $scheduleRepository
+        ): Response
     {
         $form = $this->createForm(ScheduleType::class, $schedule);
         $form->handleRequest($request);
@@ -57,7 +84,7 @@ class ScheduleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $scheduleRepository->save($schedule, true);
 
-            return $this->redirectToRoute('app_schedule_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('schedule.index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('schedule/edit.html.twig', [
@@ -66,13 +93,20 @@ class ScheduleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_schedule_delete', methods: ['POST'])]
+     /**
+     * This function deletes the schedule
+     * @param Schedule $schedule
+     * @param Request $request
+     * @param ScheduleRepository $scheduleRepository
+     * @return Response
+     */
+    #[Route('/delete', name: 'app_schedule_delete', methods: ['POST'])]
     public function delete(Request $request, Schedule $schedule, ScheduleRepository $scheduleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$schedule->getId(), $request->request->get('_token'))) {
             $scheduleRepository->remove($schedule, true);
         }
 
-        return $this->redirectToRoute('app_schedule_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('schedule.index', [], Response::HTTP_SEE_OTHER);
     }
 }

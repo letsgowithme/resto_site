@@ -3,9 +3,47 @@
 {% block title %}New Schedule{% endblock %}
 
 {% block body %}
-    <h1>Create new Schedule</h1>
+ <div class="container">
+    <h1>Créer le jour</h1>
+	{{ form_start(form) }}
 
-    {{ include('schedule/_form.html.twig') }}
+		<div class="form-group">
+			{{ form_label(form.day) }}
+			{{ form_widget(form.day) }}
+			<div class="form-error">
+				{{ form_errors(form.day) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.openingTimeAm) }}
+			{{ form_widget(form.openingTimeAm) }}
+			<div class="form-error">
+				{{ form_errors(form.openingTimeAm) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.closingTimeAm) }}
+			{{ form_widget(form.closingTimeAm) }}
+			<div class="form-error">
+				{{ form_errors(form.closingTimeAm) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.openingTimePm) }}
+			{{ form_widget(form.openingTimePm) }}
+			<div class="form-error">
+				{{ form_errors(form.openingTimePm) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.closingTimePm) }}
+			{{ form_widget(form.closingTimePm) }}
+			<div class="form-error">
+				{{ form_errors(form.closingTimePm) }}
+			</div>
+		</div>
 
-    <a href="{{ path('app_schedule_index') }}">back to list</a>
+		{{ form_end(form) }}
+    <a href="{{ path('schedule.index') }}">Vers les horaires d'ouverture</a>
+    </div>
 {% endblock %}
