@@ -10,7 +10,7 @@
 
 
 :root {
-  --main_bg_color: rgb(0, 0, 0);
+  --main_bg_color: rgb(54, 50, 50);
   --nav_bg_color: #B6AC97;
   --gold: #906427;
   --darkbrown: #392C1E;
@@ -19,10 +19,7 @@
 
 .body
  {
-  /* flex-direction: column; */
- 
   min-height: 100vh;
-  /* justify-content: space-between; */
   width: 100%;
   background-color:  var(--main_bg_color);
   
@@ -31,8 +28,9 @@
   
 }
 .container {
-   display: flex; 
+display: flex; 
 flex-direction: column;
+height: 100vh;
 
 }
 .navbar,
@@ -86,4 +84,8 @@ font-family: 'Lora', serif;
 }
 .img-fluid:hover  {
 cursor: pointer;
+}
+.choiceList-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
