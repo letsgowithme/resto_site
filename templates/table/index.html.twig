@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>NbGuests</th>
+                <th>NbPeople</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Allergy</th>
@@ -20,7 +20,7 @@
         {% for table in tables %}
             <tr>
                 <td>{{ table.id }}</td>
-                <td>{{ table.nbGuests }}</td>
+                <td>{{ table.nbPeople }}</td>
                 <td>{{ table.date ? table.date|date('Y-m-d') : '' }}</td>
                 <td>{{ table.time ? table.time|date('H:i:s') : '' }}</td>
                 <td>{{ table.allergy }}</td>

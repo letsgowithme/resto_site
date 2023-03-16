@@ -1,11 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Table{% endblock %}
+{% block title %}New Table
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Table</h1>
+	<div class="container text-center" style="height: 80vh;">
 
-    {{ include('table/_form.html.twig') }}
+		<h1>Réserver la table</h1>
+		<p>Merce d'avance...
+		</p>
 
-    <a href="{{ path('app_table_index') }}">back to list</a>
-{% endblock %}
+		{{ form_start(form) }}
+		<div class="row mb-4">
+			<div class="form-group col-12 mb-4">
+				{{ form_label(form.nbPeople) }}
+				{{ form_widget(form.nbPeople) }}
+				<div class="form-error">
+					{{ form_errors(form.nbPeople) }}
+				</div>
+            </div>
+            </div>
+            <div class="row mb-4">
+				<div class="form-group col-12 mb-4">
+					{{ form_label(form.date) }}
+					{{ form_widget(form.date) }}
+					<div class="form-error">
+						{{ form_errors(form.date) }}
+					</div>
+				</div>
+                <hr>
+        </div>
+		<div class="row">
+
+				<div class="form-group mb-4 col-6">
+					{{ form_label(form.timeNoon) }}
+					{{ form_widget(form.timeNoon) }}
+					<div class="form-error">
+						{{ form_errors(form.timeNoon) }}
+					</div>
+                </div>
+
+				<div class="form-group mb-4 col-6">
+					{{ form_label(form.timeEvening) }}
+					{{ form_widget(form.timeEvening) }}
+					<div class="form-error">
+						{{ form_errors(form.timeEvening) }}
+					</div>
+                </div>
+        </div>
+					{{ form_end(form) }}
+				</div>
+			{% endblock %}

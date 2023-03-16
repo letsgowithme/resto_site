@@ -90,3 +90,6 @@ cursor: pointer;
   display: flex;
   flex-wrap: wrap;
 }
+select {
+  width: 300px;
+}

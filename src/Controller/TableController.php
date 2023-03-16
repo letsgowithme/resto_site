@@ -21,7 +21,7 @@ class TableController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_table_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'table.new', methods: ['GET', 'POST'])]
     public function new(Request $request, TableRepository $tableRepository): Response
     {
         $table = new Table();
