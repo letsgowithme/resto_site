@@ -34,7 +34,7 @@ class TableType extends AbstractType
                 '10 couverts' => 10,
             ],
             'attr' => [
-                'class' => 'form-select mb-4'
+                'class' => 'form-select mb-4 fs-4'
             ],
             'label' => 'Nombre de couverts',
             'label_attr' => [
@@ -62,11 +62,11 @@ class TableType extends AbstractType
                 'input'  => 'datetime',
                 
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control fs-4 mb-4 d-flex justify-content-between'
                 ],
                 'label' => 'La date',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 fs-3 d-none mb-4'
+                    'class' => 'form-label mt-4 d-none mb-4'
                 ],
                 
             ])
@@ -85,7 +85,7 @@ class TableType extends AbstractType
                 ],
                 'label' => 'MIDI',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 fs-3'
+                    'class' => 'form-label mt-4 fs-3 h5-page'
                 ]
     
             ])
@@ -104,7 +104,7 @@ class TableType extends AbstractType
                 ],
                 'label' => 'SOIR',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 fs-3'
+                    'class' => 'form-label mt-4 fs-3 h5-page'
                 ]
     
             ])

@@ -3,15 +3,17 @@
 {% block title %}Table index{% endblock %}
 
 {% block body %}
-    <h1>Table index</h1>
+ <div class="container">
+    <h1>Réservations de tables</h1>
+   
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>NbPeople</th>
+               <th>Numéro de la table</th>
+                <th>Nombre de couverts</th>
                 <th>Date</th>
-                <th>Time</th>
+                <th>Heure</th>
                 <th>Allergy</th>
                 <th>actions</th>
             </tr>
@@ -25,17 +27,16 @@
                 <td>{{ table.time ? table.time|date('H:i:s') : '' }}</td>
                 <td>{{ table.allergy }}</td>
                 <td>
-                    <a href="{{ path('app_table_show', {'id': table.id}) }}">show</a>
-                    <a href="{{ path('app_table_edit', {'id': table.id}) }}">edit</a>
+                    <a href="{{ path('table.show', {'id': table.id}) }}">Voir</a>
+                    <a href="{{ path('table.edit', {'id': table.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">pas de réservations</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_table_new') }}">Create new</a>
+    </div>
 {% endblock %}

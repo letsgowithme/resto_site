@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/dish')]
+#[Route('/plats')]
 class DishController extends AbstractController
 {
-    #[Route('/', name: 'app_dish_index', methods: ['GET'])]
+    #[Route('/', name: 'dish.index', methods: ['GET'])]
     public function index(DishRepository $dishRepository): Response
     {
         return $this->render('dish/index.html.twig', [
@@ -21,7 +21,7 @@ class DishController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_dish_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'dish.new', methods: ['GET', 'POST'])]
     public function new(Request $request, DishRepository $dishRepository): Response
     {
         $dish = new Dish();
@@ -31,16 +31,16 @@ class DishController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dishRepository->save($dish, true);
 
-            return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('dish.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish/new.html.twig', [
+        return $this->render('dish/new.html.twig', [
             'dish' => $dish,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_dish_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'dish.show', methods: ['GET'])]
     public function show(Dish $dish): Response
     {
         return $this->render('dish/show.html.twig', [
@@ -48,7 +48,7 @@ class DishController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_dish_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'dish.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Dish $dish, DishRepository $dishRepository): Response
     {
         $form = $this->createForm(DishType::class, $dish);
@@ -57,22 +57,22 @@ class DishController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dishRepository->save($dish, true);
 
-            return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('dish.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('dish/edit.html.twig', [
+        return $this->render('dish/edit.html.twig', [
             'dish' => $dish,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_dish_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'dish.delete', methods: ['POST'])]
     public function delete(Request $request, Dish $dish, DishRepository $dishRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {
             $dishRepository->remove($dish, true);
         }
 
-        return $this->redirectToRoute('app_dish_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('dish.index', [], Response::HTTP_SEE_OTHER);
     }
 }

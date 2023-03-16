@@ -4,15 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container text-center mt-4" style="height: 80vh;">
+	<div class="container text-center mt-4" style="height: 80vh; color: white;">
 
-		<h1 class="mt-4">Réserver la table</h1>
+		<h1 class="mt-4 h5-page">Réserver la table</h1>
 		<p>Merce d'avance...
 		</p>
 
 		{{ form_start(form) }}
-		<div class="row mb-4">
-			<div class="form-group col-12 mb-4">
+		<div class="row mb-4 form-row">
+			<div class="form-group  col-12 mb-4">
 				{{ form_label(form.nbPeople) }}
 				{{ form_widget(form.nbPeople) }}
 				<div class="form-error">
@@ -20,7 +20,7 @@
 				</div>
             </div>
             </div>
-            <div class="row mb-4">
+            <div class="row mb-4 form-row">
 				<div class="form-group col-12 mb-4">
 					{{ form_label(form.date) }}
 					{{ form_widget(form.date) }}

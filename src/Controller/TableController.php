@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/table')]
 class TableController extends AbstractController
 {
-    #[Route('/', name: 'app_table_index', methods: ['GET'])]
+    #[Route('/', name: 'table.index', methods: ['GET'])]
     public function index(TableRepository $tableRepository): Response
     {
         return $this->render('table/index.html.twig', [
@@ -31,16 +31,16 @@ class TableController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $tableRepository->save($table, true);
 
-            return $this->redirectToRoute('app_table_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('table.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('table/new.html.twig', [
+        return $this->render('table/new.html.twig', [
             'table' => $table,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_table_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'table.show', methods: ['GET'])]
     public function show(Table $table): Response
     {
         return $this->render('table/show.html.twig', [
@@ -48,7 +48,7 @@ class TableController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_table_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'table.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Table $table, TableRepository $tableRepository): Response
     {
         $form = $this->createForm(TableType::class, $table);
@@ -57,22 +57,22 @@ class TableController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $tableRepository->save($table, true);
 
-            return $this->redirectToRoute('app_table_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('table.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('table/edit.html.twig', [
+        return $this->render('table/edit.html.twig', [
             'table' => $table,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_table_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'table.delete', methods: ['POST'])]
     public function delete(Request $request, Table $table, TableRepository $tableRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$table->getId(), $request->request->get('_token'))) {
             $tableRepository->remove($table, true);
         }
 
-        return $this->redirectToRoute('app_table_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('table.index', [], Response::HTTP_SEE_OTHER);
     }
 }
