@@ -17,16 +17,16 @@ class Schedule
     #[ORM\Column(length: 50)]
     private ?string $day = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $openingTimeMidday = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $closingTimeMidday = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $openingTimeEvening = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?string $closingTimeEvening = null;
 
     public function getId(): ?int

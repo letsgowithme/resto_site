@@ -3,50 +3,38 @@
 {% block title %}New Schedule{% endblock %}
 
 {% block body %}
-	<div class="container mt-4">
+	<div class="container mt-4 text-cente" style="max-width: 550px;">
 		<h1 class="mb-4 h5-page">Horaires d'ouverture</h1>
-
-		  {% if is_granted('ROLE_ADMIN') %}
-		<button type="button" class="btn btn-primary my-4" style="width: 15em;">
-			<a href="{{ path('schedule.new') }}" class="fs-5 text-light mb-4 text-decoration-none">Créer un nouveau jour</a>
-		</button>
-{% endif %}
-
 		<table class="table mt-4">
 			<thead>
 				<tr>
-					<th class="fs-4">Jour</th>
-					<th class="fs-4">Horaire d'ouverture</th>
-					 {% if is_granted('ROLE_ADMIN') %}
-						<th class="fs-4">Voir</th>
-						<th class="fs-4">Modifier</th>
-					{% endif %}
+					<th class="fs-4 text-center h5-page">Jour</th>
+					<th class="fs-4 text-center h5-page">Horaire d'ouverture</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for schedule in schedules %}
 					<tr>
-						<td class="fs-5">{{ schedule.day }}</td>
-						<td>{{ schedule.openingTimeMidday }}
+						<td class="fs-5 text-center">{{ schedule.day }}</td>
+						
+						<td class="text-center">
+						{% if schedule.openingTimeMidday %}
+						{{ schedule.openingTimeMidday }}
 							-
-							{{ schedule.closingTimeMidday }}<br>
+							{% endif %}
+							{% if schedule.closingTimeMidday %}
+							{{ schedule.closingTimeMidday }}
+							{% endif %}
+							<br>
+							{% if schedule.openingTimeEvening %}
 							{{ schedule.openingTimeEvening }}
 							-
-							{{ schedule.closingTimeEvening }}</td>
+							{% endif %}
+							{% if schedule.openingTimeEvening %}
+							{{ schedule.closingTimeEvening }}
+								{% endif %}
+							</td>
 					</tr>
-				</td>
-                {% if is_granted('ROLE_ADMIN') %}
-				<td>
-					<button type="button" class="btn btn-danger">
-						<a href="{{ path('schedule.show', {'id': schedule.id}) }}" class="fs-5">Voir</a>
-					</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-danger">
-						<a href="{{ path('schedule.edit', {'id': schedule.id}) }}" class="fs-5">Modifier</a>
-					</button>
-				</td>
-                {% endif %}
 			</tbody>
 		</tr>
 	{% endfor %}
