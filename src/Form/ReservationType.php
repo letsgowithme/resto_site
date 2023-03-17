@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Table;
+use App\Entity\Reservation;
 use App\Entity\Allergy;
 use App\Repository\AllergyRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -10,12 +10,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class TableType extends AbstractType
+class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -70,15 +71,15 @@ class TableType extends AbstractType
                 ],
                 
             ])
-            ->add('timeNoon', ChoiceType::class, [
+            ->add('timeMidday', ChoiceType::class, [
                 'choices' => [
+                    'Choisir l\'heure' => 'Choisir l\'heure',
                     '12:00' => 1,
                     '12:15' => 2,
                     '12:30' => 3,
                     '12:45' => 4,
                     '13:00' => 5,
-                    '13:15' => 6,
-                    '13:30' => 7
+                    
                 ],
                 'attr' => [
                     'class' => 'form-select'
@@ -86,18 +87,25 @@ class TableType extends AbstractType
                 'label' => 'MIDI',
                 'label_attr' => [
                     'class' => 'form-label mt-4 fs-3 h5-page'
-                ]
+                ],
+                'multiple' => false,
     
             ])
             ->add('timeEvening', ChoiceType::class, [
                 'choices' => [
+                    'Choisir l\'heure' => 'Choisir l\'heure',
                     '19:00' => 1,
                     '19:15' => 2,
                     '19:30' => 3,
                     '19:45' => 4,
                     '20:00' => 5,
                     '20:15' => 6,
-                    ':30' => 7
+                    '20:30' => 7,
+                    '20:45' => 8,
+                    '21:00' => 9,
+                    '21:15' => 10,
+                    '21:30' => 11,
+                    '22:00' => 12
                 ],
                 'attr' => [
                     'class' => 'form-select'
@@ -105,37 +113,45 @@ class TableType extends AbstractType
                 'label' => 'SOIR',
                 'label_attr' => [
                     'class' => 'form-label mt-4 fs-3 h5-page'
-                ]
+                ],
+                'multiple' => false,
     
             ])
             // ->add('time', TimeType::class, [
             //     'widget' => 'choice',
             //     'input'  => 'datetime'
             // ])
-            ->add('allergy', EntityType::class,[
+            ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,
                 'query_builder' => function (AllergyRepository $r) {
                     return $r->createQueryBuilder('i')
                         ->orderBy('i.name', 'ASC');
                     },
-                'label' => 'Allergie',
+                    'attr' => [
+                        'class' => 'mt-4 fs-5 ms-4 me-4'
+                    ],
+                'label' => 'Vous avez une allergie à indiquer?',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 text-dark fs-5'
+                    'class' => 'form-label mt-4 fs-5'
                 ],
-                
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
-                
 
             ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary mt-4 fs-4'
+                ],
+                'label' => 'Réserver la table!',
+            ]);
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Table::class,
+            'data_class' => Reservation::class,
         ]);
     }
 }

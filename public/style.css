@@ -115,3 +115,8 @@ select {
 .form-row {
   height: 3em;
 }
+.choiceList-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid gray;
+}

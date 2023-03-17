@@ -19,16 +19,16 @@
             </tr>
         </thead>
         <tbody>
-        {% for table in tables %}
+        {% for reservation in reservations %}
             <tr>
-                <td>{{ table.id }}</td>
-                <td>{{ table.nbPeople }}</td>
-                <td>{{ table.date ? table.date|date('Y-m-d') : '' }}</td>
-                <td>{{ table.time ? table.time|date('H:i:s') : '' }}</td>
-                <td>{{ table.allergy }}</td>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.nbPeople }}</td>
+                <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.time ? reservation.time|date('H:i:s') : '' }}</td>
+                <td>{{ reservation.allergy }}</td>
                 <td>
-                    <a href="{{ path('table.show', {'id': table.id}) }}">Voir</a>
-                    <a href="{{ path('table.edit', {'id': table.id}) }}">Modifier</a>
+                    <a href="{{ path('reservation.show', {'id': reservation.id}) }}">Voir</a>
+                    <a href="{{ path('reservation.edit', {'id': reservation.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

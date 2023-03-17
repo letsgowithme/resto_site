@@ -2,27 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Menu;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MenuType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('conditions')
-            ->add('description')
-            ->add('price')
+            ->add('fullName')
+            ->add('email')
+            ->add('roles')
+            ->add('password')
+            ->add('nbGuests')
+            ->add('allergy')
+            ->add('isVerified')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Menu::class,
+            'data_class' => User::class,
         ]);
     }
 }

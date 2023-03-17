@@ -6,7 +6,10 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+#[UniqueEntity(fields: ['name'], message: 'Cette catégorie existe déjà')]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
@@ -18,7 +21,7 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Dish::class)]
+    #[ORM\ManyToMany(targetEntity: Dish::class, inversedBy: 'categories')]
     private Collection $dishes;
 
     public function __construct()
@@ -55,7 +58,6 @@ class Category
     {
         if (!$this->dishes->contains($dish)) {
             $this->dishes->add($dish);
-            $dish->setCategory($this);
         }
 
         return $this;
@@ -63,13 +65,12 @@ class Category
 
     public function removeDish(Dish $dish): self
     {
-        if ($this->dishes->removeElement($dish)) {
-            // set the owning side to null (unless already changed)
-            if ($dish->getCategory() === $this) {
-                $dish->setCategory(null);
-            }
-        }
+        $this->dishes->removeElement($dish);
 
         return $this;
     }
-}
+
+ 
+
+    }
+

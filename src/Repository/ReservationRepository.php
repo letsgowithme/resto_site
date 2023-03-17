@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Table;
+use App\Entity\Reservation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Table>
+ * @extends ServiceEntityRepository<Reservation>
  *
- * @method Table|null find($id, $lockMode = null, $lockVersion = null)
- * @method Table|null findOneBy(array $criteria, array $orderBy = null)
- * @method Table[]    findAll()
- * @method Table[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Reservation|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Reservation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Reservation[]    findAll()
+ * @method Reservation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TableRepository extends ServiceEntityRepository
+class ReservationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Table::class);
+        parent::__construct($registry, Reservation::class);
     }
 
-    public function save(Table $entity, bool $flush = false): void
+    public function save(Reservation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class TableRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Table $entity, bool $flush = false): void
+    public function remove(Reservation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class TableRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Table[] Returns an array of Table objects
+//     * @return Reservation[] Returns an array of Reservation objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class TableRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Table
+//    public function findOneBySomeField($value): ?Reservation
 //    {
 //        return $this->createQueryBuilder('t')
 //            ->andWhere('t.exampleField = :val')

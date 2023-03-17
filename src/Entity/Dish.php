@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DishRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,9 +25,15 @@ class Dish
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'dishes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'dishes')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
+
+  
 
     public function getId(): ?int
     {
@@ -68,15 +76,32 @@ class Dish
         return $this;
     }
 
-    public function getCategory(): ?Category
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
     {
-        return $this->category;
+        return $this->categories;
     }
 
-    public function setCategory(?Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->addDish($this);
+        }
 
         return $this;
     }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeDish($this);
+        }
+
+        return $this;
+    }
+
+  
 }

@@ -14,21 +14,21 @@ class Restaurant
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $nbTables = null;
+    private ?int $nbReservations = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNbTables(): ?int
+    public function getNbReservations(): ?int
     {
-        return $this->nbTables;
+        return $this->nbReservations;
     }
 
-    public function setNbTables(int $nbTables): self
+    public function setNbReservations(int $nbReservations): self
     {
-        $this->nbTables = $nbTables;
+        $this->nbReservations = $nbReservations;
 
         return $this;
     }

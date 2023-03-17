@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Table;
+use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class TableCrudController extends AbstractCrudController
+class ReservationCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Table::class;
+        return Reservation::class;
     }
 
     /*

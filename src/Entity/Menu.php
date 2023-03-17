@@ -15,7 +15,7 @@ class Menu
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $formula = null;
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $conditions = null;
@@ -31,14 +31,14 @@ class Menu
         return $this->id;
     }
 
-    public function getFormula(): ?string
+    public function getTitle(): ?string
     {
-        return $this->formula;
+        return $this->title;
     }
 
-    public function setFormula(string $formula): self
+    public function settitle(string $title): self
     {
-        $this->formula = $formula;
+        $this->title = $title;
 
         return $this;
     }

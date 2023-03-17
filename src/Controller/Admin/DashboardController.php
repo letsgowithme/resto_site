@@ -10,7 +10,7 @@ use App\Entity\Gallery;
 use App\Entity\Menu;
 use App\Entity\Restaurant;
 use App\Entity\Schedule;
-use App\Entity\Table;
+use App\Entity\Reservation;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -73,7 +73,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Plats', 'fas fa-list', Dish::class);
         yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
         yield MenuItem::linkToCrud('Restaurant', 'fas fa-list', Restaurant::class);
-        yield MenuItem::linkToCrud('Tables', 'fas fa-list', Table::class);
+        yield MenuItem::linkToCrud('Reservations', 'fas fa-list', Reservation::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
     }
 }
