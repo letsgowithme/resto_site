@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Schedule;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,29 +15,42 @@ class ScheduleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('day', TextType::class, [
+        ->add('day', ChoiceType::class, [
+            'choices' => [
+                'Lundi' => 'Lundi',
+                'Mardi' => 'Mardi',
+                'Mercredi' => 'Mercredi',
+                'Jeudi' => 'Jeudi',
+                'Vendredi' => 'Vendredi',
+                'Samedi' => 'Samedi',
+                'Dimanche' =>  'Dimanche',
+               
+            ],
+            'attr' => [
+                'class' => 'form-select mb-4 fs-4'
+            ],
+            'label' => 'Jour',
+            'label_attr' => [
+                'class' => 'form-label mt-4 d-none'
+            ]
+
+        ])
+          
+            ->add('openingTimeMidday', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'value' => '12:00'
                 ],
-                'label' => 'Jour',
+                'label' => 'S\'ouvre à midi',
                 'label_attr' => [
                     'class' => 'form-label mt-4 fs-5',
                    
                 ]
             ])
-            ->add('openingTimeAm', TextType::class, [
+            ->add('closingTimeMidday', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'S\'ouvre le matin',
-                'label_attr' => [
-                    'class' => 'form-label mt-4 fs-5',
-                   
-                ]
-            ])
-            ->add('closingTimeAm', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'value' => '14:00'
                 ],
                 'label' => 'Se ferme',
                 'label_attr' => [
@@ -44,19 +58,21 @@ class ScheduleType extends AbstractType
                    
                 ]
             ])
-            ->add('openingTimePm', TextType::class, [
+            ->add('openingTimeEvening', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'value' => '19:00'
                 ],
-                'label' => 'S\'ouvre après midi',
+                'label' => 'S\'ouvre le soir',
                 'label_attr' => [
                     'class' => 'form-label mt-4 fs-5',
                    
                 ]
             ])
-            ->add('closingTimePm', TextType::class, [
+            ->add('closingTimeEvening', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'value' => '23:00'
                 ],
                 'label' => 'Se ferme',
                 'label_attr' => [

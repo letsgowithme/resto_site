@@ -4,29 +4,22 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
 	<h1>Créer une carte</h1>
 	{{ form_start(form) }}
-
 	<div class="form-group">
-		{{ form_label(form.imageName) }}
-		{{ form_widget(form.imageName) }}
-		<div class="form-error">
-			{{ form_errors(form.imageName) }}
+			{{ form_label(form.name) }}
+			{{ form_widget(form.name) }}
+			<div class="form-error">
+				{{ form_errors(form.name) }}
+			</div>
 		</div>
-	</div>
- <div style="width: 200px;">
+ <div>
 		{{ form_row(form.imageFile) }}
 	</div> 
-	{# <div class="gallery__image">
-		<img style="max-width: 350px;" src="{{ vich_uploader_asset(gallery, 'imageFile') }}">
-	</div> #}
+
 	{{ form_end(form) }}
 
-	{# <td>{{ card.updatedAt ? card.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
-
-	{# <a href="{{ path('app_card_show', {'id': card.id}) }}">show</a>
-	                    <a href="{{ path('app_card_edit', {'id': card.id}) }}">edit</a> #}
-
-	
 {# <a href="{{ path('card.show') }}">Voir</a> #}
+</div>
 {% endblock %}

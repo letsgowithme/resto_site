@@ -18,10 +18,10 @@
           <a class="nav-link" href="/menu">Menu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/schedule/show">Horaires</a>
+          <a class="nav-link" href="{{ path('schedule.index') }}">Horaires</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/table/new">Réserver une table</a>
+          <a class="nav-link" href="/table/new">Réserver la table</a>
         </li>
         </ul>
        {% if not app.user %}

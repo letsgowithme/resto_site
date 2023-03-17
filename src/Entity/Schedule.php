@@ -18,16 +18,16 @@ class Schedule
     private ?string $day = null;
 
     #[ORM\Column]
-    private ?string $openingTimeAm = null;
+    private ?string $openingTimeMidday = null;
 
     #[ORM\Column]
-    private ?string $closingTimeAM = null;
+    private ?string $closingTimeMidday = null;
 
     #[ORM\Column]
-    private ?string $openingTimePm = null;
+    private ?string $openingTimeEvening = null;
 
     #[ORM\Column]
-    private ?string $closingTimePm = null;
+    private ?string $closingTimeEvening = null;
 
     public function getId(): ?int
     {
@@ -50,81 +50,81 @@ class Schedule
     
 
     /**
-     * Get the value of openingTimeAm
+     * Get the value of openingTimeMidday
      */ 
-    public function getOpeningTimeAm()
+    public function getopeningTimeMidday()
     {
-        return $this->openingTimeAm;
+        return $this->openingTimeMidday;
     }
 
     /**
-     * Set the value of openingTimeAm
+     * Set the value of openingTimeMidday
      *
      * @return  self
      */ 
-    public function setOpeningTimeAm($openingTimeAm)
+    public function setopeningTimeMidday($openingTimeMidday)
     {
-        $this->openingTimeAm = $openingTimeAm;
+        $this->openingTimeMidday = $openingTimeMidday;
 
         return $this;
     }
 
     /**
-     * Get the value of closingTimeAM
+     * Get the value of closingTimeMidday
      */ 
-    public function getClosingTimeAM()
+    public function getclosingTimeMidday()
     {
-        return $this->closingTimeAM;
+        return $this->closingTimeMidday;
     }
 
     /**
-     * Set the value of closingTimeAM
+     * Set the value of closingTimeMidday
      *
      * @return  self
      */ 
-    public function setClosingTimeAM($closingTimeAM)
+    public function setclosingTimeMidday($closingTimeMidday)
     {
-        $this->closingTimeAM = $closingTimeAM;
+        $this->closingTimeMidday = $closingTimeMidday;
 
         return $this;
     }
 
     /**
-     * Get the value of openingTimePm
+     * Get the value of openingTimeEvening
      */ 
-    public function getOpeningTimePm()
+    public function getopeningTimeEvening()
     {
-        return $this->openingTimePm;
+        return $this->openingTimeEvening;
     }
 
     /**
-     * Set the value of openingTimePm
+     * Set the value of openingTimeEvening
      *
      * @return  self
      */ 
-    public function setOpeningTimePm($openingTimePm)
+    public function setopeningTimeEvening($openingTimeEvening)
     {
-        $this->openingTimePm = $openingTimePm;
+        $this->openingTimeEvening = $openingTimeEvening;
 
         return $this;
     }
 
     /**
-     * Get the value of closingTimePm
+     * Get the value of closingTimeEvening
      */ 
-    public function getClosingTimePm()
+    public function getclosingTimeEvening()
     {
-        return $this->closingTimePm;
+        return $this->closingTimeEvening;
     }
 
     /**
-     * Set the value of closingTimePm
+     * Set the value of closingTimeEvening
      *
      * @return  self
      */ 
-    public function setClosingTimePm($closingTimePm)
+    public function setclosingTimeEvening($closingTimeEvening)
     {
-        $this->closingTimePm = $closingTimePm;
+        $this->closingTimeEvening = $closingTimeEvening;
 
         return $this;
     }

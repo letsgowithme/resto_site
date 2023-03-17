@@ -1,25 +1,19 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Card index{% endblock %}
-
-{% block body %}
     <div class="container">
-    <h1>Image de menu</h1>
 		<div class="d-flex justify-content-center flex-wrap">
 					{% for card in cards %}
-						<div class="card border-primary mb-3 me-3" style="width: 20rem;">
-					<div class="card-header">Menu
-						{{ card.id }}</div>
+						<div class="mb-3 me-3" style="width: 20rem;">
 					<div class="card-body">
-						<h4 class="card-title">
-							<a href="{{ path('card.show', {id: card.id}) }}">{{ card.imageName }}</a>
+						<h4 class="card-title hidden">
+							<a href="{{ path('card.show', {id: card.id}) }}">{{ card.name }}</a>
 						</h4>
 						<div class="recipe__image card-image">
-							<img style="max-width: 350px;" src="{{ vich_uploader_asset(card, 'imageFile') }}">
+							<img 
+							style="min-width: 350px; min-height: 300px;" 
+							src="{{ vich_uploader_asset(card, 'imageFile') }}" 
+							class="img-fluid w-100 shadow-1-strong rounded mb-4">
 						</div>
 					</div>
 				</div>
 				{% endfor %}
 		</div>
 	</div>
-{% endblock %}

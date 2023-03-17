@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/card')]
+#[Route('/cards')]
 class CardController extends AbstractController
 {
     #[Route('/', name: 'card.index', methods: ['GET'])]
@@ -41,17 +41,9 @@ class CardController extends AbstractController
     }
 
     #[Route('/{id}', name: 'card.show', methods: ['GET'])]
-    public function show(
-        Card $card,
-        Request $request
-        ): Response
+    public function show(Card $card): Response
     {
-        $card = new Card();
-        $form = $this->createForm(CardType::class, $card);
-        $form->handleRequest($request);
-
         return $this->render('card/show.html.twig', [
-            'form' => $form->createView(),
             'card' => $card,
         ]);
     }

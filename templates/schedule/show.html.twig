@@ -1,60 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Schedule{% endblock %}
+{% block title %}Schedule
+{% endblock %}
 
 {% block body %}
-   <h3>NOS<br>Horaires d'ouverture</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Jour</th>
-                <th>Heures d'ouverture</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <td>Lundi</td>
-                <td>12:00 - 14:00<br>
-               19:00 - 22:00</td>
-            </tr>
-             <tr>
-                <td>Mardi</td>
-                  <td>12:00 - 14:00<br>
-               19:00 - 22:00</td>
-            </tr>
-             <tr>
-                <td>Mercredi</td>
-                <td>Fermé</td>
-            </tr>
-             <tr>
-                <td>Jeudi</td>
-                   <td>12:00 - 14:00<br>
-               19:00 - 22:00</td>
-            </tr>
-             <tr>
-                <td>Vendredi</td>
-                  <td>12:00 - 14:00<br>
-               19:00 - 22:00</td>
-            </tr>
-            <tr>
-                <td>Samedi</td>
-                <td>19:00 - 23:00</td>
-            </tr>
-            <tr>
-                <td>Dimanche</td>
-                <td>12:00 - 14:00</td>
-            </tr>
-            {# {% if app.user %} #}
-            {# <tr>
-                <td></td>
-                <td><a href="{{ path('schedule.edit') }}">Modifier</a></td>
-            </tr> #}
-    {# {% endif %} #}
-      
-        </tbody>
-    </table>
-   
-
-{% endblock %}
+	<h3>NOS<br>Horaires d'ouverture</h3>
+	<table class="table mt-4">
+		<thead>
+			<tr>
+				<th>Jour</th>
+				<th>Horaire d'ouverture</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+					<td>{{ schedule.day }}</td>
+					<td>{{ schedule.openingTimeMidday }}
+						-
+						{{ schedule.closingTimeMidday }}<br>
+						{{ schedule.openingTimeEvening }}
+						-
+						{{ schedule.closingTimeEvening }}
+					</td>
+			
+			</tbody>
+		</tbody>
+	</tr>
+</div>{% endblock %}

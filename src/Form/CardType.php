@@ -15,21 +15,21 @@ class CardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-       
-        ->add('imageName', TextType::class, [
+        ->add('name', TextType::class, [
             'attr' => [
-                'class' => 'form-control'
+                'class' => 'form-control mb-4 w-50'
             ],
             'label' => 'Titre',
             'label_attr' => [
-                'class' => 'form-label mt-4 fs-5', 
+                'class' => 'form-label mt-4 fs-4', 
             ]
           
         ])
+     
         ->add('imageFile', VichImageType::class, [
-            'label' => 'Image',
+            'label' => '',
             'label_attr' => [
-                'class' => 'form-label mt-4 w-350 h-auto mt-4 mb-4'
+                'class' => 'd-none form-label mt-4 mt-4 mb-4'
             ],
             'required' => false
         ])

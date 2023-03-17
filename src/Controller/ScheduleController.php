@@ -22,7 +22,7 @@ class ScheduleController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'schedule.index', methods: ['GET'])]
-    //  #[IsGranted('ROLE_USER')]
+   
     public function index(ScheduleRepository $scheduleRepository): Response
     {
         $schedules = $scheduleRepository->findAll();
@@ -57,7 +57,7 @@ class ScheduleController extends AbstractController
         ]);
     }
 
-    #[Route('/show', name: 'schedule.show', methods: ['GET'])]
+    #[Route('/{id}', name: 'schedule.show', methods: ['GET'])]
     public function show(Schedule $schedule): Response
     {
         return $this->render('schedule/show.html.twig', [
@@ -71,7 +71,7 @@ class ScheduleController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[Route('/edit', name: 'schedule.edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'schedule.edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request, 
         Schedule $schedule, 

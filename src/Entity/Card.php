@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[UniqueEntity('imageName')]
+#[UniqueEntity('name')]
 #[ORM\Entity(repositoryClass: CardRepository::class)]
 #[Vich\Uploadable]
 /**
@@ -22,6 +22,8 @@ class Card
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
 
     #[Vich\UploadableField(mapping: 'gallery_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
@@ -93,6 +95,26 @@ class Card
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -6,9 +6,9 @@
 <div class="container mt-4 text-center">
 <h1 class="main_title"> Quai Antique</h1>
 <h2 class="main_sub_title">Chef Arnaud Michant</h2>
-
-{% include "partials/_gallery.html.twig" %}
-
+<div class="gallery">
+ {% include "card/index.html.twig" %}
+ </div>
 <button type="button" class="btn btn-reservation btn-lg">
 <a class="nav-link" href="/table/new">Réserver la table</a>
 </button>
