@@ -15,13 +15,14 @@
 		<tbody>
 			
 				<tr>
-					<td>{{ schedule.day }}</td>
-					<td>{{ schedule.openingTimeMidday }}
+					<td id="day">{{ schedule.day }}</td>
+					<td 
+					<div id="openingTimeMidday">{{ schedule.openingTimeMidday }}</div>
 						-
-						{{ schedule.closingTimeMidday }}<br>
-						{{ schedule.openingTimeEvening }}
+						<div id="closingTimeMidday">{{ schedule.closingTimeMidday }}</div><br>
+						<div id="openingTimeEvening">{{ schedule.openingTimeEvening }}</div>
 						-
-						{{ schedule.closingTimeEvening }}
+							<div id="closingTimeEvening">{{ schedule.closingTimeEvening }}</div>
 					</td>
 			
 			</tbody>

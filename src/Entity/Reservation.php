@@ -7,13 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
-// #[ORM\Reservation(name: '`Reservation`')]
-/**
- * Summary of Reservation
- */
 class Reservation
 {
     #[ORM\Id]
@@ -24,29 +19,34 @@ class Reservation
     #[ORM\Column]
     private ?int $nbPeople = null;
 
-    /**
-     * @var string A "Y-m-d" formatted value
-     */
-    #[Assert\Date]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTime $date = null;
+    private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $timeMidday = null;
-   
-    #[ORM\Column(nullable: true)]
-    private ?string $timeEvening = null;
-    
+    // #[ORM\Column(type: Types::TIME_MUTABLE)]
+    // private ?\DateTimeInterface $timeMidday = null;
 
-    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'reservations')]
+    // #[ORM\Column(type: Types::TIME_MUTABLE)]
+    // private ?\DateTimeInterface $timeEvening = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergy::class)]
     private Collection $allergies;
 
+    // #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\ManyToMany(targetEntity: DaySlots::class)]
+    // #[ORM\JoinColumn(nullable: false)]
+    private Collection $daySlots;
+
+    #[ORM\ManyToMany(targetEntity: EveningSlots::class, inversedBy: 'reservations')]
+    private Collection $eveningSlots;
+
+    
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
+        $this->daySlots = new ArrayCollection();
+        $this->date = new \DateTime();
+        $this->eveningSlots = new ArrayCollection();
     }
-
-    
 
     public function getId(): ?int
     {
@@ -65,28 +65,57 @@ class Reservation
         return $this;
     }
 
-    /**
-     * Summary of getDate
-     * @return \DateTimeInterface|null
-     */
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(\DateTime $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-   
- 
-    public function __toString()
-    {
-        return (string) $this->date;
-    }
+    //  /**
+    //  * Get the value of timeMidday
+    //  */ 
+    // public function getTimeMidday()
+    // {
+    //     return $this->timeMidday;
+    // }
+
+    // /**
+    //  * Set the value of timeMidday
+    //  *
+    //  * @return  self
+    //  */ 
+    // public function setTimeMidday($timeMidday)
+    // {
+    //     $this->timeMidday = $timeMidday;
+
+    //     return $this;
+    // }
+
+    /**
+     * Get the value of timeEvening
+     */ 
+    // public function getTimeEvening()
+    // {
+    //     return $this->timeEvening;
+    // }
+
+    // /**
+    //  * Set the value of timeEvening
+    //  *
+    //  * @return  self
+    //  */ 
+    // public function setTimeEvening($timeEvening)
+    // {
+    //     $this->timeEvening = $timeEvening;
+
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Allergy>
@@ -112,43 +141,48 @@ class Reservation
         return $this;
     }
 
+   
 
     /**
-     * Get the value of timeMidday
+     * Get the value of daySlots
      */ 
-    public function getTimeMidday()
+    public function getDaySlots()
     {
-        return $this->timeMidday;
+        return $this->daySlots;
     }
 
     /**
-     * Set the value of timeMidday
+     * Set the value of daySlots
      *
      * @return  self
      */ 
-    public function setTimeMidday($timeMidday)
+    public function setDaySlots($daySlots)
     {
-        $this->timeMidday = $timeMidday;
+        $this->daySlots = $daySlots;
 
         return $this;
     }
 
     /**
-     * Get the value of timeEvening
-     */ 
-    public function getTimeEvening()
+     * @return Collection<int, EveningSlots>
+     */
+    public function getEveningSlots(): Collection
     {
-        return $this->timeEvening;
+        return $this->eveningSlots;
     }
 
-    /**
-     * Set the value of timeEvening
-     *
-     * @return  self
-     */ 
-    public function setTimeEvening($timeEvening)
+    public function addEveningSlot(EveningSlots $eveningSlot): self
     {
-        $this->timeEvening = $timeEvening;
+        if (!$this->eveningSlots->contains($eveningSlot)) {
+            $this->eveningSlots->add($eveningSlot);
+        }
+
+        return $this;
+    }
+
+    public function removeEveningSlot(EveningSlots $eveningSlot): self
+    {
+        $this->eveningSlots->removeElement($eveningSlot);
 
         return $this;
     }

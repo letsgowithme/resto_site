@@ -21,7 +21,9 @@
     {% include "partials/_nav.html.twig" %}
         {% block body %}
           {% endblock %}
-	{# {% include "schedule/show.html.twig" %} #}
+	<div class="text-center mt-4 w-100 bg-light">
+        {% include "partials/_schedule_line.html.twig" %}
+        </div>
 		{% include "partials/_footer.html.twig" %}
     </body>
 </html>

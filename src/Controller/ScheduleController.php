@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 
@@ -30,7 +31,7 @@ class ScheduleController extends AbstractController
             'schedules' => $schedules,
         ]);
     }
-  
+      
     /**
      * This function creates the schedule
      * @param Schedule $schedule
@@ -38,6 +39,7 @@ class ScheduleController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'schedule.new', methods: ['GET', 'POST'])]
     public function new(Request $request, ScheduleRepository $scheduleRepository): Response
     {
@@ -56,7 +58,7 @@ class ScheduleController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'schedule.show', methods: ['GET'])]
     public function show(Schedule $schedule): Response
     {
@@ -71,6 +73,7 @@ class ScheduleController extends AbstractController
      * @param Request $request
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit/{id}', name: 'schedule.edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request, 
@@ -100,6 +103,7 @@ class ScheduleController extends AbstractController
      * @param ScheduleRepository $scheduleRepository
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete', name: 'app_schedule_delete', methods: ['POST'])]
     public function delete(Request $request, Schedule $schedule, ScheduleRepository $scheduleRepository): Response
     {

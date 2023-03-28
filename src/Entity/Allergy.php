@@ -18,13 +18,15 @@ class Allergy
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Reservation::class, mappedBy: 'allergies')]
-    private Collection $reservations;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'allergies')]
+    private Collection $users;
 
     public function __construct()
     {
-        $this->reservations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
+   
 
     public function getId(): ?int
     {
@@ -42,31 +44,37 @@ class Allergy
 
         return $this;
     }
+    public function __toString()
+    {
+        return (string) $this->name;
+    }
 
     /**
-     * @return Collection<int, Reservation>
+     * @return Collection<int, User>
      */
-    public function getReservations(): Collection
+    public function getUsers(): Collection
     {
-        return $this->reservations;
+        return $this->users;
     }
 
-    public function addReservation(Reservation $reservation): self
+    public function addUser(User $user): self
     {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations->add($reservation);
-            $reservation->addAllergy($this);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addAllergy($this);
         }
 
         return $this;
     }
 
-    public function removeReservation(Reservation $reservation): self
+    public function removeUser(User $user): self
     {
-        if ($this->reservations->removeElement($reservation)) {
-            $reservation->removeAllergy($this);
+        if ($this->users->removeElement($user)) {
+            $user->removeAllergy($this);
         }
 
         return $this;
     }
+
+  
 }

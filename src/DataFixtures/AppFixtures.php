@@ -3,8 +3,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\Allergy;
+use App\Entity\Card;
 use App\Entity\Category;
 use App\Entity\Dish;
+use App\Entity\Menu;
+use App\Entity\Schedule;
 use App\Entity\User;
 use App\Repository\DishRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -45,8 +48,8 @@ public function load(ObjectManager $manager): void
         $users = [];
 
         $admin = new User();
-        $admin->setFullName('Administrateur')
-               ->setEmail('administrateur@diet.fr')
+        $admin->setFullName('Admin')
+               ->setEmail('admin@admin.fr')
                ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
                ->setPlainPassword('password');
             
@@ -60,12 +63,12 @@ public function load(ObjectManager $manager): void
                 ->setEmail($this->faker->email())
                ->setRoles(['ROLE_USER'])
                ->setPlainPassword('password')
-               ->setNbGuests(mt_rand(1, 20))
+               ->setNbPeople(mt_rand(1, 20))
                ->setIsVerified(mt_rand(0, 1) == 1 ? true : false)
             ;
-            // for ($b = 0; $b < mt_rand(0, 5); $b++) {
-            //  $user->addAllergies($allergies[mt_rand(0, count($allergies) - 1)]);
-             }
+            //  for ($b = 0; $b < mt_rand(0, 5); $b++) {
+            //   $user->addAllergy($allergies[mt_rand(0, count($allergies) - 1)]);
+              }
                $users[] = $user;
            $manager->persist($user);
            
@@ -74,16 +77,18 @@ public function load(ObjectManager $manager): void
             for ($n = 0; $n < 5; $n++) {
             $allergy = new Allergy();
             $allergy->setName($this->faker->word());
-            // $allergy->addUser($users[mt_rand(0, count($users) - 1)]);
+            //  $allergy->addUser($users[mt_rand(0, count($users) - 1)]);
+
             $allergies[] = $allergy;
             $manager->persist($allergy);
         }
 
             //Category
+            $categories = [];
         for ($i = 0; $i < 10; $i++) {   
             $category = new Category();
             $category->setName($this->faker->words(1, true).' '.$i);
-       
+            $categories[] = $category;
             $manager->persist($category);
         }
         //Dish
@@ -91,17 +96,55 @@ public function load(ObjectManager $manager): void
         for ($n = 0; $n < 5; $n++) {
         $dish = new Dish();
         $dish->setTitle($this->faker->word())
-        ->setDescription($this->faker->text(8))
+        ->setDescription($this->faker->text(30))
         ->setPrice(mt_rand(10, 24));
-        // $allergy->addUser($users[mt_rand(0, count($users) - 1)]);
+       
         $dishes[] = $dish;
         $manager->persist($dish);
-        
-            $manager->persist($category);
-        }
+         }
+
+         //Card
+         $cards = [];
+         for ($j = 0; $j < 6; $j++) {
+             $card = new Card();
+             $card->setName($this->faker->word());
+    
+             $cards[] = $card;
+             $manager->persist($card);
+         }
+          //Menu
+     $menus = [];
+     for ($n = 0; $n < 5; $n++) {
+     $menu = new Menu();
+     $menu->setTitle($this->faker->word())
+     ->setDescription($this->faker->text(30))
+     ->setConditions($this->faker->text(30))
+     ->setPrice(mt_rand(10, 24));
+  
+     $menus[] = $menu;
+     $manager->persist($menu);
+     
+         $manager->persist($menu);
+     }
+      //Schedule
+      $schedules = [];
+      for ($n = 0; $n < 7; $n++) {
+      $schedule = new Schedule();
+      $schedule->setDay($this->faker->word())
+      ->setOpeningTimeMidday($this->faker->time('H:i'))
+      ->setClosingTimeMidday($this->faker->time('H:i'))
+      ->setOpeningTimeEvening($this->faker->time('H:i'))
+      ->setClosingTimeEvening($this->faker->time('H:i'));
+   
+      $schedules[] = $schedule;
+      $manager->persist($schedule);
+      
+          $manager->persist($schedule);
+      }
 
         $manager->flush();
     }
-    }
+    
+ }
 
 

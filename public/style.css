@@ -85,9 +85,7 @@ font-family: 'Lora', serif;
 .hidden {
   display: none;
 }
-.img-fluid:hover  {
-cursor: pointer;
-}
+
 .choiceList-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -120,3 +118,28 @@ select {
   flex-wrap: wrap;
   border: 1px solid gray;
 }
+/* card */
+.imgName {
+  cursor: pointer;
+  position:absolute; 
+  margin-top: 8%; 
+  /* margin-left: 15%;  */
+  color: rgb(255, 255, 255);
+  /* color: rgba(255, 255, 255, 0); */
+  opacity: 0;
+  font-size: 2em;
+  padding: 20px;
+
+}
+.imgName:hover {
+  opacity: 1;
+  /* color: rgb(255, 255, 255); */
+   transition: fade-in 2s ease; 
+   background-color: rgba(41, 101, 121, 0.358);
+   border-radius: 10px;
+  
+}
+/* .img-fluid:hover  {
+  cursor: pointer;
+  } */
+ 

@@ -15,7 +15,7 @@
 				{{ error.messageKey|trans(error.messageData, 'security') }}
 			</div>
 		{% endif %} #}
-</div class="container mt-4">
+<div class="container mt-4">
 	<h1>Inscription</h1>
 
 	{{ form_start(registrationForm) }}
@@ -24,15 +24,15 @@
         }) }}
 
 
-	{{ form_row(registrationForm.nbGuests, {
+	{{ form_row(registrationForm.nbPeople, {
             label: 'Nombre de convives'
         }) }}
 
 	<div class="form-group">
-		{{ form_label(registrationForm.allergy) }}
+		{{ form_label(registrationForm.allergies) }}
 		<br>
 		<div class="choiceList-wrapper">
-			{% for field in registrationForm.allergy %}
+			{% for field in registrationForm.allergies %}
 				<div style="min-width: 15%;">
 					{{ form_widget(field) }}
 					{{ form_label(field) }}

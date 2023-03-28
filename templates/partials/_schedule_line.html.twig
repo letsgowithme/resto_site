@@ -1,0 +1,31 @@
+<div id = "schedule_line"></div>
+<script language="JavaScript">
+	document.write("<font color='#000000' size='4' face='arial'>")
+
+	{# let day = document.querySelector('#day');
+  let openingTimeMidday = document.querySelector('#openingTimeMidday');
+  let closingTimeMidday = document.querySelector('#closingTimeMidday');
+  let openingTimeEvening = document.querySelector('#openingTimeEvening');
+  let closingTimeEvening = document.querySelector('#closingTimeEvening');  #}
+	 
+	  {# let day = document.getElementById('day');
+  let openingTimeMidday = document.getElementById('openingTimeMidday');
+  let closingTimeMidday = document.getElementById('closingTimeMidday');
+  let openingTimeEvening = document.getElementById('openingTimeEvening');
+  let closingTimeEvening = document.getElementById('closingTimeEvening'); #}
+
+	let mydate=new Date()
+	let day=mydate.getDay()
+	let month=mydate.getMonth()
+	let daym=mydate.getDate()
+	if (daym<10)
+	daym="0"+daym
+	let dayarray=new Array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
+	let montharray=new Array(" janvier "," fevrier "," mars ","avril ","mai ","juin","juillet ","aout ","septembre "," octobre "," novembre "," décembre ")
+	
+
+document.write("   "+dayarray[day]+", "+daym+" "+montharray[month]+year+" ")
+	document.write("</b></i></font>")
+	{# document.write(day+':'+openingTimeMidday+' - '+closingTimeMidday+'<br>'+openingTimeEvening+' - '+closingTimeEvening); #}
+	
+

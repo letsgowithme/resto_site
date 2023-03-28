@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DaySlots{% endblock %}
+
+{% block body %}
+    <h1>Create new DaySlots</h1>
+
+    {{ include('day_slots/_form.html.twig') }}
+
+    <a href="{{ path('day_slots.index') }}">back to list</a>
+{% endblock %}

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/cards')]
 class CardController extends AbstractController
@@ -20,7 +21,7 @@ class CardController extends AbstractController
             'cards' => $cardRepository->findAll(),
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'card.new', methods: ['GET', 'POST'])]
     public function new(Request $request, CardRepository $cardRepository): Response
     {
@@ -39,7 +40,7 @@ class CardController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'card.show', methods: ['GET'])]
     public function show(Card $card): Response
     {
@@ -47,7 +48,7 @@ class CardController extends AbstractController
             'card' => $card,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'card.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Card $card, CardRepository $cardRepository): Response
     {
@@ -65,7 +66,7 @@ class CardController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_card_delete', methods: ['POST'])]
     public function delete(Request $request, Card $card, CardRepository $cardRepository): Response
     {

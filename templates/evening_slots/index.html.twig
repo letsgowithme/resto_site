@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EveningSlots index{% endblock %}
+
+{% block body %}
+    <h1>EveningSlots index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>IsAvailable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evening_slot in evening_slots %}
+            <tr>
+                <td>{{ evening_slot.id }}</td>
+                <td>{{ evening_slot.name }}</td>
+                <td>{{ evening_slot.isAvailable ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_evening_slots_show', {'id': evening_slot.id}) }}">show</a>
+                    <a href="{{ path('app_evening_slots_edit', {'id': evening_slot.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evening_slots_new') }}">Create new</a>
+{% endblock %}

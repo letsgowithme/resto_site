@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 
 #[Route('/menu')]
 class MenuController extends AbstractController
@@ -20,7 +22,7 @@ class MenuController extends AbstractController
             'menus' => $menuRepository->findAll(),
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'menu.new', methods: ['GET', 'POST'])]
     public function new(Request $request, MenuRepository $menuRepository): Response
     {
@@ -47,7 +49,7 @@ class MenuController extends AbstractController
             'menu' => $menu,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'menu.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Menu $menu, MenuRepository $menuRepository): Response
     {
@@ -65,7 +67,7 @@ class MenuController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_menu_delete', methods: ['POST'])]
     public function delete(Request $request, Menu $menu, MenuRepository $menuRepository): Response
     {

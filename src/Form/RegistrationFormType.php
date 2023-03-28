@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType
 
                 ]
             ])
-            ->add('nbGuests', TypeIntegerType::class, [
+            ->add('nbPeople', TypeIntegerType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'min' => 0,
@@ -60,7 +60,7 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
 
-            ->add('allergy', EntityType::class, [
+            ->add('allergies', EntityType::class, [
                 'class' => Allergy::class,
                 'query_builder' => function (AllergyRepository $r) {
                     return $r->createQueryBuilder('i')

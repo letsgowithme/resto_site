@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Table index{% endblock %}
+{% block title %}Reservation index{% endblock %}
 
 {% block body %}
- <div class="container">
-    <h1>Réservations de tables</h1>
-   
+    <h1>Reservation index</h1>
 
     <table class="table">
         <thead>
             <tr>
-               <th>Numéro de la table</th>
-                <th>Nombre de couverts</th>
+                <th>Id</th>
+                <th>NbPeople</th>
                 <th>Date</th>
-                <th>Heure</th>
-                <th>Allergy</th>
+                <th>Midi</th>
+                 <th>Soir</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,19 +22,32 @@
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.nbPeople }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.time ? reservation.time|date('H:i:s') : '' }}</td>
-                <td>{{ reservation.allergy }}</td>
+
                 <td>
-                    <a href="{{ path('reservation.show', {'id': reservation.id}) }}">Voir</a>
-                    <a href="{{ path('reservation.edit', {'id': reservation.id}) }}">Modifier</a>
+		{% for daySlots in reservation.daySlots %}
+			<span class="badge bg-primary mb-4 fs-6">{{ daySlots.name }}</span>
+		{% endfor %}</td>
+        <td>
+		{% for eveningSlots in reservation.eveningSlots %}
+			<span class="badge bg-primary mb-4 fs-6">{{ eveningSlots.name }}</span>
+		{% endfor %}</td>
+        <td>{% for allergies in reservation.allergies %}
+				<span class="bg-primary mb-4 fs-6">{{ allergies.name|raw }}</span>	
+		{% endfor %}</td>
+                {# <td>{{ reservation.timeMidday ? reservation.timeMidday|date('H:i') : '' }}</td> #}
+                {# <td>{{ reservation.timeEvening ? reservation.timeEvening|date('H:i') : '' }}</td> #}
+                <td>
+                    <a href="{{ path('reservation.show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation.edit', {'id': reservation.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">pas de réservations</td>
+                <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    </div>
+
+    <a href="{{ path('reservation.new') }}">Create new</a>
 {% endblock %}

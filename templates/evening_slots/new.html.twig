@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EveningSlots{% endblock %}
+
+{% block body %}
+    <h1>Create new EveningSlots</h1>
+
+    {{ include('evening_slots/_form.html.twig') }}
+
+    <a href="{{ path('app_evening_slots_index') }}">back to list</a>
+{% endblock %}

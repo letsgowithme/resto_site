@@ -1,31 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Menu index{% endblock %}
+{% block title %}Menu index
+{% endblock %}
 
 {% block body %}
-<div class="container mt-4 d-flex flex-comumn text-center">
-    <h1 class="h1-page text-uppercase">Menu du marché</h1>
-	<div class="d-flex justify-content-center flex-wrap mt-4">
-   
-        {% for menu in menus %}
-           
-			     <div class="border menu-wrapper mt-4" style="width: 100em;">
+	<div class="container mt-4 d-flex flex-comumn text-center">
+		<h1 class="h1-page text-uppercase h5-page">Menu du marché</h1>
+		{# <div class="d-flex justify-content-center flex-wrap mt-4"> #}
+			{% for menu in menus %}
+				<div class="border menu-wrapper mt-4" style="min-width: 350px;">
 					<div class="card-body text-center">
-						<h4 class="card-title mt-4">
-							<h5 href="{{ path('menu.show', {id: menu.id}) }}" class="fs-3 h5-page">Formule  {{ menu.formula }}</h5>
-						</h4>
-						<p class="card-text" class="fs-4">( {{ menu.conditions }} )</p>
-						<p class="card-text mb-4" class="fs-4">{{ menu.description }} {{ menu.price }}€</p>
-                       <hr>
-					</div>
-                    <a href="{{ path('menu.show', {'id': menu.id}) }}" class="ms-4">Voir</a>
-                    <a href="{{ path('menu.edit', {'id': menu.id}) }}" class="ms-4">Modifier</a>
-                    <a href="{{ path('menu.new') }}" class="ms-4">Créer le menu</a>
-			</div>
-         
-                    
-        {% endfor %}
-
-
-    
-{% endblock %}
+							<h4 class="card-title mt-4 fs-3 h5-page text-capitalize" style="font-weight: bold;" href="{{ path('menu.show', {id: menu.id}) }}">Formule
+								{{ menu.title }}</h4>
+						<p class="card-text mt-4" class="fs-4">(
+							{{ menu.conditions }}
+							)</p>
+						<p class="card-text mb-4 mt-4" class="fs-4 me-2">{{ menu.description }}
+							{{ menu.price }}€</p>
+							</div>
+							</div>
+								{% endfor %}
+						{# <hr> #}
+						{# </div> #}
+						
+						</div>
+						
+				
+				{% endblock %}
