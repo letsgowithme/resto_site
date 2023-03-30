@@ -3,10 +3,13 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-<div class="container mt-4 text-center">
-<h1 class="main_title"> Quai Antique</h1>
-<h2 class="main_sub_title">Chef Arnaud Michant</h2>
-<div class="gallery">
+
+<div class="container text-center d-flex flex-column mb-4"  
+{# style="position: absolute; margin-top: 5%; margin-left: 50%; transform: translateX(-50%); height: 100vh;" #}
+>
+<h1 class="main_title" style="font-size: 6em;"> Quai Antique</h1>
+<h2 class="main_sub_title text-light mt-2 mb-4">Chef Arnaud Michant</h2>
+<div class="gallery" style="z-index: 1;">
  {% include "card/index.html.twig" %}
  </div>
 <button type="button" class="btn btn-reservation btn-lg">

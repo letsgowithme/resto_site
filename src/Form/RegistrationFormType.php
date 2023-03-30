@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Repository\AllergyRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType as TypeIntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -76,6 +77,16 @@ class RegistrationFormType extends AbstractType
                 'expanded' => true
             ])
 
+            ->add('roles', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control ms-4 mb-4'
+                ],
+                'multiple' => true,
+                'choices'  => [
+                     'Utilisateur' => 'ROLE_USER',
+                     'Admin' => 'ROLE_ADMIN'
+                ]
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [

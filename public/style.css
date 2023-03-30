@@ -129,6 +129,7 @@ select {
   opacity: 0;
   font-size: 2em;
   padding: 20px;
+  
 
 }
 .imgName:hover {
@@ -137,9 +138,17 @@ select {
    transition: fade-in 2s ease; 
    background-color: rgba(41, 101, 121, 0.358);
    border-radius: 10px;
+   cursor: pointer;
   
+}
+.card-img {
+  min-width: 350px;
+  min-height: 300px;
 }
 /* .img-fluid:hover  {
   cursor: pointer;
   } */
- 
+ .class {
+  transform: translateX(-50%);
+  color: #ffffff
+ }
