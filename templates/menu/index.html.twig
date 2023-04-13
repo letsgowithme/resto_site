@@ -4,18 +4,18 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-4 d-flex flex-comumn text-center">
-		<h1 class="h1-page text-uppercase h5-page">Menu du marché</h1>
+	<div class="container mt-4 d-flex flex-comumn text-center mb-4">
+		<h1 class="h1-page text-uppercase h5-page" style="color: #b5a10a;">Menu du marché</h1>
 		{# <div class="d-flex justify-content-center flex-wrap mt-4"> #}
 			{% for menu in menus %}
-				<div class="border menu-wrapper mt-4" style="min-width: 350px;">
+				<div class="border menu-wrapper mt-4 bg-light" style="min-width: 350px;">
 					<div class="card-body text-center">
-							<h4 class="card-title mt-4 fs-3 h5-page text-capitalize" style="font-weight: bold;" href="{{ path('menu.show', {id: menu.id}) }}">Formule
+							<h4 class="card-title mt-4 fs-3 h5-page text-capitalize" style="font-weight: semi-bold; color: #b5a10a;" href="{{ path('menu.show', {id: menu.id}) }}">Formule
 								{{ menu.title }}</h4>
-						<p class="card-text mt-4" class="fs-4">(
+						<p class="card-text mt-4 fs-5" style="color: #053665;">(
 							{{ menu.conditions }}
 							)</p>
-						<p class="card-text mb-4 mt-4" class="fs-4 me-2">{{ menu.description }}
+						<p class="card-text mb-4 mt-3" class="fs-4 me-2">{{ menu.description }}
 							{{ menu.price }}€</p>
 							</div>
 							</div>

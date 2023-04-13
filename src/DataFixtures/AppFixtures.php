@@ -5,7 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Allergy;
 use App\Entity\Card;
 use App\Entity\Category;
+use App\Entity\DaySlots;
 use App\Entity\Dish;
+use App\Entity\EveningSlots;
 use App\Entity\Menu;
 use App\Entity\Schedule;
 use App\Entity\User;
@@ -107,8 +109,9 @@ public function load(ObjectManager $manager): void
          $cards = [];
          for ($j = 0; $j < 6; $j++) {
              $card = new Card();
-             $card->setName($this->faker->word());
-    
+             $card->setName($this->faker->word())
+          
+            ;
              $cards[] = $card;
              $manager->persist($card);
          }
@@ -141,6 +144,32 @@ public function load(ObjectManager $manager): void
       
           $manager->persist($schedule);
       }
+       //DaySlots
+       $daySlots = [];
+       for ($n = 0; $n < 7; $n++) {
+       $daySlot = new DaySlots();
+       $daySlot->setName($this->faker->time('H:i'))
+               ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false)
+       ;
+    
+       $daySlots[] = $daySlot;
+       $manager->persist($daySlot);
+       
+           $manager->persist($daySlot);
+       }
+        //EveningSlots
+        $eveningSlots = [];
+        for ($n = 0; $n < 7; $n++) {
+        $eveningSlot = new EveningSlots();
+        $eveningSlot->setName($this->faker->time('H:I'))
+                ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false)
+        ;
+     
+        $eveningSlots[] = $eveningSlot;
+        $manager->persist($eveningSlot);
+        
+            $manager->persist($eveningSlot);
+        }
 
         $manager->flush();
     }

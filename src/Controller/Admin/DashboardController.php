@@ -66,14 +66,16 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToRoute('Vers le site', 'fas fa-list', 'home');
-        yield MenuItem::linkToCrud('Horaires', 'fas fa-list', Schedule::class);
-        yield MenuItem::linkToCrud('Allergie', 'fas fa-list', Allergy::class);
-        yield MenuItem::linkToCrud('Photos', 'fas fa-list', Card::class);
+        yield MenuItem::linkToCrud('Reservations', 'fas fa-list', Reservation::class);
+        yield MenuItem::linkToCrud('Cartes', 'fas fa-list', Card::class);
+        yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Plats', 'fas fa-list', Dish::class);
-        yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
-        yield MenuItem::linkToCrud('Restaurant', 'fas fa-list', Restaurant::class);
-        yield MenuItem::linkToCrud('Reservations', 'fas fa-list', Reservation::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Horaires', 'fas fa-list', Schedule::class);
+        yield MenuItem::linkToCrud('Allergie', 'fas fa-list', Allergy::class);       
+        yield MenuItem::linkToCrud('Restaurant', 'fas fa-list', Restaurant::class);
+      
+       
     }
 }

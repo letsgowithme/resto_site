@@ -119,36 +119,31 @@ select {
   border: 1px solid gray;
 }
 /* card */
-.imgName {
+.card-title {
   cursor: pointer;
   position:absolute; 
   margin-top: 8%; 
-  /* margin-left: 15%;  */
   color: rgb(255, 255, 255);
-  /* color: rgba(255, 255, 255, 0); */
   opacity: 0;
-  font-size: 2em;
-  padding: 20px;
-  
+ 
+  font-size: 2em; 
 
 }
-.imgName:hover {
+.card-title:hover {
   opacity: 1;
-  /* color: rgb(255, 255, 255); */
    transition: fade-in 2s ease; 
-   background-color: rgba(41, 101, 121, 0.358);
+   background-color: rgba(11, 56, 69, 0.656);
    border-radius: 10px;
    cursor: pointer;
   
 }
-.card-img {
+.imageFile {
   min-width: 350px;
   min-height: 300px;
 }
-/* .img-fluid:hover  {
-  cursor: pointer;
-  } */
+
+
  .class {
   transform: translateX(-50%);
-  color: #ffffff
+  color: #053665;
  }

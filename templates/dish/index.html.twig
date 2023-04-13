@@ -4,23 +4,21 @@
 
 {% block body %}
   <div class="container text-center mt-4">
-    <h1 class="h5-page mt-4">Nos plats</h1>
+    <h1 class="h5-page mt-4 mb-4">Nos plats</h1>
 <div class="row text-center">
 <div class="col-lg-12 col-md-6">
         {% for dish in dishes %}     
-                <div class="text-capitalize">{{ dish.title }}</div>
-                <div>{{ dish.description }}</div>
-                <div>{{ dish.price }}€</div>
+                <div class="text-capitalize text-light fs-4">{{ dish.title }}</div>
+                <div class=" text-light fs-5">{{ dish.description }}</div>
+                <div class=" text-light">{{ dish.price }}€</div>
                    <hr style="min-width: 300px; border: 1.5px solid white; border-radius: 10px;">
             
         {% else %}
       
-                <td colspan="5">pas de plats trouvés</td>
-            </tr>
+                <div text-light colspan="5">pas de plats trouvés</div>
+            
         {% endfor %}
-        </tbody>
-    </table>
-    
-
-   
+        </div>
+        </div>
+    </div>
 {% endblock %}

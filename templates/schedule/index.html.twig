@@ -8,16 +8,16 @@
 		<table class="table mt-4">
 			<thead>
 				<tr>
-					<th class="fs-4 text-center h5-page">Jour</th>
-					<th class="fs-4 text-center h5-page">Horaire d'ouverture</th>
+					<th class="fs-4 text-center h5-page text-light">Jour</th>
+					<th class="fs-4 text-center h5-page text-light">Horaire d'ouverture</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for schedule in schedules %}
 					<tr>
-						<td class="fs-5 text-center text-capitalize">{{ schedule.day }}</td>
+						<td class="fs-5 text-center text-capitalize bg-dark">{{ schedule.day }}</td>
 						
-						<td class="text-center">
+						<td class="text-center bg-dark">
 						{% if schedule.openingTimeMidday %}
 						{{ schedule.openingTimeMidday }}
 							-
