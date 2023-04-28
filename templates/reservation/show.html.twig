@@ -23,10 +23,10 @@
 				<th>La date</th>
 				<td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
 			</tr>
-			{% if reservation.daySlots %}
+			{% if reservation.daySlot %}
 				<tr>
 					<th>MIDI</th>
-					<td>{{ reservation.daySlots ? reservation.daySlots|date('H:i') : '' }}</td>
+					<td>{{ reservation.daySlot ? reservation.daySlot|date('H:i') : '' }}</td>
                     </tr>
                 <tr>
                     <th>SOIR</th>

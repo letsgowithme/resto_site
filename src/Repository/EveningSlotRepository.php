@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\EveningSlots;
+use App\Entity\EveningSlot;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<EveningSlots>
+ * @extends ServiceEntityRepository<EveningSlot>
  *
- * @method EveningSlots|null find($id, $lockMode = null, $lockVersion = null)
- * @method EveningSlots|null findOneBy(array $criteria, array $orderBy = null)
- * @method EveningSlots[]    findAll()
- * @method EveningSlots[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EveningSlot|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EveningSlot|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EveningSlot[]    findAll()
+ * @method EveningSlot[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EveningSlotsRepository extends ServiceEntityRepository
+class EveningSlotRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, EveningSlots::class);
+        parent::__construct($registry, EveningSlot::class);
     }
 
-    public function save(EveningSlots $entity, bool $flush = false): void
+    public function save(EveningSlot $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class EveningSlotsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(EveningSlots $entity, bool $flush = false): void
+    public function remove(EveningSlot $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class EveningSlotsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return EveningSlots[] Returns an array of EveningSlots objects
+//     * @return EveningSlot[] Returns an array of EveningSlot objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class EveningSlotsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?EveningSlots
+//    public function findOneBySomeField($value): ?EveningSlot
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

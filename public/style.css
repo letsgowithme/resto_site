@@ -109,6 +109,18 @@ select {
   font-family: 'Hind Madurai', sans-serif;
   font-weight: 700;
 }
+.menu-wrapper {
+background-color: #ead16da2;
+border: 1px solid #948e8eb8;
+box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
+}
+.menu_conditions {
+  color: rgb(61, 61, 58);
+}
+.menu_block-title {
+  color: rgb(97, 98, 9);
+  padding-top: 2em;
+}
 /* reservation page */
 .form-row {
   height: 3em;
@@ -147,3 +159,29 @@ select {
   transform: translateX(-50%);
   color: #053665;
  }
+  .truc {
+    color: #b5a10a;
+    color: silver; 
+    color: rgb(35, 28, 28); 
+  }
+  .hr_menu {
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #f2eaea;
+    color: #333;
+    text-align: center;
+    height: 7px;
+   
+  }
+  
+  .hr_menu:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+  }
+  

@@ -3,12 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Allergy;
-use App\Entity\DaySlots;
-use App\Entity\EveningSlots;
+use App\Entity\DaySlot;
+use App\Entity\EveningSlot;
 use App\Entity\Reservation;
 use App\Repository\AllergyRepository;
-use App\Repository\DaySlotsRepository;
-use App\Repository\EveningSlotsRepository;
+use App\Repository\DaySlotRepository;
+use App\Repository\EveningSlotRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -46,6 +46,26 @@ class ReservationType extends AbstractType
             ]
 
         ])
+        ->add('nbTables', ChoiceType::class, [
+            'choices' => [
+                'table#1_2pl' => 1,
+                'table#2_2pl' => 2,
+                'table#3_4pl' => 3,
+                'table#4_4pl' => 4,
+                'table#5_6pl' => 5,
+                'table#6_6pl' => 6,
+                'table#7_8pl' => 7,
+                'table#9_8pl' => 8
+            ],
+            'attr' => [
+                'class' => 'form-select mb-4 fs-4'
+            ],
+            'label' => 'Nombre de couverts',
+            'label_attr' => [
+                'class' => 'form-label mt-4 d-none'
+            ]
+
+        ])
         ->add('date', DateType::class, [
             'widget' => 'choice',
             'input'  => 'datetime',
@@ -59,11 +79,31 @@ class ReservationType extends AbstractType
             ],
             
         ])
+        // ->add('dayTime', ChoiceType::class, [
+        //     'choices' => [
+        //         '12:00' => 1,
+        //         '12:15' => 2,
+        //         '12:30' => 3,
+        //         '12:45' => 4,
+        //         '13:00' => 5,
+               
+               
+        //     ],
+        //     'attr' => [
+        //         'class' => 'form-select mb-4 fs-4'
+        //     ],
+        //     'label' => 'heure',
+        //     'label_attr' => [
+        //         'class' => 'form-label mt-4 d-none'
+        //     ]
+
+        // ])
+        
         ->add('daySlots', EntityType::class,[
-            'class' => DaySlots::class,
-            'query_builder' => function (DaySlotsRepository $r) {
+            'class' => DaySlot::class,
+            'query_builder' => function (DaySlotRepository $r) {
                 return $r->createQueryBuilder('i')
-                    ->orderBy('i.name', 'ASC');
+                    ->orderBy('i.time', 'ASC');
                 },
                 'attr' => [
                     'class' => 'mt-4 fs-5 ms-4 me-4'
@@ -72,7 +112,9 @@ class ReservationType extends AbstractType
             'label_attr' => [
                 'class' => 'form-label mt-4 fs-5 ms-4 me-4'
             ],
-            'choice_label' => 'name',
+
+            
+            'choice_label' => 'time',
             'choice_attr' => [
                 'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
@@ -82,8 +124,8 @@ class ReservationType extends AbstractType
         ])
 
         ->add('eveningSlots', EntityType::class,[
-            'class' => EveningSlots::class,
-            'query_builder' => function (EveningSlotsRepository $r) {
+            'class' => EveningSlot::class,
+            'query_builder' => function (EveningSlotRepository $r) {
                 return $r->createQueryBuilder('i')
                     ->orderBy('i.name', 'ASC');
                 },

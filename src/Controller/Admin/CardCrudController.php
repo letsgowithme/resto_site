@@ -19,8 +19,8 @@ class CardCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Photo')
-            ->setEntityLabelInPlural('Photo')
+            ->setEntityLabelInSingular('Galeie')
+            ->setEntityLabelInPlural('Galeies')
             ->setPageTitle(pageName:Crud::PAGE_INDEX, title: 'Photos')
             ->setPageTitle(pageName:Crud::PAGE_NEW, title: 'Ajouter une Photo')
             ->setPageTitle(pageName:Crud::PAGE_EDIT, title: 'Modifier la Photo')

@@ -20,6 +20,9 @@ class Table
     #[ORM\Column]
     private ?int $nbPlaces = null;
 
+    #[ORM\Column]
+    private ?bool $isAvailable = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,26 @@ class Table
     public function setNbPlaces(int $nbPlaces): self
     {
         $this->nbPlaces = $nbPlaces;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of isAvailable
+     */ 
+    public function getIsAvailable()
+    {
+        return $this->isAvailable;
+    }
+
+    /**
+     * Set the value of isAvailable
+     *
+     * @return  self
+     */ 
+    public function setIsAvailable($isAvailable)
+    {
+        $this->isAvailable = $isAvailable;
 
         return $this;
     }

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EveningSlots index{% endblock %}
+{% block title %}EveningSlot index{% endblock %}
 
 {% block body %}
-    <h1>EveningSlots index</h1>
+    <h1>EveningSlot index</h1>
 
     <table class="table">
         <thead>
@@ -21,8 +21,8 @@
                 <td>{{ evening_slot.name }}</td>
                 <td>{{ evening_slot.isAvailable ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_evening_slots_show', {'id': evening_slot.id}) }}">show</a>
-                    <a href="{{ path('app_evening_slots_edit', {'id': evening_slot.id}) }}">edit</a>
+                    <a href="{{ path('app_evening_slot_show', {'id': evening_slot.id}) }}">show</a>
+                    <a href="{{ path('app_evening_slot_edit', {'id': evening_slot.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

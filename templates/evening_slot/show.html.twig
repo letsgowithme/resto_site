@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EveningSlots{% endblock %}
+{% block title %}EveningSlot{% endblock %}
 
 {% block body %}
-    <h1>EveningSlots</h1>
+    <h1>EveningSlot</h1>
 
     <table class="table">
         <tbody>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_evening_slots_index') }}">back to list</a>
+    <a href="{{ path('app_evening_slot_index') }}">back to list</a>
 
-    <a href="{{ path('app_evening_slots_edit', {'id': evening_slot.id}) }}">edit</a>
+    <a href="{{ path('app_evening_slot_edit', {'id': evening_slot.id}) }}">edit</a>
 
-    {{ include('evening_slots/_delete_form.html.twig') }}
+    {{ include('evening_slot/_delete_form.html.twig') }}
 {% endblock %}

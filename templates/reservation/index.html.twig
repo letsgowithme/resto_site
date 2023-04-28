@@ -24,12 +24,12 @@
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
 
                 <td>
-		{% for daySlots in reservation.daySlots %}
-			<span class="badge bg-primary mb-4 fs-6">{{ daySlots.name }}</span>
+		{% for daySlot in reservation.daySlots %}
+			<span class="badge bg-primary mb-4 fs-6">{{ daySlot.name }}</span>
 		{% endfor %}</td>
         <td>
-		{% for eveningSlots in reservation.eveningSlots %}
-			<span class="badge bg-primary mb-4 fs-6">{{ eveningSlots.name }}</span>
+		{% for eveningSlot in reservation.eveningSlots %}
+			<span class="badge bg-primary mb-4 fs-6">{{ eveningSlot.name }}</span>
 		{% endfor %}</td>
         <td>{% for allergies in reservation.allergies %}
 				<span class="bg-primary mb-4 fs-6">{{ allergies.name|raw }}</span>	

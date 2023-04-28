@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\DaySlots;
+use App\Entity\DaySlot;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<DaySlots>
+ * @extends ServiceEntityRepository<DaySlot>
  *
- * @method DaySlots|null find($id, $lockMode = null, $lockVersion = null)
- * @method DaySlots|null findOneBy(array $criteria, array $orderBy = null)
- * @method DaySlots[]    findAll()
- * @method DaySlots[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method DaySlot|null find($id, $lockMode = null, $lockVersion = null)
+ * @method DaySlot|null findOneBy(array $criteria, array $orderBy = null)
+ * @method DaySlot[]    findAll()
+ * @method DaySlot[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DaySlotsRepository extends ServiceEntityRepository
+class DaySlotRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, DaySlots::class);
+        parent::__construct($registry, DaySlot::class);
     }
 
-    public function save(DaySlots $entity, bool $flush = false): void
+    public function save(DaySlot $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class DaySlotsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(DaySlots $entity, bool $flush = false): void
+    public function remove(DaySlot $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class DaySlotsRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return DaySlots[] Returns an array of DaySlots objects
+//     * @return DaySlot[] Returns an array of DaySlot objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class DaySlotsRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?DaySlots
+//    public function findOneBySomeField($value): ?DaySlot
 //    {
 //        return $this->createQueryBuilder('d')
 //            ->andWhere('d.exampleField = :val')
