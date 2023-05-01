@@ -7,10 +7,9 @@
 	<div class="container mt-4 text-center">
 
 		<h1 class="h5-page">Page de la reservation</h1>
-		<p>Merce d'avance...
+		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)! <br>
+		Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
-
-		{# {{ include('reservation/_form.html.twig') }} #}
 
 		{{ form_start(form) }}
 
@@ -50,10 +49,10 @@
 		<div class="row">
 			{# {% if daySlot.isAvailable is same as true %} #}
 			<div class="form-group mt-4 text-light bold" style="margin-top: 20px;">
-				{{ form_label(form.daySlots) }}
+				{{ form_label(form.daySlot) }}
 				<br>
-				<div class="choiceList-wrapper">
-					{% for field in form.daySlots %}
+				<div class="choiceList-wrapper" style="border: none;">
+					{% for field in form.daySlot %}
 						<button type="button" style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px;">
 							{{ form_widget(field) }}
 							{{ form_label(field) }}
@@ -64,10 +63,10 @@
 			</div>
 			<div class="row">
 			<div class="form-group mt-4 text-light">
-			{{ form_label(form.eveningSlots) }}
+			{{ form_label(form.eveningSlot) }}
 			<br>
-			<div class="choiceList-wrapper">
-				{% for field in form.eveningSlots %}
+			<div class="choiceList-wrapper" style="border: none;">
+				{% for field in form.eveningSlot %}
 					<div style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px;">
 						{{ form_widget(field) }}
 						{{ form_label(field) }}

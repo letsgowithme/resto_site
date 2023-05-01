@@ -1,41 +1,16 @@
-	{% extends 'base.html.twig' %}
+<?php
+function formaterDate($timestamp){
+    $jour = array('Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.');
+    $mois = array('Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc');
 
-{% block title %}New Schedule{% endblock %}
+    $date = date('G', $timestamp)."h ".date('i', $timestamp)."min ".$jour[date('w', $timestamp)]." "
+      .date('d', $timestamp)." ".$mois[date('m', $timestamp)-1]." ".date('Y', $timestamp);
 
-{% block body %}
+    return $date;
+}
+?>
 
-{% for schedule in schedules %}
-				
-						<div class="fs-5 text-center text-capitalize bg-dark">{{ schedule.day }}</div>
-						
-						<div class="text-center bg-dark">
-						{% if schedule.openingTimeMidday %}
-						{{ schedule.openingTimeMidday }}
-							
-							{% endif %}
-							{% if schedule.closingTimeMidday %}
-							-
-							{{ schedule.closingTimeMidday }}
-							{% endif %}
-							<br>
-							{% if schedule.openingTimeEvening %}
-							{{ schedule.openingTimeEvening }}
-							
-							{% endif %}
-							{% if schedule.openingTimeEvening %}
-							-
-							{{ schedule.closingTimeEvening }}
-								{% endif %}
-							</div>
-					
-	
-	{% endfor %}
-
-	{% endblock %}
-	
-
-{# 	
-function show_schedule() {
+{# function show_schedule() {
 switch(day) {
 		case 1: 'Lundi'+' :'+openingTimeMidday+' - '+closingTimeMidday+' - '+openingTimeEvening+' - '+closingTimeEvening;
 		break;
@@ -59,5 +34,5 @@ switch(day) {
  document.write(dayToName())
     </script>
 
- {% endblock %} #}
-
+ {% endblock %} 
+ #}

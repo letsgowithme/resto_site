@@ -99,7 +99,7 @@ class ReservationType extends AbstractType
 
         // ])
         
-        ->add('daySlots', EntityType::class,[
+        ->add('daySlot', EntityType::class,[
             'class' => DaySlot::class,
             'query_builder' => function (DaySlotRepository $r) {
                 return $r->createQueryBuilder('i')
@@ -118,12 +118,12 @@ class ReservationType extends AbstractType
             'choice_attr' => [
                 'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
-            'multiple' => true,
+            'multiple' => false,
             'expanded' => true
 
         ])
 
-        ->add('eveningSlots', EntityType::class,[
+        ->add('eveningSlot', EntityType::class,[
             'class' => EveningSlot::class,
             'query_builder' => function (EveningSlotRepository $r) {
                 return $r->createQueryBuilder('i')
@@ -140,41 +140,11 @@ class ReservationType extends AbstractType
             'choice_attr' => [
                 'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
-            'multiple' => true,
+            'multiple' => false,
             'expanded' => true
 
         ])
-        // ->add('timeMidday', TimeType::class, [
-        //     'widget' => 'choice',
-        //     'input'  => 'datetime',        
-            
-        //     'attr' => [
-        //         'class' => 'form-control fs-4 mb-4 d-flex justify-content-between'
-        //     ],
-        //     'label' => 'MIDI',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 mb-4 fs-4'
-        //     ],
-           
-            
-        // ])
-        // ->add('timeEvening', TimeType::class, [
-        //     'widget' => 'choice',
-        //     'input'  => 'datetime',
-            
-        //     'attr' => [
-        //         'class' => 'form-control fs-4 mb-4 d-flex justify-content-between'
-        //     ],
-        //     'label' => 'SOIR',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 mb-4 fs-4'
-        //     ],
-           
-            
-        // ])
       
-    
-         
             ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,
                 'query_builder' => function (AllergyRepository $r) {

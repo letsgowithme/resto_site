@@ -28,25 +28,23 @@ class Reservation
     #[ORM\ManyToMany(targetEntity: Allergy::class)]
     private Collection $allergies;
 
-    #[ORM\ManyToMany(targetEntity: DaySlot::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private Collection $daySlots;
-
-    #[ORM\ManyToMany(targetEntity: EveningSlot::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private Collection $eveningSlots;
-
-    #[ORM\ManyToMany(targetEntity: Table::class, inversedBy: 'reservations')]
+    
+   #[ORM\ManyToMany(targetEntity: Table::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
     private Collection $tables;
+
+
+    #[ORM\ManyToOne]
+    private ?DaySlot $dayslot = null;
+
+    #[ORM\ManyToOne]
+    private ?EveningSlot $eveningSlot = null;
 
     
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
-        $this->daySlots = new ArrayCollection();
         $this->date = new \DateTime();
-        $this->eveningSlots = new ArrayCollection();
         $this->tables = new ArrayCollection();
     
     }
@@ -125,59 +123,6 @@ class Reservation
         return $this;
     }
 
-   /**
-     * @return Collection<int, DaySlot>
-     */
-    public function getDaySlots(): Collection
-    {
-        return $this->daySlots;
-    }
-
-    public function addDaySlot(DaySlot $daySlot): self
-    {
-        if (!$this->daySlots->contains($daySlot)) {
-            $this->daySlots->add($daySlot);
-            // $daySlot->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDaySlot(DaySlot $daySlot): self
-    {
-        $this->daySlots->removeElement($daySlot);
-
-        return $this;
-    }
-
-   
-
-    /**
-     * @return Collection<int, EveningSlot>
-     */
-    public function getEveningSlots(): Collection
-    {
-        return $this->eveningSlots;
-    }
-
-    public function addEveningSlot(EveningSlot $eveningSlot): self
-    {
-        if (!$this->eveningSlots->contains($eveningSlot)) {
-            $this->eveningSlots->add($eveningSlot);
-        }
-
-        return $this;
-    }
-
-    public function removeEveningSlot(EveningSlot $eveningSlot): self
-    {
-        $this->eveningSlots->removeElement($eveningSlot);
-
-        return $this;
-    }
-
-
-
      /**
      * @return Collection<int, Table>
      */
@@ -201,6 +146,32 @@ class Reservation
 
         return $this;
     }
+
+    public function getDayslot(): ?DaySlot
+    {
+        return $this->dayslot;
+    }
+
+    public function setDayslot(?DaySlot $dayslot): self
+    {
+        $this->dayslot = $dayslot;
+
+        return $this;
+    }
+
+    public function getEveningSlot(): ?EveningSlot
+    {
+        return $this->eveningSlot;
+    }
+
+    public function setEveningSlot(?EveningSlot $eveningSlot): self
+    {
+        $this->eveningSlot = $eveningSlot;
+
+        return $this;
+    }
+
+    
 
 
     

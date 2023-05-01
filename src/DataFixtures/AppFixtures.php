@@ -147,29 +147,29 @@ class AppFixtures extends Fixture
         //     $manager->persist($schedule);
         // }
         // //DaySlot
-        $daySlots = [];
-        for ($n = 0; $n < 7; $n++) {
-            $daySlot = new DaySlot();
-            $daySlot->setTime($this->faker->time('H:i'))
-                ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
+        // $daySlots = [];
+        // for ($n = 0; $n < 7; $n++) {
+        //     $daySlot = new DaySlot();
+        //     $daySlot->setTime($this->faker->time('H:i'))
+        //         ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
 
-            $daySlots[] = $daySlot;
-            $manager->persist($daySlot);
+        //     $daySlots[] = $daySlot;
+        //     $manager->persist($daySlot);
 
-            $manager->persist($daySlot);
-        }
+        //     $manager->persist($daySlot);
+        // }
         //EveningSlot
-        $eveningSlot = [];
-        for ($n = 0; $n < 7; $n++) {
-            $eveningSlot = new EveningSlot();
-            $eveningSlot->setName($this->faker->time('H:I'))
-                ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
+        // $eveningSlot = [];
+        // for ($n = 0; $n < 7; $n++) {
+        //     $eveningSlot = new EveningSlot();
+        //     $eveningSlot->setName($this->faker->time('H:I'))
+        //         ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
 
-            $eveningSlots[] = $eveningSlot;
-            $manager->persist($eveningSlot);
+        //     $eveningSlots[] = $eveningSlot;
+        //     $manager->persist($eveningSlot);
 
-            $manager->persist($eveningSlot);
-        }
+        //     $manager->persist($eveningSlot);
+        // }
         $tables = [];
         for ($n = 0; $n < 20; $n++) {
             $table = new Table();

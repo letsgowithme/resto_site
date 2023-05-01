@@ -21,9 +21,6 @@ class DaySlot
     #[ORM\Column]
     private ?bool $isAvailable = false;
 
-    #[ORM\ManyToOne(inversedBy: 'daySlots')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?Reservation $reservation = null;
 
     public function getId(): ?int
     {
@@ -63,27 +60,5 @@ class DaySlot
     }
 
   
-    /**
-     * Get the value of reservation
-     */ 
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
 
-    /**
-     * Set the value of reservation
-     *
-     * @return  self
-     */ 
-    public function setReservation($reservation)
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-    public function __toString()
-{
-return (string) $this->time;
-}
 }
