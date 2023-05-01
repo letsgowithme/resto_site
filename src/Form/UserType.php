@@ -5,9 +5,13 @@ namespace App\Form;
 use App\Entity\Allergy;
 use App\Entity\User;
 use App\Repository\AllergyRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,16 +55,16 @@ class UserType extends AbstractType
                 new Assert\NotBlank()
             ]
         ])
-        ->add('roles', ChoiceType::class, [
-            'attr' => [
-                'class' => 'form-control ms-4 mb-4'
-            ],
-            'multiple' => true,
-            'choices'  => [
-                'User' => 'ROLE_USER',
-                'Admin' => 'ROLE_ADMIN'
-            ]
-        ])
+        // ->add('roles', ChoiceType::class, [
+        //     'attr' => [
+        //         'class' => 'form-control ms-4 mb-4'
+        //     ],
+        //     'multiple' => true,
+        //     'choices'  => [
+        //         'User' => 'ROLE_USER',
+        //         'Admin' => 'ROLE_ADMIN'
+        //     ]
+        // ])
         ->add('plainPassword', PasswordType::class, [
             'attr' => [
                 'class' => 'form-control'
@@ -79,7 +83,7 @@ class UserType extends AbstractType
                 ],
                 'label' => 'Nombre de convives',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 text-dark fs-5'
+                    'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
                     new Assert\Positive(),
@@ -102,17 +106,7 @@ class UserType extends AbstractType
                 'expanded' => true
             ])
          
-            ->add('isVerified', CheckboxType::class, [
-                'attr' => [
-                    'class' => 'form-check-input mt-4 mb-4',
-                ],
-                'required' => false,
-                'label' => 'Vérifié ',
-                'label_attr' => [
-                    'class' => 'form-check-label mt-3 ms-3 text-dark fs-5'
-                ],
-                
-            ])
+          
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4 fs-4'

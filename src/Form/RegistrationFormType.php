@@ -77,16 +77,16 @@ class RegistrationFormType extends AbstractType
                 'expanded' => true
             ])
 
-            ->add('roles', ChoiceType::class, [
-                'attr' => [
-                    'class' => 'form-control ms-4 mb-4'
-                ],
-                'multiple' => true,
-                'choices'  => [
-                     'Utilisateur' => 'ROLE_USER',
-                     'Admin' => 'ROLE_ADMIN'
-                ]
-            ])
+            // ->add('roles', ChoiceType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control ms-4 mb-4'
+            //     ],
+            //     'multiple' => true,
+            //     'choices'  => [
+            //          'Utilisateur' => 'ROLE_USER',
+            //          'Admin' => 'ROLE_ADMIN'
+            //     ]
+            // ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [

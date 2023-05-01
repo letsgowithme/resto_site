@@ -25,9 +25,9 @@ class ReservationCrudController extends AbstractCrudController
                 ->setLabel('Convives'),
             AssociationField::new('allergies')
                 ->setLabel('Allèrgies'),
-            AssociationField::new('daySlots')
+            AssociationField::new('daySlot')
                 ->setLabel('Heure du midi'),
-            AssociationField::new('eveningSlots')
+            AssociationField::new('eveningSlot')
                 ->setLabel('Heure du soir'),
         ];
     }

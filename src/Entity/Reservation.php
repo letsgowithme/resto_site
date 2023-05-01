@@ -19,9 +19,6 @@ class Reservation
     #[ORM\Column]
     private ?int $nbPeople = null;
 
-    #[ORM\Column]
-    private ?int $nbTables = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
@@ -29,9 +26,8 @@ class Reservation
     private Collection $allergies;
 
     
-   #[ORM\ManyToMany(targetEntity: Table::class, inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private Collection $tables;
+    #[ORM\ManyToOne]
+    private ?Table $table = null;
 
 
     #[ORM\ManyToOne]
@@ -40,12 +36,15 @@ class Reservation
     #[ORM\ManyToOne]
     private ?EveningSlot $eveningSlot = null;
 
+    #[ORM\ManyToOne]
+    private ?User $client = null;
+
     
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
         $this->date = new \DateTime();
-        $this->tables = new ArrayCollection();
+       
     
     }
 
@@ -62,27 +61,6 @@ class Reservation
     public function setNbPeople(int $nbPeople): self
     {
         $this->nbPeople = $nbPeople;
-
-        return $this;
-    }
-
-
-    /**
-     * Get the value of nbTables
-     */ 
-    public function getNbTables()
-    {
-        return $this->nbTables;
-    }
-
-    /**
-     * Set the value of nbTables
-     *
-     * @return  self
-     */ 
-    public function setNbTables($nbTables)
-    {
-        $this->nbTables = $nbTables;
 
         return $this;
     }
@@ -123,30 +101,7 @@ class Reservation
         return $this;
     }
 
-     /**
-     * @return Collection<int, Table>
-     */
-    public function getTables(): Collection
-    {
-        return $this->tables;
-    }
-
-    public function addTable(Table $table): self
-    {
-        if (!$this->tables->contains($table)) {
-            $this->tables->add($table);
-        }
-
-        return $this;
-    }
-
-    public function removeTable(Table $table): self
-    {
-        $this->tables->removeElement($table);
-
-        return $this;
-    }
-
+    
     public function getDayslot(): ?DaySlot
     {
         return $this->dayslot;
@@ -167,6 +122,29 @@ class Reservation
     public function setEveningSlot(?EveningSlot $eveningSlot): self
     {
         $this->eveningSlot = $eveningSlot;
+
+        return $this;
+    }
+    public function getTable(): ?Table
+    {
+        return $this->table;
+    }
+
+    public function setTable(?Table $table): self
+    {
+        $this->table = $table;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }

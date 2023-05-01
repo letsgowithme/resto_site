@@ -46,26 +46,26 @@ class ReservationType extends AbstractType
             ]
 
         ])
-        ->add('nbTables', ChoiceType::class, [
-            'choices' => [
-                'table#1_2pl' => 1,
-                'table#2_2pl' => 2,
-                'table#3_4pl' => 3,
-                'table#4_4pl' => 4,
-                'table#5_6pl' => 5,
-                'table#6_6pl' => 6,
-                'table#7_8pl' => 7,
-                'table#9_8pl' => 8
-            ],
-            'attr' => [
-                'class' => 'form-select mb-4 fs-4'
-            ],
-            'label' => 'Nombre de couverts',
-            'label_attr' => [
-                'class' => 'form-label mt-4 d-none'
-            ]
+        // ->add('tableType', ChoiceType::class, [
+        //     'choices' => [
+        //         'table#1_2pl' => 1,
+        //         'table#2_2pl' => 2,
+        //         'table#3_4pl' => 3,
+        //         'table#4_4pl' => 4,
+        //         'table#5_6pl' => 5,
+        //         'table#6_6pl' => 6,
+        //         'table#7_8pl' => 7,
+        //         'table#9_8pl' => 8
+        //     ],
+        //     'attr' => [
+        //         'class' => 'form-select mb-4 fs-4'
+        //     ],
+        //     'label' => 'Nombre de couverts',
+        //     'label_attr' => [
+        //         'class' => 'form-label mt-4 d-none'
+        //     ]
 
-        ])
+        // ])
         ->add('date', DateType::class, [
             'widget' => 'choice',
             'input'  => 'datetime',
@@ -156,7 +156,7 @@ class ReservationType extends AbstractType
                     ],
                 'label' => 'Vous avez une allergie à indiquer?',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 fs-5 ms-4 me-4'
+                    'class' => 'form-label mt-4 fs-3 ms-4 me-4'
                 ],
                 'choice_label' => 'name',
                 'choice_attr' => [

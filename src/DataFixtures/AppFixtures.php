@@ -73,15 +73,15 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         //Allergy
-        $allergies = [];
-        for ($n = 0; $n < 5; $n++) {
-            $allergy = new Allergy();
-            $allergy->setName($this->faker->word());
-            //  $allergy->addUser($users[mt_rand(0, count($users) - 1)]);
+        // $allergies = [];
+        // for ($n = 0; $n < 5; $n++) {
+        //     $allergy = new Allergy();
+        //     $allergy->setName($this->faker->word());
+        //     //  $allergy->addUser($users[mt_rand(0, count($users) - 1)]);
 
-            $allergies[] = $allergy;
-            $manager->persist($allergy);
-        }
+        //     $allergies[] = $allergy;
+        //     $manager->persist($allergy);
+        // }
         //Dish
         $dishes = [];
         for ($n = 0; $n < 15; $n++) {
@@ -185,17 +185,10 @@ class AppFixtures extends Fixture
         $reservations = [];
         for ($i = 0; $i < 10; $i++) {
             $reservation = new Reservation();
-            $reservation->setNbPeople(mt_rand(1, 8));
-
-            for ($b = 0; $b < mt_rand(0, 8); $b++) {
-                $reservation->addDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)]);
-            }
-            for ($b = 0; $b < mt_rand(0, 8); $b++) {
-                $reservation->addEveningSlot($eveningSlots[mt_rand(0, count($eveningSlots) - 1)]);
-            }
-            for ($b = 0; $b < mt_rand(0, 8); $b++) {
-                $reservation->addTable($tables[mt_rand(0, count($tables) - 1)]);
-            }
+            $reservation->setNbPeople(mt_rand(1, 8)) 
+                         ->setClient($users[mt_rand(0, count($users) - 1)])
+                         ->setDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)])
+                         ->setEveningSlot($eveningSlots[mt_rand(0, count($eveningSlots) - 1)]);
             $reservations[] = $reservation;
             $manager->persist($reservation);
         }
