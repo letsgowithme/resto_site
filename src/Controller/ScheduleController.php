@@ -120,18 +120,19 @@ class ScheduleController extends AbstractController
             
         ]);
     }
-    #[Route('/{day}', name: 'schedule.show_day', methods: ['GET'])]
-    public function show_day(Schedule $schedule, ScheduleRepository $scheduleRepository, $day): Response
-    {
-        // $day = $this->getDay();
-        $schedule = $scheduleRepository->findBy([$day,
-        $orderBy = 'ASC']);
-        return $this->render('schedule/show.html.twig', [
-            'schedule' => $schedule,
-            'day' => $day,
+    // #[Route('/{id}', name: 'schedule.show_day', methods: ['GET'])]
+    // public function show_day(Schedule $schedule, ScheduleRepository $scheduleRepository, $day): Response
+    // {
+      
+       
+    //     $schedule = $scheduleRepository->findOneBy([$day]);
+    //     return $this->render('schedule/show.html.twig', [
+    //         'schedule' => $schedule,
+    //         'day' => $day,
+        
             
-        ]);
-    }
+    //     ]);
+    // }
 
     /**
      * This function edits the schedule

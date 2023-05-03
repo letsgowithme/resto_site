@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,6 +25,19 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('fullName', TextType::class, [
+            'attr' => [
+                'class' => 'form-control',
+                'minlenght' => '2',
+                'maxlenght' => '50',
+            ],
+            'label' => 'Nom / Prénom',
+            'label_attr' => [
+                'class' => 'form-label  mt-4 text-light fs-4'
+            ],
+          
+        ])
+
         ->add('nbPeople', ChoiceType::class, [
             'choices' => [
                 '1 couvert' => 1,
@@ -67,8 +81,11 @@ class ReservationType extends AbstractType
 
         // ])
         ->add('date', DateType::class, [
-            'widget' => 'choice',
-            'input'  => 'datetime',
+            'widget' => 'single_text',
+            // 'html5' => true,
+            // 'input'  => 'datetime',
+            
+            // 'attr' => ['class' => 'js-datepicker'],
             
             'attr' => [
                 'class' => 'form-control fs-4 mb-4 d-flex justify-content-between'
@@ -79,6 +96,14 @@ class ReservationType extends AbstractType
             ],
             
         ])
+        // ->add('time', TimeType::class, [
+        //     'label' => 'Heure',
+        //     'input' => 'datetime',
+        //     'widget'  => 'choice',
+        //     'hours'   => [12, 13, 19, 20, 21],
+        //     'minutes' => [00, 15, 30, 45],
+        // ])
+
         // ->add('dayTime', ChoiceType::class, [
         //     'choices' => [
         //         '12:00' => 1,
@@ -141,7 +166,8 @@ class ReservationType extends AbstractType
                 'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
             'multiple' => false,
-            'expanded' => true
+            'expanded' => true,
+            
 
         ])
       

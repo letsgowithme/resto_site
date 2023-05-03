@@ -57,7 +57,7 @@ class Schedule
     /**
      * Get the value of openingTimeMidday
      */ 
-    public function getopeningTimeMidday()
+    public function getOpeningTimeMidday()
     {
         return $this->openingTimeMidday;
     }
@@ -67,7 +67,7 @@ class Schedule
      *
      * @return  self
      */ 
-    public function setopeningTimeMidday($openingTimeMidday)
+    public function setOpeningTimeMidday($openingTimeMidday)
     {
         $this->openingTimeMidday = $openingTimeMidday;
 
@@ -77,7 +77,7 @@ class Schedule
     /**
      * Get the value of closingTimeMidday
      */ 
-    public function getclosingTimeMidday()
+    public function getClosingTimeMidday()
     {
         return $this->closingTimeMidday;
     }
@@ -87,7 +87,7 @@ class Schedule
      *
      * @return  self
      */ 
-    public function setclosingTimeMidday($closingTimeMidday)
+    public function setClosingTimeMidday($closingTimeMidday)
     {
         $this->closingTimeMidday = $closingTimeMidday;
 
@@ -107,7 +107,7 @@ class Schedule
      *
      * @return  self
      */ 
-    public function setopeningTimeEvening($openingTimeEvening)
+    public function setOpeningTimeEvening($openingTimeEvening)
     {
         $this->openingTimeEvening = $openingTimeEvening;
 
@@ -117,7 +117,7 @@ class Schedule
     /**
      * Get the value of closingTimeEvening
      */ 
-    public function getclosingTimeEvening()
+    public function getClosingTimeEvening()
     {
         return $this->closingTimeEvening;
     }

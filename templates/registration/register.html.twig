@@ -34,8 +34,8 @@
 		<div class="choiceList-wrapper">
 			{% for field in registrationForm.allergies %}
 				<div style="min-width: 15%;">
-					{{ form_widget(field) }}
-					{{ form_label(field) }}
+				<div class=" text-light">	{{ form_widget(field) }}
+					{{ form_label(field) }}</div>
 				</div>
 			{% endfor %}
 		</div>
@@ -49,10 +49,5 @@
             label: 'Mot de passe'
         }) }}
 
-{{ form_row(registrationForm.roles, {
-            label: ''
-        }) }}
-
-	<button type="submit" class="btn">S'inscrire</button>
 	{{ form_end(registrationForm) }}
 </div>{% endblock %}

@@ -186,7 +186,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $reservation = new Reservation();
             $reservation->setNbPeople(mt_rand(1, 8)) 
-                         ->setClient($users[mt_rand(0, count($users) - 1)])
+                         ->setUser($users[mt_rand(0, count($users) - 1)])
                          ->setDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)])
                          ->setEveningSlot($eveningSlots[mt_rand(0, count($eveningSlots) - 1)]);
             $reservations[] = $reservation;

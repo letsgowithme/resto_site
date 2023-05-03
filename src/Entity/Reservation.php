@@ -16,6 +16,10 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
+    
+    #[ORM\Column]
+    private ?string $fullName = null;
+
     #[ORM\Column]
     private ?int $nbPeople = null;
 
@@ -25,7 +29,7 @@ class Reservation
     #[ORM\ManyToMany(targetEntity: Allergy::class)]
     private Collection $allergies;
 
-    
+
     #[ORM\ManyToOne]
     private ?Table $table = null;
 
@@ -37,15 +41,16 @@ class Reservation
     private ?EveningSlot $eveningSlot = null;
 
     #[ORM\ManyToOne]
-    private ?User $client = null;
+    private ?User $user = null;
 
-    
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $time = null;
+
+
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
         $this->date = new \DateTime();
-       
-    
     }
 
     public function getId(): ?int
@@ -101,7 +106,7 @@ class Reservation
         return $this;
     }
 
-    
+
     public function getDayslot(): ?DaySlot
     {
         return $this->dayslot;
@@ -137,21 +142,64 @@ class Reservation
         return $this;
     }
 
-    public function getClient(): ?User
+
+    /**
+     * Get the value of user
+     */ 
+    public function getUser()
     {
-        return $this->client;
+        return $this->user;
     }
 
-    public function setClient(?User $client): self
+    /**
+     * Set the value of user
+     *
+     * @return  self
+     */ 
+    public function setUser($user)
     {
-        $this->client = $client;
+        $this->user = $user;
 
         return $this;
     }
 
-    
+    /**
+     * Get the value of time
+     */ 
+    public function getTime()
+    {
+        return $this->time;
+    }
 
+    /**
+     * Set the value of time
+     *
+     * @return  self
+     */ 
+    public function setTime($time)
+    {
+        $this->time = $time;
 
-    
+        return $this;
+    }
 
+    /**
+     * Get the value of fullName
+     */ 
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Set the value of fullName
+     *
+     * @return  self
+     */ 
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
 }

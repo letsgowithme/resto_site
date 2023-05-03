@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\User;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,8 +36,12 @@ class ReservationController extends AbstractController
     #[Route('/new', name: 'reservation.new', methods: ['GET', 'POST'])]
     public function new(Request $request,
     EntityManagerInterface $manager,
+   
     ReservationRepository $reservationRepository): Response
     {
+        
+            // $user = $this->getUser();
+       
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);

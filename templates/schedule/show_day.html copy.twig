@@ -1,8 +1,43 @@
-	{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}New Schedule{% endblock %}
+{% block title %}Menu{% endblock %}
 
 {% block body %}
+    <h1>Menu</h1>
+
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Jour</th>
+                <td>{{ schedule.day }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="openingTimeMidday">{{  schedule.openingTimeMidday  }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td class="closingTimeMidday">{{ schedule.closingTimeMidday }}</td>
+            </tr>
+            <tr>
+                <th></th>
+               <td class="closingTimeMidday">{{ schedule.openingTimeEvening }}</td>
+            </tr>
+						 <tr>
+                <th></th>
+                <td class="closingTimeEvening">{{ schedule.closingTimeEvening }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('schedule.index') }}">back to list</a>
+
+    <a href="{{ path('schedule.edit', {'id': schedule.id}) }}">edit</a>
+
+    {{ include('schedule/_delete_form.html.twig') }}
+
+
 
 {# {% for schedule in schedules %} #}
 				

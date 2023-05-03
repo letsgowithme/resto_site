@@ -34,7 +34,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nom / Prénom',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 text-light'
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -45,7 +45,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Email',
                 'label_attr' => [
-                    'class' => 'form-label mt-4',
+                    'class' => 'form-label mt-4 text-light',
 
                 ]
             ])
@@ -57,7 +57,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nombre de convives',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4 text-light'
                 ]
             ])
 
@@ -69,7 +69,7 @@ class RegistrationFormType extends AbstractType
                 },
                 'label' => 'Avez vous une allergie?',
                 'label_attr' => [
-                    'class' => 'form-label mt-4 mb-4'
+                    'class' => 'form-label mt-4 mb-4 text-light'
                 ],
 
                 'choice_label' => 'name',
@@ -95,7 +95,7 @@ class RegistrationFormType extends AbstractType
                     ],
                     'label' => 'Mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label mt-4'
+                        'class' => 'form-label mt-4 text-light'
                     ]
                 ],
                 'second_options' => [
@@ -104,14 +104,14 @@ class RegistrationFormType extends AbstractType
                     ],
                     'label' => 'Confirmation du mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label mt-4'
+                        'class' => 'form-label mt-4 text-light'
                     ]
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.'
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-4 text-light'
                 ],
                 'label' => 'Enregistrer'
             ]);

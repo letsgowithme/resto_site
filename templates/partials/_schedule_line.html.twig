@@ -1,61 +1,35 @@
-					{% block body %}
-				<div class="container mt-4 text-cente" style="max-width: 550px;">
-		<h1 class="mb-4 h5-page">Horaires d'ouverture</h1>
-		<table class="table mt-4">
-			<thead>
-				<tr>
-					<th class="fs-4 text-center h5-page text-light">Jour</th>
-					<th class="fs-4 text-center h5-page text-light">Horaire d'ouverture</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for schedule in schedules %}
-					<tr>
-						<td class="fs-5 text-center text-capitalize bg-dark">{{ schedule.day }}</td>
-						
-						<td class="text-center bg-dark" id="openingTimeMidday">
-						{% if schedule.openingTimeMidday %}
-						{{ schedule.openingTimeMidday }}
-							
-							{% endif %}
-							{% if schedule.closingTimeMidday %}
-							-
-							{{ schedule.closingTimeMidday }}
-							{% endif %}
-							<br>
-							{% if schedule.openingTimeEvening %}
-							{{ schedule.openingTimeEvening }}
-							
-							{% endif %}
-							{% if schedule.openingTimeEvening %}
-							-
-							{{ schedule.closingTimeEvening }}
-								{% endif %}
-							</td>
-					</tr>
-					{% endfor %}
-			</tbody>
-		</tr>
-{% endblock %} 
-
 		{% block javascripts %}
 <script type="text/javascript">
 let weekdays = new Array('Dimanche ', 'Lundi ', 'Mardi ', 'Mercredi', 'Jeudi ', 'Vendredi ', 'Samedi ');
-
-
 let today = new Date();
 let day = today.getDay();
+let openingTimeMidday = "12:00";
+let closingTimeMidday = "14:00";
+let openingTimeEvening = "19:00";
+let closingTimeEvening = "22:00";
 
-let openingTimeMidday = document.querySelector('#openingTimeMidday');
+
+{# let schedule_line = show_schedule(day); #}
+
+{# let openingTimeMidday = document.querySelector('#openingTimeMidday');
   let closingTimeMidday = document.querySelector('#closingTimeMidday');
   let openingTimeEvening = document.querySelector('#openingTimeEvening');
-  let closingTimeEvening = document.querySelector('#closingTimeEvening');  
-let result = weekdays[today.getDay()] + " : "+ openingTimeMidday;
+  let closingTimeEvening = document.querySelector('#closingTimeEvening');   #}
 
-{# let options = { weekday: 'long'}; #}
-{# let result = new Intl.DateTimeFormat('fr-FR', options).format(Xmas95); #}
+	function show_schedule(){
+		if(day == "3"){
+			return weekdays[today.getDay()] + ': Fermé';
+		}else if (day == "6"){
+			return weekdays[today.getDay()] + ':  '+ openingTimeEvening +' - '+ '23:00';
+		}else if(day == "7"){
+			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday;
+		}else{
+			weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
+		}
+	}
+	
 
+document.writeln(show_schedule( weekdays[today.getDay()]));
 
-document.writeln(result);
 </script>
 {% endblock %}

@@ -10,8 +10,8 @@
 						
 						<div class="text-center bg-dark">
 						{% if schedule.openingTimeMidday %}
-						{{ schedule.openingTimeMidday }}
-							
+					<div class="time">{{ schedule.openingTimeMidday }}
+							</div>
 							{% endif %}
 							{% if schedule.closingTimeMidday %}
 							-
@@ -32,8 +32,16 @@
 	{% endfor %}
 
 	{% endblock %}
-	
 
+ {# {% block javascript %}
+ <script type="text/javascript">
+
+ let time = document.getElementByClassName("time");
+
+  document.writeln(time())
+    </script>
+
+ {% endblock %} #}
 {# 	
 function show_schedule() {
 switch(day) {

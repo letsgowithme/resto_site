@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>FullName</th>
                 <th>NbPeople</th>
                 <th>Date</th>
                 <th>Midi</th>
@@ -20,6 +21,7 @@
         {% for reservation in reservations %}
             <tr>
                 <td>{{ reservation.id }}</td>
+                <td>{{ reservation.fullName }}</td>
                 <td>{{ reservation.nbPeople }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
 

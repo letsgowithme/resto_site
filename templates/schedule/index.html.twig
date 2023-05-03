@@ -15,7 +15,7 @@
 			<tbody>
 				{% for schedule in schedules %}
 					<tr>
-						<td class="fs-5 text-center text-capitalize bg-dark">{{ schedule.day }}</td>
+						<td class="fs-5 text-center text-capitalize bg-dark time">{{ schedule.day }}</td>
 						
 						<td class="text-center bg-dark">
 						{% if schedule.openingTimeMidday %}
@@ -40,4 +40,4 @@
 	{% endfor %}
 
 </tbody></table></div>
-{% endblock %}
+ {% endblock %}
