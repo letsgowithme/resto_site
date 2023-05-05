@@ -8,13 +8,14 @@
 		 {% for category in categories %}
 			<div class="cat-card mb-3 me-3 text-sm-center" style="width: 500px;">
 				<button type="button" class="bnt-primary p-2 cat-btn"> 
-				{# style="min-width: 350px; max-width: 500px; margin: 2em;  border-radius: 0 100% 0 100%; background-color: #b5a10a;"> #}
-				<a href="{{ path('app_category_show', {id: category.id}) }}" class="text-light capitalize" style="text-decoration: none; font-weight: bold;">{{ category.name }}
+				<a href="{{ path('app_category_show', {id: category.id}) }}" 
+				class="text-light capitalize" 
+				style="text-decoration: none; font-weight: bold;">{{ category.name }}
 				</a>
 				</button>
 					<div class="gallery__image imageFile">
-						<img src="{{ vich_uploader_asset(category, 'imageFile') }}" class="imageFile img-fluid w-100 shadow-1-strong rounded mb-4"
-						style="max-width: 600px; height: 300px;" >
+						<a href="{{ path('app_category_show', {id: category.id}) }}"><img src="{{ vich_uploader_asset(category, 'imageFile') }}" class="imageFile cat_imageFile img-fluid w-100 shadow-1-strong rounded mb-4"
+						style="max-width: 600px; height: 300px; cursor: pointer;"></a>
 					
 				</div>
 			</div>

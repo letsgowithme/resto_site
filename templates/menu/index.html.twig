@@ -10,7 +10,7 @@
 			{% for menu in menus %}
 				<div class="mt-4" style="min-width: 350px;">
 					<div class="card-body text-center">
-							<h4 class="menu_block-title fs-3 h5-page text-capitalize" style="font-weight: semi-bold; rgb(35, 28, 28); " href="{{ path('menu.show', {id: menu.id}) }}">Formule
+							<h4 class="menu_block-title fs-3 h5-page text-capitalize" href="{{ path('menu.show', {id: menu.id}) }}">Formule
 								{{ menu.title }}</h4>
 						<p class="card-text mt-4 fs-5 menu_conditions" style="color: rgb(35, 28, 28); ;">(
 							{{ menu.conditions }}

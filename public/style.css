@@ -65,6 +65,15 @@ flex-direction: column;
   font-size: 2em;
   letter-spacing: 1px;
 }
+.menu_block-title {
+  
+  font-weight: semi-bold; 
+  /* color: rgb(35, 28, 28);  */
+}
+.dish_title,
+.menu_block-title {
+  font-family: 'Lora', serif;
+}
 .btn-reservation {
 background-color: var(--gold);
 color: white;
@@ -137,7 +146,7 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
   margin-top: 8%; 
   color: rgb(255, 255, 255);
   opacity: 0;
- 
+  font-family: 'Lora', serif;
   font-size: 2em; 
 
 }
@@ -154,16 +163,15 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
   min-height: 300px;
 }
 
-
+.cat_imageFile:hover {
+opacity: 0.7;
+transition: ease-in-out;
+}
  .class {
   transform: translateX(-50%);
   color: #053665;
  }
-  .truc {
-    color: #b5a10a;
-    color: silver; 
-    color: rgb(35, 28, 28); 
-  }
+  
   .hr_menu {
     overflow: visible; /* For IE */
     padding: 0;
@@ -194,11 +202,31 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
     border-radius: 0 100% 0 100%; 
     background-color: #b5a10a;
     font-size: 1.6em;
+    box-shadow: 5px 7px 2px #8f8640;
+    font-family: 'Montserrat', sans-serif;
   }
   .cat-btn:hover {
     background-color: #534b0e;
     border: 2px solid white;
     transition: ease-in-out;
+    box-shadow: 5px 7px 2px #cdc58b;
     /* border-radius: 50%;  */
+  }
+  .h1-cat_name { 
+    font-weight: bold; 
+    /* letter-spacing: 2px; color: #b5a10a; */
+    /* text-shadow: -4px 1px 3px #cdc58b; */
+    font-family: 'Lora', serif;
+  }
+  .h1_schedule_line {
+    color:  #fdf5a4;
+    font-family: 'Lora', serif;
+  }
+  .truc {
+    color: #b5a10a;
+    color: silver; 
+    color: #1f1b1b; 
+    text-shadow: #fce1a6;
+    color: rgb(239, 1, 1);
   }
   
