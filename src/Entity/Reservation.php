@@ -35,16 +35,17 @@ class Reservation
 
 
     #[ORM\ManyToOne]
-    private ?DaySlot $dayslot = null;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?DaySlot $daySlot = null;
 
-    #[ORM\ManyToOne]
-    private ?EveningSlot $eveningSlot = null;
+    // #[ORM\ManyToOne]
+    // #[ORM\JoinColumn(nullable: true)]
+    // private ?EveningSlot $eveningSlot = null;
 
     #[ORM\ManyToOne]
     private ?User $user = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+ 
 
 
     public function __construct()
@@ -107,29 +108,29 @@ class Reservation
     }
 
 
-    public function getDayslot(): ?DaySlot
+    public function getDaySlot(): ?DaySlot
     {
-        return $this->dayslot;
+        return $this->daySlot;
     }
 
-    public function setDayslot(?DaySlot $dayslot): self
+    public function setDaySlot(?DaySlot $daySlot): self
     {
-        $this->dayslot = $dayslot;
+        $this->daySlot = $daySlot;
 
         return $this;
     }
 
-    public function getEveningSlot(): ?EveningSlot
-    {
-        return $this->eveningSlot;
-    }
+    // public function getEveningSlot(): ?EveningSlot
+    // {
+    //     return $this->eveningSlot;
+    // }
 
-    public function setEveningSlot(?EveningSlot $eveningSlot): self
-    {
-        $this->eveningSlot = $eveningSlot;
+    // public function setEveningSlot(?EveningSlot $eveningSlot): self
+    // {
+    //     $this->eveningSlot = $eveningSlot;
 
-        return $this;
-    }
+    //     return $this;
+    // }
     public function getTable(): ?Table
     {
         return $this->table;
@@ -163,26 +164,7 @@ class Reservation
         return $this;
     }
 
-    /**
-     * Get the value of time
-     */ 
-    public function getTime()
-    {
-        return $this->time;
-    }
-
-    /**
-     * Set the value of time
-     *
-     * @return  self
-     */ 
-    public function setTime($time)
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
+   
     /**
      * Get the value of fullName
      */ 

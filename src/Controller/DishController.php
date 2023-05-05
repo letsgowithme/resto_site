@@ -19,6 +19,7 @@ class DishController extends AbstractController
     public function index(DishRepository $dishRepository): Response
     {
         $dishes = $dishRepository->findAll();
+        
         return $this->render('dish/index.html.twig', [
             'dishes' => $dishes,
         ]);
@@ -40,15 +41,15 @@ class DishController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // $dishRepository->save($dish, true);
             $dish = $form->getData();
-            $dish->setCategory($this->getCategories());
-            $dish->addCategory($id);
+            // $dish->addCategory($this->getCategories());
+            // $dish->addCategory($id);
             $manager->persist($dish);
             $manager->flush();
-            $this->addFlash(
+            $this->addFlash( 
                 'success',
                 'Votre recette a bien été créé'
             );
-            return $this->redirectToRoute('recipe.index');
+            return $this->redirectToRoute('dish.index');
         }
 
         return $this->render('dish/new.html.twig', [

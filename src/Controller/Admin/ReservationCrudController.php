@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ReservationCrudController extends AbstractCrudController
 {
@@ -21,15 +22,16 @@ class ReservationCrudController extends AbstractCrudController
         return [
              IdField::new('id')
             ->hideOnForm(),
+            TextField::new('fullName')
+            ->setLabel('Nom/Prénom'),
             NumberField::new('nbPeople')
                 ->setLabel('Convives'),
             AssociationField::new('allergies')
                 ->setLabel('Allèrgies'),
-            
-            // AssociationField::new('daySlot')
-            //     ->setLabel('Heure du midi'),
-            // AssociationField::new('eveningSlot')
-            //     ->setLabel('Heure du soir'),
+            AssociationField::new('daySlot')
+                ->setLabel('Heure'),
+                AssociationField::new('table')
+                ->setLabel('table id'),
         ];
     }
 }

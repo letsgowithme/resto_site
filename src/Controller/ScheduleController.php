@@ -50,40 +50,7 @@ class ScheduleController extends AbstractController
             ]);
         
     }
-    // /**
-    //  * This function shows the schedule
-    //  *  @param ScheduleRepository $scheduleRepository
-    //  * @param Request $request
-    //  * @return Response
-    //  */
-    // #[Route('/line', name: 'partials._schedule_line', methods: ['GET'])]
-   
-    // public function line_index(ScheduleRepository $scheduleRepository): Response
-    // {
-        
-    //          $schedules = $scheduleRepository->findBy(['day'=> $this->getDay()]);
-    //         return $this->render('partials/_schedule_line.html.twig');
-        
-    // }
-    //  /**
-    //  * This function shows the schedule
-    //  *  @param ScheduleRepository $scheduleRepository
-    //  * @param Request $request
-    //  * @return Response
-    //  */
-    // #[Route('/line', name: 'schedule.line_index', methods: ['GET'])]
-   
-    // public function line_index(ScheduleRepository $scheduleRepository): Response
-    // {
-        
-
-    //         $schedule = $scheduleRepository->findOneByDay(7);
-    //         return $this->render('schedule/line_index.html.twig', [
-    //                 'schedule' => $schedule
-    //         ]);
-            
-        
-    // }
+    
       
     /**
      * This function creates the schedule
@@ -120,19 +87,7 @@ class ScheduleController extends AbstractController
             
         ]);
     }
-    // #[Route('/{id}', name: 'schedule.show_day', methods: ['GET'])]
-    // public function show_day(Schedule $schedule, ScheduleRepository $scheduleRepository, $day): Response
-    // {
-      
-       
-    //     $schedule = $scheduleRepository->findOneBy([$day]);
-    //     return $this->render('schedule/show.html.twig', [
-    //         'schedule' => $schedule,
-    //         'day' => $day,
-        
-            
-    //     ]);
-    // }
+
 
     /**
      * This function edits the schedule

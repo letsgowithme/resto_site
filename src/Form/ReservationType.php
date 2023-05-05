@@ -60,26 +60,7 @@ class ReservationType extends AbstractType
             ]
 
         ])
-        // ->add('tableType', ChoiceType::class, [
-        //     'choices' => [
-        //         'table#1_2pl' => 1,
-        //         'table#2_2pl' => 2,
-        //         'table#3_4pl' => 3,
-        //         'table#4_4pl' => 4,
-        //         'table#5_6pl' => 5,
-        //         'table#6_6pl' => 6,
-        //         'table#7_8pl' => 7,
-        //         'table#9_8pl' => 8
-        //     ],
-        //     'attr' => [
-        //         'class' => 'form-select mb-4 fs-4'
-        //     ],
-        //     'label' => 'Nombre de couverts',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 d-none'
-        //     ]
-
-        // ])
+       
         ->add('date', DateType::class, [
             'widget' => 'single_text',
             // 'html5' => true,
@@ -133,7 +114,7 @@ class ReservationType extends AbstractType
                 'attr' => [
                     'class' => 'mt-4 fs-5 ms-4 me-4'
                 ],
-            'label' => 'MIDI',
+            'label' => 'Choisir l\'heure',
             'label_attr' => [
                 'class' => 'form-label mt-4 fs-5 ms-4 me-4'
             ],
@@ -148,28 +129,28 @@ class ReservationType extends AbstractType
 
         ])
 
-        ->add('eveningSlot', EntityType::class,[
-            'class' => EveningSlot::class,
-            'query_builder' => function (EveningSlotRepository $r) {
-                return $r->createQueryBuilder('i')
-                    ->orderBy('i.name', 'ASC');
-                },
-                'attr' => [
-                    'class' => 'mt-4 fs-5 ms-4 me-4'
-                ],
-            'label' => 'SOIR',
-            'label_attr' => [
-                'class' => 'form-label mt-4 fs-5 ms-4 me-4'
-            ],
-            'choice_label' => 'name',
-            'choice_attr' => [
-                'class' => 'mt-4 fs-5 ms-4 me-4'
-            ],
-            'multiple' => false,
-            'expanded' => true,
+        // ->add('eveningSlot', EntityType::class,[
+        //     'class' => EveningSlot::class,
+        //     'query_builder' => function (EveningSlotRepository $r) {
+        //         return $r->createQueryBuilder('i')
+        //             ->orderBy('i.name', 'ASC');
+        //         },
+        //         'attr' => [
+        //             'class' => 'mt-4 fs-5 ms-4 me-4'
+        //         ],
+        //     'label' => 'SOIR',
+        //     'label_attr' => [
+        //         'class' => 'form-label mt-4 fs-5 ms-4 me-4'
+        //     ],
+        //     'choice_label' => 'name',
+        //     'choice_attr' => [
+        //         'class' => 'mt-4 fs-5 ms-4 me-4'
+        //     ],
+        //     'multiple' => false,
+        //     'expanded' => true,
             
 
-        ])
+        // ])
       
             ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,

@@ -1,3 +1,4 @@
+		<h4>Nos horaires:
 		{% block javascripts %}
 <script type="text/javascript">
 let weekdays = new Array('Dimanche ', 'Lundi ', 'Mardi ', 'Mercredi', 'Jeudi ', 'Vendredi ', 'Samedi ');
@@ -9,13 +10,26 @@ let openingTimeEvening = "19:00";
 let closingTimeEvening = "22:00";
 
 
-{# let schedule_line = show_schedule(day); #}
-
 {# let openingTimeMidday = document.querySelector('#openingTimeMidday');
   let closingTimeMidday = document.querySelector('#closingTimeMidday');
   let openingTimeEvening = document.querySelector('#openingTimeEvening');
   let closingTimeEvening = document.querySelector('#closingTimeEvening');   #}
 
+	function show_schedule(){
+		if(day == "3"){
+			return weekdays[day] + ': Fermé';
+		}else if (day == "6"){
+			return weekdays[day] + ':  '+ openingTimeEvening +' - '+ '23:00';
+		}else if(day == "7"){
+			return weekdays[day] + ': '+ openingTimeMidday+' - '+ closingTimeMidday;
+		}else{
+			weekdays[day] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
+		}
+	}
+	
+
+document.writeln(show_schedule(eekdays[day]));
+{# 
 	function show_schedule(){
 		if(day == "3"){
 			return weekdays[today.getDay()] + ': Fermé';
@@ -29,7 +43,9 @@ let closingTimeEvening = "22:00";
 	}
 	
 
-document.writeln(show_schedule( weekdays[today.getDay()]));
+document.writeln(show_schedule( weekdays[today.getDay()])); #}
+
 
 </script>
 {% endblock %}
+ </h4>

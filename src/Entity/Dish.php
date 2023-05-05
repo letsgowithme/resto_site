@@ -25,16 +25,15 @@ class Dish
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'dishes')]
+    #[ORM\ManyToMany(targetEntity: Category::class)]
     private Collection $categories;
 
+    
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+       
     }
-
-  
-
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +101,12 @@ class Dish
 
         return $this;
     }
+    public function __toString()
+    {
+        return (string) $this->title;
+    }
 
   
+  
+ 
 }

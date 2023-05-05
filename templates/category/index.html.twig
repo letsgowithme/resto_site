@@ -3,33 +3,41 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+{# <div class="container mt-4" style="height: 70vh;">
+    <h1 class="text-center">La Carte</h1>
+ {% for category in categories %}
+	<div class="card border-primary mb-3 me-3 text-sm-center">
+					<div class="card-body">
+						<h4 class="card-title">
+						<a href="{{ path('app_category_show', {id: category.id}) }}" class="text-light fs-4 capitalize" style="text-decoration: none;">{{ category.name }}</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+						<div class="cat__image card-image">
+							<img src="{{ vich_uploader_asset(category, 'imageFile') }}" class="imageFile img-fluid w-100 shadow-1-strong rounded mb-4">
+						</div>
+					</div>
+				</div>
+				{% endfor %} #}
+
+<div class="container mt-4">
+	<div class="d-flex justify-content-center flex-wrap">
+		 {% for category in categories %}
+			<div class="cat-card mb-3 me-3 text-sm-center" style="width: 500px; border-radius: 10px;">
+				<button type="button" class="bnt-primary p-2" style="min-width: 350px; max-width: 500px; margin: 2em;"><a href="{{ path('app_category_show', {id: category.id}) }}" class="text-light fs-4 capitalize" style="text-decoration: none;">{{ category.name }}</a></button>
+					<div class="gallery__image imageFile">
+						<img src="{{ vich_uploader_asset(category, 'imageFile') }}" class="imageFile img-fluid w-100 shadow-1-strong rounded mb-4"
+						style="max-width: 600px; height: 300px;" >
+					
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{# <div class=" d-flex flex-sm-column flex-lg-row flex-lg-wrap justify-content-lg-center mb-5">
         {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        	<button type="button" class="bnt-primary p-2" style="width: 9em; margin: 2em;"><a href="{{ path('app_category_show', {id: category.id}) }}" class="text-light fs-4 capitalize" style="text-decoration: none;">{{ category.name }}</a></button>
+            {% endfor %}   
+ </div>       #}
 
-    <a href="{{ path('app_category_new') }}">Create new</a>
+</div>
 {% endblock %}

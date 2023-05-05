@@ -23,7 +23,7 @@ class MenuType extends AbstractType
                 'minlenght' => '2',
                 'maxlenght' => '50',
             ],
-            'label' => 'Nom / Prénom',
+            'label' => 'Titre',
             'label_attr' => [
                 'class' => 'form-label  mt-4'
             ],

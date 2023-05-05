@@ -17,7 +17,7 @@ class DaySlotController extends AbstractController
     public function index(DaySlotRepository $daySlotRepository): Response
     {
         return $this->render('day_slot/index.html.twig', [
-            'day_slots' => $daySlotRepository->findAll(),
+            'daySlots' => $daySlotRepository->findAll(),
         ]);
     }
 
@@ -35,7 +35,7 @@ class DaySlotController extends AbstractController
         }
 
         return $this->render('day_slot/new.html.twig', [
-            'day_slot' => $daySlot,
+            'daySlot' => $daySlot,
             'form' => $form,
         ]);
     }
@@ -44,7 +44,7 @@ class DaySlotController extends AbstractController
     public function show(DaySlot $daySlot): Response
     {
         return $this->render('day_slot/show.html.twig', [
-            'day_slot' => $daySlot,
+            'daySlot' => $daySlot,
         ]);
     }
 
@@ -61,7 +61,7 @@ class DaySlotController extends AbstractController
         }
 
         return $this->render('day_slot/edit.html.twig', [
-            'day_slot' => $daySlot,
+            'daySlot' => $daySlot,
             'form' => $form,
         ]);
     }

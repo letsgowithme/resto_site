@@ -31,9 +31,7 @@ class Schedule
     #[ORM\Column(nullable: true)]
     private ?string $closingTimeEvening = null;
 
-  
 
-   
     public function getId(): ?int
     {
         return $this->id;
@@ -51,12 +49,9 @@ class Schedule
         return $this;
     }
 
-   
-    
-
     /**
      * Get the value of openingTimeMidday
-     */ 
+     */
     public function getOpeningTimeMidday()
     {
         return $this->openingTimeMidday;
@@ -66,7 +61,7 @@ class Schedule
      * Set the value of openingTimeMidday
      *
      * @return  self
-     */ 
+     */
     public function setOpeningTimeMidday($openingTimeMidday)
     {
         $this->openingTimeMidday = $openingTimeMidday;
@@ -76,7 +71,7 @@ class Schedule
 
     /**
      * Get the value of closingTimeMidday
-     */ 
+     */
     public function getClosingTimeMidday()
     {
         return $this->closingTimeMidday;
@@ -86,7 +81,7 @@ class Schedule
      * Set the value of closingTimeMidday
      *
      * @return  self
-     */ 
+     */
     public function setClosingTimeMidday($closingTimeMidday)
     {
         $this->closingTimeMidday = $closingTimeMidday;
@@ -96,7 +91,7 @@ class Schedule
 
     /**
      * Get the value of openingTimeEvening
-     */ 
+     */
     public function getopeningTimeEvening()
     {
         return $this->openingTimeEvening;
@@ -106,7 +101,7 @@ class Schedule
      * Set the value of openingTimeEvening
      *
      * @return  self
-     */ 
+     */
     public function setOpeningTimeEvening($openingTimeEvening)
     {
         $this->openingTimeEvening = $openingTimeEvening;
@@ -116,7 +111,7 @@ class Schedule
 
     /**
      * Get the value of closingTimeEvening
-     */ 
+     */
     public function getClosingTimeEvening()
     {
         return $this->closingTimeEvening;
@@ -126,13 +121,11 @@ class Schedule
      * Set the value of closingTimeEvening
      *
      * @return  self
-     */ 
+     */
     public function setclosingTimeEvening($closingTimeEvening)
     {
         $this->closingTimeEvening = $closingTimeEvening;
 
         return $this;
     }
-
-   
 }

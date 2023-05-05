@@ -15,7 +15,7 @@ class Table
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $number = null;
+    private ?string $number = null;
 
     #[ORM\Column]
     private ?int $nbPlaces = null;
@@ -70,5 +70,9 @@ class Table
         $this->isAvailable = $isAvailable;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return (string) $this->number;
     }
 }

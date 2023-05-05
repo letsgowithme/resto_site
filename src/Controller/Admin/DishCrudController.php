@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class DishCrudController extends AbstractCrudController
 {
@@ -39,8 +40,8 @@ class DishCrudController extends AbstractCrudController
                 ->setFormType(CKEditorType::class)
                 ->hideOnIndex()
                 ->setLabel('Déscription'),
-            AssociationField::new('categories')
-                ->setLabel('Catégories'),
+            AssociationField::new('category')
+                ->setLabel('Catégorie'),
         ];
     }
 }

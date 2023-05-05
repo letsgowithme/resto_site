@@ -22,7 +22,7 @@ class MenuCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                  ->hideOnForm(),  
-            TextField::new('tutle')
+            TextField::new('title')
                     ->setLabel('Nom'),
             TextEditorField::new('conditions')
                 ->setFormType(CKEditorType::class)

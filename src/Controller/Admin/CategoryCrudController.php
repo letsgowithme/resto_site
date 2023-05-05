@@ -7,7 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 
 class CategoryCrudController extends AbstractCrudController
 {
@@ -30,11 +32,16 @@ class CategoryCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-            ->hideOnForm(),  
+                 ->hideOnForm(),  
             TextField::new('name')
-            ->setLabel('Nom'),
+                 ->setLabel('Nom'),
             AssociationField::new('dishes')
-                ->setLabel('Plats')
+                ->setLabel('Plats'),
+            ImageField::new('imageName')
+                ->setFormType(FileUploadType::class)
+                ->setUploadDir('/public/images/gallery')
+                ->setRequired(false)
+                ->setLabel('Image')
         ];
     }
 }
