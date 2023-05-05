@@ -187,4 +187,18 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
   .capitalize {
     text-transform: capitalize;
   }
+  .cat-btn {
+    min-width: 350px; 
+    max-width: 500px; 
+    margin: 2em;  
+    border-radius: 0 100% 0 100%; 
+    background-color: #b5a10a;
+    font-size: 1.6em;
+  }
+  .cat-btn:hover {
+    background-color: #534b0e;
+    border: 2px solid white;
+    transition: ease-in-out;
+    /* border-radius: 50%;  */
+  }
   
