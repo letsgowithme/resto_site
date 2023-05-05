@@ -38,10 +38,6 @@ class Reservation
     #[ORM\JoinColumn(nullable: true)]
     private ?DaySlot $daySlot = null;
 
-    // #[ORM\ManyToOne]
-    // #[ORM\JoinColumn(nullable: true)]
-    // private ?EveningSlot $eveningSlot = null;
-
     #[ORM\ManyToOne]
     private ?User $user = null;
 

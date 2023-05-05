@@ -22,9 +22,12 @@ class ReservationController extends AbstractController
     #[Route('/', name: 'reservation.index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository): Response
     {
+        $reservations = $reservationRepository->findAll();
+        
         return $this->render('reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            'reservations' => $reservations,
         ]);
+      
     }
    /**
     * This function creates a reservation
@@ -36,16 +39,19 @@ class ReservationController extends AbstractController
     #[Route('/new', name: 'reservation.new', methods: ['GET', 'POST'])]
     public function new(Request $request,
     EntityManagerInterface $manager,
-   
     ReservationRepository $reservationRepository): Response
     {
         
-            // $user = $this->getUser();
+            
        
         $reservation = new Reservation();
+        
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+        //  $user = $this->getUser();
+        // $nbPeople = $this->getData();
+        // $reservation->setNbPeople($nbPeople);
         if ($form->isSubmitted() && $form->isValid()) {
             // $reservationRepository->save($reservation, true);
             $reservation = $form->getData();

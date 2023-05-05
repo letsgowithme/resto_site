@@ -27,7 +27,7 @@ class ReservationType extends AbstractType
         $builder
         ->add('fullName', TextType::class, [
             'attr' => [
-                'class' => 'form-control',
+                'class' => 'form-control mb-4',
                 'minlenght' => '2',
                 'maxlenght' => '50',
             ],
