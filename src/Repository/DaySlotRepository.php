@@ -39,6 +39,20 @@ class DaySlotRepository extends ServiceEntityRepository
         }
     }
 
+     /**
+     * Show available daySlots
+     * @param integer $nbDaySlots
+     * @return array
+     */
+    public function findAvailableDaySlots(?int $nbDaySlots) : array {
+        return  $this->createQueryBuilder('d')
+                ->where('d.isAvailable = 1')
+                // ->orderBy('d.time', 'ASC')
+                ->setMaxResults($nbDaySlots)
+                ->getQuery()
+                ->getResult();
+} 
+
 //    /**
 //     * @return DaySlot[] Returns an array of DaySlot objects
 //     */

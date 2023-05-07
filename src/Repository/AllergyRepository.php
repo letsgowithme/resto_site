@@ -38,6 +38,7 @@ class AllergyRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+ 
 
 //    /**
 //     * @return Allergy[] Returns an array of Allergy objects

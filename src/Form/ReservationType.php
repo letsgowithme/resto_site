@@ -27,13 +27,13 @@ class ReservationType extends AbstractType
         $builder
         ->add('fullName', TextType::class, [
             'attr' => [
-                'class' => 'form-control mb-4',
+                'class' => 'form-control mb-4 fs-4',
                 'minlenght' => '2',
                 'maxlenght' => '50',
             ],
             'label' => 'Nom / Prénom',
             'label_attr' => [
-                'class' => 'form-label  mt-4 text-light fs-4'
+                'class' => 'form-label  mt-4 text-light fs-4 text-start'
             ],
           
         ])
@@ -77,33 +77,6 @@ class ReservationType extends AbstractType
             ],
             
         ])
-        // ->add('time', TimeType::class, [
-        //     'label' => 'Heure',
-        //     'input' => 'datetime',
-        //     'widget'  => 'choice',
-        //     'hours'   => [12, 13, 19, 20, 21],
-        //     'minutes' => [00, 15, 30, 45],
-        // ])
-
-        // ->add('dayTime', ChoiceType::class, [
-        //     'choices' => [
-        //         '12:00' => 1,
-        //         '12:15' => 2,
-        //         '12:30' => 3,
-        //         '12:45' => 4,
-        //         '13:00' => 5,
-               
-               
-        //     ],
-        //     'attr' => [
-        //         'class' => 'form-select mb-4 fs-4'
-        //     ],
-        //     'label' => 'heure',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 d-none'
-        //     ]
-
-        // ])
         
         ->add('daySlot', EntityType::class,[
             'class' => DaySlot::class,
@@ -112,11 +85,11 @@ class ReservationType extends AbstractType
                     ->orderBy('i.time', 'ASC');
                 },
                 'attr' => [
-                    'class' => 'mt-4 fs-5 ms-4 me-4'
+                    'class' => 'mt-4 fs-4'
                 ],
             'label' => 'Choisir l\'heure',
             'label_attr' => [
-                'class' => 'form-label mt-4 fs-5 ms-4 me-4'
+                'class' => 'form-label mt-4 fs-4'
             ],
 
             

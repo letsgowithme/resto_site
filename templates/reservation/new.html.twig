@@ -5,30 +5,11 @@
 
 {% block body %}
 	<div class="container mt-4 text-center">
-
 		<h1 class="h5-page">Page de la reservation</h1>
 		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)! <br>
 		Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
-
-{# {% if app.user and app.user.nbPeople %}
-{{ user.nbPeople}}
-{% endif %} #}
 		{{ form_start(form) }}
-
-		{# <div class="row mb-4 form-row"> #}
-			{# {% if app.user.nbPeople %}
-
-				<div class="form-group  col-3 mb-4">
-					{{ form_label(form.nbPeople) }}
-					{{ form_widget(app.user.nbPeople) }}
-					<div class="form-error">
-						{{ form_errors(form.nbPeople) }}
-					</div>
-				</div>
-			{% else %} #}
-
-			
 				<div class="row form-row mt-4">
 					<div class="form-group  col-6 mb-4">
 						{{ form_label(form.nbPeople) }}
@@ -37,9 +18,6 @@
 							{{ form_errors(form.nbPeople) }}
 						</div>
 					</div>
-
-				{# {% endif %} #}
-			{# </div> #}
 			<div class="form-group col-6 mb-4">
 				{{ form_label(form.date) }}
 				{{ form_widget(form.date) }}
@@ -47,13 +25,11 @@
 					{{ form_errors(form.date) }}
 				</div>
 			</div>
-			
 		</div>
 		<br>
-	
 		<div class="row">
-			{# {% if daySlot.isAvailable is same as true %} #}
-			<div class="form-group mt-4 text-light bold" style="margin-top: 20px;">
+    
+			<div class="form-group text-light bold text-start">
 				{{ form_label(form.daySlot) }}
 				<br>
 				<div class="choiceList-wrapper" style="border: none;">
@@ -63,10 +39,8 @@
 							{{ form_label(field) }}
 						</div>
 					{% endfor %}
-					{# {% endif %} #}
 				</div>
 			</div>
-
 		<div class="form-group text-light">
 			{{ form_label(form.allergies) }}
 			<br>
@@ -79,7 +53,7 @@
 				{% endfor %}
 			</div>
 		</div>
-			<div class="form-group mb-4">
+			<div class="form-group text-start mt-4">
 					<div class="form-group  col-6 mb-4">
 						{{ form_label(form.fullName) }}
 						{{ form_widget(form.fullName) }}

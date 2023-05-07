@@ -30,8 +30,8 @@ class Reservation
     private Collection $allergies;
 
 
-    #[ORM\ManyToOne]
-    private ?Table $table = null;
+    // #[ORM\ManyToOne]
+    // private ?Table $table = null;
 
 
     #[ORM\ManyToOne]
@@ -116,28 +116,17 @@ class Reservation
         return $this;
     }
 
-    // public function getEveningSlot(): ?EveningSlot
+        // public function getTable(): ?Table
     // {
-    //     return $this->eveningSlot;
+    //     return $this->table;
     // }
 
-    // public function setEveningSlot(?EveningSlot $eveningSlot): self
+    // public function setTable(?Table $table): self
     // {
-    //     $this->eveningSlot = $eveningSlot;
+    //     $this->table = $table;
 
     //     return $this;
     // }
-    public function getTable(): ?Table
-    {
-        return $this->table;
-    }
-
-    public function setTable(?Table $table): self
-    {
-        $this->table = $table;
-
-        return $this;
-    }
 
 
     /**

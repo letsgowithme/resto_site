@@ -185,9 +185,9 @@ class AppFixtures extends Fixture
                         
                          ;
                          
-            for ($b = 0; $b < mt_rand(0, 5); $b++) {
-                $reservation->setTable($tables[mt_rand(0, count($tables) - 1)]);
-            }
+            // for ($b = 0; $b < mt_rand(0, 5); $b++) {
+            //     $reservation->setTable($tables[mt_rand(0, count($tables) - 1)]);
+            // }
                          
             $reservations[] = $reservation;
             $manager->persist($reservation);

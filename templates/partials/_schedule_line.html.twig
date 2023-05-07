@@ -14,7 +14,7 @@ let closingTimeEvening = "22:00";
 			return weekdays[today.getDay()] + ': Fermé';
 		}else if (day == "6"){
 			return weekdays[today.getDay()] + ':  '+ openingTimeEvening +' - '+ '23:00';
-		}else if(day == "7"){
+		}else if(day == "0"){
 			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday;
 		}else if(day == "1" || day == "2" || day == "4" || day == "5"){
 			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
