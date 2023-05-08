@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\DaySlotRepository;
 use App\Repository\ReservationRepository;
+use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +41,13 @@ class ReservationController extends AbstractController
      public function user_new(Request $request,
      EntityManagerInterface $manager,
      DaySlotRepository $daySlotRepository,
+     ScheduleRepository $scheduleRepository,
      UserInterface $user,
      ): Response
      {    
          $reservation = new Reservation();
          $daySlots = $daySlotRepository->findAvailableDaySlots(20);
+         $schedules = $scheduleRepository->findAll(); 
  
          if($user) {
              $user = $reservation->getUser();
@@ -72,8 +75,9 @@ class ReservationController extends AbstractController
         
          return $this->render('reservation/new.html.twig', [
            'form' => $form->createView(),
-           'daySlots' =>  $daySlots
-         //   'nbPeople' => $nbPeople,
+           'daySlots' =>  $daySlots,
+           'schedules' => $schedules,
+         
        ]);
      }
    /**
@@ -86,11 +90,13 @@ class ReservationController extends AbstractController
     #[Route('/new', name: 'reservation.new', methods: ['GET', 'POST'])]
     public function new(Request $request,
     EntityManagerInterface $manager,
-    DaySlotRepository $daySlotRepository
+    DaySlotRepository $daySlotRepository,
+    ScheduleRepository $scheduleRepository,
     ): Response
     {    
         $reservation = new Reservation();
         $daySlots = $daySlotRepository->findAvailableDaySlots(20);
+        $schedules = $scheduleRepository->findAll(); 
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -108,8 +114,9 @@ class ReservationController extends AbstractController
        
         return $this->render('reservation/new.html.twig', [
           'form' => $form->createView(),
-          'daySlots' =>  $daySlots
-        //   'nbPeople' => $nbPeople,
+          'daySlots' =>  $daySlots,
+          'schedules' => $schedules,
+       
       ]);
     }
 

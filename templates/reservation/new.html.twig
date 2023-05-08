@@ -19,7 +19,7 @@
 						</div>
 					</div>
 			<div class="form-group col-6 mb-4">
-				{{ form_label(form.date) }}
+				{{ form_label(form.date) }} 
 				{{ form_widget(form.date) }}
 				<div class="form-error">
 					{{ form_errors(form.date) }}
@@ -73,7 +73,34 @@
 		</div>
 		{{ form_end(form) }}
 	</div>
-</div></div>
-
+</div>
+</div>
+<div class="bg-primary mt-4" style="padding-left: 15px;">
+	<h3 class="mt-4 text-light fs-3 text-center">Nos horaires</h3>
+<div class="table d-flex justify-content-center">
+				{% for schedule in schedules %}
+				<div class="d-flex flex-column p-4">
+						 <div class="fs-4 text-center text-capitalize text-light">{{ schedule.day }}</div>
+						<div class="text-center text-light" stylee="width: 300px;">
+						{% if schedule.openingTimeMidday %}
+						{{ schedule.openingTimeMidday }}
+							{% endif %}
+							{% if schedule.closingTimeMidday %}
+								- {{ schedule.closingTimeMidday }}
+							{% endif %}
+							<br>
+							{% if schedule.openingTimeEvening %}
+							{{ schedule.openingTimeEvening }}
+			
+							{% endif %}
+							{% if schedule.openingTimeEvening %}
+							- {{ schedule.closingTimeEvening }}
+								{% endif %}
+							
+							</div> 
+							</div>
+	 {% endfor %} 
+	</div>
+	</div>
 
 {% endblock %}

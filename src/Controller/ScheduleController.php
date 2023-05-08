@@ -33,23 +33,23 @@ class ScheduleController extends AbstractController
             ]);
         
     }
-    /**
-     * This function shows the schedule
-     *  @param ScheduleRepository $scheduleRepository
-     * @param Request $request
-     * @return Response
-     */
-    #[Route('/', name: 'schedule.index_day', methods: ['GET'])]
+    // /**
+    //  * This function shows the schedule
+    //  *  @param ScheduleRepository $scheduleRepository
+    //  * @param Request $request
+    //  * @return Response
+    //  */
+    // #[Route('/show_day/{day}', name: 'schedule.index_day', methods: ['GET'])]
    
-    public function index_day(ScheduleRepository $scheduleRepository): Response
-    {
+    // public function index_day(ScheduleRepository $scheduleRepository): Response
+    // {
         
+    //     $schedules = $scheduleRepository->findByDay('Samedi');
+    //         return $this->render('schedule/index_day.html.twig', [
+    //             'schedules' => $schedules
+    //         ]);
         
-            return $this->render('schedule/index_day.html.twig', [
-                'schedules' => $scheduleRepository->findAll(),
-            ]);
-        
-    }
+    // }
     
       
     /**

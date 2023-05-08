@@ -85,8 +85,9 @@ class ReservationType extends AbstractType
        
         ->add('date', DateType::class, [
             'widget' => 'single_text',
-            // 'html5' => true,
-            // 'input'  => 'datetime',
+            // 'html5' => false,
+            'input'  => 'datetime',
+            // 'format' => 'dd-MM',
             
             // 'attr' => ['class' => 'js-datepicker'],
             
@@ -170,7 +171,7 @@ class ReservationType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4 fs-4'
+                    'class' => 'btn btn-primary mt-4 fs-4 px-4'
                 ],
                 'label' => 'Réserver la table!',
             ]);

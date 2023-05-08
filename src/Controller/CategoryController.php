@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ScheduleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +16,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryRepository $categoryRepository,
+    ScheduleRepository $scheduleRepository): Response
     {
         $categories = $categoryRepository->findAll();
+        $schedules = $scheduleRepository->findAll();
         
         return $this->render('category/index.html.twig', [
             'categories' => $categories,
+            'schedules' => $schedules,
         ]);
     }
     #[IsGranted('ROLE_ADMIN')]

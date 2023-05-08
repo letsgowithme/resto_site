@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -21,9 +22,9 @@ class ReservationCrudController extends AbstractCrudController
     {
         return [
              IdField::new('id')
-            ->hideOnForm(),
+                 ->hideOnForm(),
             TextField::new('fullName')
-            ->setLabel('Nom/Prénom'),
+                 ->setLabel('Nom/Prénom'),
             NumberField::new('nbPeople')
                 ->setLabel('Convives'),
             NumberField::new('nbChildren')
@@ -32,6 +33,8 @@ class ReservationCrudController extends AbstractCrudController
                 ->setLabel('Allèrgies'),
             AssociationField::new('daySlot')
                 ->setLabel('Heure'),
+            DateField::new('date')
+                ->setLabel('Date'),
                 // AssociationField::new('table')
                 // ->setLabel('table id'),
         ];

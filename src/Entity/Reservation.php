@@ -78,6 +78,9 @@ class Reservation
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+        // $day = $date->format('d');
+        // $month = $date->format('m');
+        // $date = $day.' '.$month;
 
         return $this;
     }
