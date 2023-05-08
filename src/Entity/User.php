@@ -36,10 +36,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $password = null;
     
-
     #[ORM\Column(nullable: true)]
     private ?int $nbPeople = null;
-
 
     #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
     private Collection $allergies;

@@ -24,7 +24,10 @@
                 <td>{{ reservation.fullName }}</td>
                 <td>{{ reservation.nbPeople }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
-		        <td>{{ reservation.daySlot }}</td>
+             
+                    <td>{{ reservation.daySlot }}</td>
+               
+		        
        		
                 <td>{% for allergies in reservation.allergies %}
 				{{ allergies.name|raw }}

@@ -9,12 +9,12 @@
 
 	<table class="table">
 		<tbody>
-        {% if is_granted('ROLE_ADMIN') %}
+        {# {% if is_granted('ROLE_ADMIN') %}
 			<tr>
 				<th>Id</th>
 				<td>{{ reservation.id }}</td>
 			</tr>
-            {% endif %}
+            {% endif %} #}
 						<tr>
 				<th>Nom / prénom</th>
 				<td>{{ reservation.fullName }}</td>

@@ -15,14 +15,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for day_slot in day_slots %}
+        {% for daySlot in daySlots %}
             <tr>
                 <td>{{ daySlot.id }}</td>
-                <td>{{ daySlot.name }}</td>
+                <td>{{ daySlot.time }}</td>
                 <td>{{ daySlot.isAvailable ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_day_slots_show', {'id': daySlot.id}) }}">show</a>
-                    <a href="{{ path('app_day_slots_edit', {'id': daySlot.id}) }}">edit</a>
+                    <a href="{{ path('app_day_slot_show', {'id': daySlot.id}) }}">show</a>
+                    <a href="{{ path('app_day_slot_edit', {'id': daySlot.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('day_slots.new') }}">Create new</a>
+    <a href="{{ path('day_slot.new') }}">Create new</a>
 {% endblock %}
