@@ -39,6 +39,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $nbPeople = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nbChildren = null;
+
     #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
     private Collection $allergies;
 
@@ -204,4 +207,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   
 
     
+
+    /**
+     * Get the value of nbChildren
+     */ 
+    public function getNbChildren()
+    {
+        return $this->nbChildren;
+    }
+
+    /**
+     * Set the value of nbChildren
+     *
+     * @return  self
+     */ 
+    public function setNbChildren($nbChildren)
+    {
+        $this->nbChildren = $nbChildren;
+
+        return $this;
+    }
 }

@@ -23,6 +23,9 @@ class Reservation
     #[ORM\Column]
     private ?int $nbPeople = null;
 
+    #[ORM\Column]
+    private ?int $nbChildren = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
@@ -166,6 +169,26 @@ class Reservation
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nbChildren
+     */ 
+    public function getNbChildren()
+    {
+        return $this->nbChildren;
+    }
+
+    /**
+     * Set the value of nbChildren
+     *
+     * @return  self
+     */ 
+    public function setNbChildren($nbChildren)
+    {
+        $this->nbChildren = $nbChildren;
 
         return $this;
     }

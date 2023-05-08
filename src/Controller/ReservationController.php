@@ -49,6 +49,7 @@ class ReservationController extends AbstractController
          if($user) {
              $user = $reservation->getUser();
              $reservation->setNbPeople($this->getUser()->getNbPeople());
+             $reservation->setNbChildren($this->getUser()->getNbChildren());
              $reservation->setFullname($this->getUser()->getFullname());
              $allergies = $this->getUser()->getAllergies(); 
               for($i=0; $i< count($allergies); $i++){

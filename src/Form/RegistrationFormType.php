@@ -60,6 +60,17 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label mt-4 text-light'
                 ]
             ])
+            ->add('nbChildren', TypeIntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'min' => 0,
+                    'max' => 1440
+                ],
+                'label' => 'Nombre d\'enfants',
+                'label_attr' => [
+                    'class' => 'form-label mt-4 text-light'
+                ]
+            ])
 
             ->add('allergies', EntityType::class, [
                 'class' => Allergy::class,

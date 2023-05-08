@@ -26,6 +26,8 @@ class ReservationCrudController extends AbstractCrudController
             ->setLabel('Nom/Prénom'),
             NumberField::new('nbPeople')
                 ->setLabel('Convives'),
+            NumberField::new('nbChildren')
+                ->setLabel('Enfants'),
             AssociationField::new('allergies')
                 ->setLabel('Allèrgies'),
             AssociationField::new('daySlot')

@@ -179,11 +179,14 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $reservation = new Reservation();
             $reservation->setNbPeople(mt_rand(1, 8)) 
+                         ->setNbChildren(mt_rand(1, 8)) 
                          ->setFullname($this->faker->name())
                          ->setUser($users[mt_rand(0, count($users) - 1)])
                          ->setDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)])
-                        
                          ;
+                         for ($b = 0; $b < mt_rand(0, 5); $b++) {
+                                 $reservation->addAllergy($allergies[mt_rand(0, count($allergies) - 1)]);
+                             }
                          
             // for ($b = 0; $b < mt_rand(0, 5); $b++) {
             //     $reservation->setTable($tables[mt_rand(0, count($tables) - 1)]);

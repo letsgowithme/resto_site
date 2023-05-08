@@ -60,6 +60,28 @@ class ReservationType extends AbstractType
             ]
 
         ])
+        ->add('nbChildren', ChoiceType::class, [
+            'choices' => [
+                'Le nombre d\'enfants' => 0,
+                '1 enfant' => 1,
+                '2 enfants' => 2,
+                '3 enfants' => 3,
+                '4 enfants' => 4,
+                '5 enfants' => 5,
+                '6 enfants' => 6,
+                '7 enfants' => 7,
+                '8 enfants' => 8,
+                
+            ],
+            'attr' => [
+                'class' => 'form-select mb-4 fs-4'
+            ],
+            'label' => 'Nombre d\'enfants',
+            'label_attr' => [
+                'class' => 'form-label mt-4 d-none'
+            ]
+
+        ])
        
         ->add('date', DateType::class, [
             'widget' => 'single_text',
