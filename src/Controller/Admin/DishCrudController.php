@@ -40,8 +40,8 @@ class DishCrudController extends AbstractCrudController
                 ->setFormType(CKEditorType::class)
                 ->hideOnIndex()
                 ->setLabel('Déscription'),
-            AssociationField::new('category')
-                ->setLabel('Catégorie'),
+            // AssociationField::new('category')
+            //     ->setLabel('Catégorie'),
         ];
     }
 }

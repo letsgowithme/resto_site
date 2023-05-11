@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ScheduleRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
@@ -42,16 +45,19 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user,ScheduleRepository $scheduleRepository): Response
     {
+        $schedules = $scheduleRepository->findAll();
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'schedules' => $schedules,
         ]);
     }
     #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'app_user.edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, ScheduleRepository $scheduleRepository): Response
     {
+        $schedules = $scheduleRepository->findAll();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -64,16 +70,32 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+            'schedules' => $schedules,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
+    #[Route('/{id}/delete', 'app_user_delete', methods: ['GET','POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function delete(
+        EntityManagerInterface $manager,
+        User $user
+    ): Response {
+       
+        $manager->remove($user);
+        $manager->flush();
 
-        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash(
+            'success',
+            'Votre profile a été supprimé avec succès !'
+        );
+
+        return $this->redirectToRoute('app_login');
     }
 }
+
+
+
+   
+    
+
+

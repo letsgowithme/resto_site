@@ -7,7 +7,6 @@ use App\Repository\ScheduleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Date;
 
 class HomeController extends AbstractController
 {
@@ -19,8 +18,6 @@ class HomeController extends AbstractController
     {
         $cards = $cardRepository->findAll();
         $schedules = $scheduleRepository->findAll(); 
-       
-               
         return $this->render('home/index.html.twig', [
             'cards' => $cards,
         

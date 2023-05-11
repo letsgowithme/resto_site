@@ -37,7 +37,7 @@ class ReservationController extends AbstractController
      * @return Response
      */
 
-     #[Route('/user_new', name: 'reservation.new', methods: ['GET', 'POST'])]
+     #[Route('/user_new', name: 'reservation.user_new', methods: ['GET', 'POST'])]
      public function user_new(Request $request,
      EntityManagerInterface $manager,
      DaySlotRepository $daySlotRepository,
@@ -51,7 +51,10 @@ class ReservationController extends AbstractController
  
          if($user) {
              $user = $reservation->getUser();
-             $reservation->setNbPeople($this->getUser()->getNbPeople());
+             if ($this->getUser()->getNbPeople()) {
+                $reservation->setNbPeople($this->getUser()->getNbPeople());
+             }
+             
              $reservation->setNbChildren($this->getUser()->getNbChildren());
              $reservation->setFullname($this->getUser()->getFullname());
              $allergies = $this->getUser()->getAllergies(); 

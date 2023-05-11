@@ -19,7 +19,6 @@ class RestaurantController extends AbstractController
    
     ): Response
     {
-     
         $restaurants = $restaurantRepository->findAll();
         // $daySlot = $reservationRepository->findOneByDaySlot('daySlot');
         // $nbAvailablePlaces = $restaurant->getNbAvailablePlaces();

@@ -124,29 +124,6 @@ class ReservationType extends AbstractType
             'expanded' => true
 
         ])
-
-        // ->add('eveningSlot', EntityType::class,[
-        //     'class' => EveningSlot::class,
-        //     'query_builder' => function (EveningSlotRepository $r) {
-        //         return $r->createQueryBuilder('i')
-        //             ->orderBy('i.name', 'ASC');
-        //         },
-        //         'attr' => [
-        //             'class' => 'mt-4 fs-5 ms-4 me-4'
-        //         ],
-        //     'label' => 'SOIR',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 fs-5 ms-4 me-4'
-        //     ],
-        //     'choice_label' => 'name',
-        //     'choice_attr' => [
-        //         'class' => 'mt-4 fs-5 ms-4 me-4'
-        //     ],
-        //     'multiple' => false,
-        //     'expanded' => true,
-            
-
-        // ])
       
             ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,
