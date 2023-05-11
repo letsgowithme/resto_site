@@ -63,4 +63,14 @@ class ReservationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+// public function findOneByDaySlot($daySlot): ?Reservation
+//    {
+//        return $this->createQueryBuilder('r')
+//            ->andWhere('r.daySlot = :daySlot')
+//            ->setParameter('daySlot', $daySlot)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+
 }

@@ -25,11 +25,11 @@ class Card
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[Vich\UploadableField(mapping: 'gallery_images', fileNameProperty: 'imageName')]
-    private ?File $imageFile = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
+   
+    #[Vich\UploadableField(mapping: 'gallery_images', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -37,6 +37,7 @@ class Card
     public function __construct()
     {
         $this->updatedAt = new \DateTimeImmutable();
+       
     }
 
     public function getId(): ?int
@@ -122,4 +123,7 @@ class Card
     {
         return (string) $this->name;
     }
+
+    
+   
 }

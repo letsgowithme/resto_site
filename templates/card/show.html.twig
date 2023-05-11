@@ -9,6 +9,7 @@
 		<div style="width: 600px;">
 			{{ form_row(card.imageFile) }}
 		</div>
+		<div>{{ card.createdAt ? card.createdAt|date('Y-m-d H:i:s') : '' }}</div>
 		<div>{{ card.updatedAt ? card.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
 
 <a href="{{ path('card.edit', {'id': card.id}) }}">Modifier</a>
