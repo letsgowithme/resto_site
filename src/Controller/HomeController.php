@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     {
         $cards = $cardRepository->findAll();
         $schedules = $scheduleRepository->findAll(); 
-        // $schedule = $scheduleRepository->findOneByDay('day');
+       
                
         return $this->render('home/index.html.twig', [
             'cards' => $cards,

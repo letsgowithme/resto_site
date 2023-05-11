@@ -1,47 +1,26 @@
-		<h4 class="h1_schedule_line">Nos horaires de 
-		{% block javascripts %}
-<script type="text/javascript">
-let weekdays = new Array('Dimanche ', 'Lundi ', 'Mardi ', 'Mercredi', 'Jeudi ', 'Vendredi ', 'Samedi ');
-let today = new Date();
-let day = today.getDay();
-let openingTimeMidday = "12:00";
-let closingTimeMidday = "14:00";
-let openingTimeEvening = "19:00";
-let closingTimeEvening = "22:00";
-
-	function show_schedule(){
-		if(day == "3"){
-			return weekdays[today.getDay()] + ': Fermé';
-		}else if (day == "6"){
-			return weekdays[today.getDay()] + ':  '+ openingTimeEvening +' - '+ '23:00';
-		}else if(day == "0"){
-			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday;
-		}else if(day == "1" || day == "2" || day == "4" || day == "5"){
-			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
-		}else{
-			weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
-		}
-	}
-	
-{# document.writeln( weekdays[today.getDay()]); #}
-document.writeln(show_schedule(weekdays[today.getDay()]));
-{# 
-	function show_schedule(){
-		if(day == "3"){
-			return weekdays[today.getDay()] + ': Fermé';
-		}else if (day == "6"){
-			return weekdays[today.getDay()] + ':  '+ openingTimeEvening +' - '+ '23:00';
-		}else if(day == "7"){
-			return weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday;
-		}else{
-			weekdays[today.getDay()] + ': '+ openingTimeMidday+' - '+ closingTimeMidday + ',  '+ openingTimeEvening +' - '+ closingTimeEvening;
-		}
-	}
-	
-
-document.writeln(show_schedule( weekdays[today.getDay()])); #}
-
-
-</script>
-{% endblock %}
- </h4>
+<div class=" bg-primary mt-4" style="padding-left: 15px;">
+	<h3 class="mt-2 text-light fs-2 text-center">Nos horaires</h3>
+<div class="table d-flex justify-content-center">
+				{% for schedule in schedules %}
+				<div class="d-flex flex-column p-4">
+						 <div class="fs-4 text-center text-capitalize text-light">{{ schedule.day }}</div>
+						<div class="text-center text-light" stylee="width: 300px;">
+						{% if schedule.openingTimeMidday %}
+						{{ schedule.openingTimeMidday }}
+							{% endif %}
+							{% if schedule.closingTimeMidday %}
+								- {{ schedule.closingTimeMidday }}
+							{% endif %}
+							<br>
+							{% if schedule.openingTimeEvening %}
+							{{ schedule.openingTimeEvening }}
+			
+							{% endif %}
+							{% if schedule.openingTimeEvening %}
+							- {{ schedule.closingTimeEvening }}
+								{% endif %}
+							</div> 
+							</div>
+	 {% endfor %} 
+	</div>
+	</div>
