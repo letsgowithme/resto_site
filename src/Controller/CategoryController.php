@@ -48,10 +48,13 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
-    public function show(Category $category): Response
+    public function show(Category $category,
+    ScheduleRepository $scheduleRepository): Response
     {
+        $schedules = $scheduleRepository->findAll();
         return $this->render('category/show.html.twig', [
             'category' => $category,
+            'schedules' => $schedules,
         ]);
     }
     #[IsGranted('ROLE_ADMIN')]

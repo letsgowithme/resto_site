@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     #[Route('/connexion', name: 'app_login', methods: ['GET', 'POST'])]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils,
+    ScheduleRepository $scheduleRepository): Response
     { 
         /**
         * This controller allows us to login
@@ -22,11 +24,12 @@ class SecurityController extends AbstractController
         * @param AuthenticationUtils $authenticationUtils
         * @return Response
         */
-   
+        $schedules = $scheduleRepository->findAll(); 
 
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error' => $authenticationUtils->getLastAuthenticationError()
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'schedules' => $schedules,
         ]);
     }
 

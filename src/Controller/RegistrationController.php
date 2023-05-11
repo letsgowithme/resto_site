@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\ScheduleRepository;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,11 +29,14 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/inscription', name: 'app_register', methods: ['GET', 'POST'])]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager,
+    ScheduleRepository $scheduleRepository): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $schedules = $scheduleRepository->findAll(); 
+       
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -65,6 +69,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'schedules' => $schedules,
         ]);
     }
 
