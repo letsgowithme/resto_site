@@ -105,7 +105,8 @@ class ReservationType extends AbstractType
             'class' => DaySlot::class,
             'query_builder' => function (DaySlotRepository $r) {
                 return $r->createQueryBuilder('i')
-                    ->orderBy('i.time', 'ASC');
+                         ->where('i.isAvailable = true')
+                         ->orderBy('i.time', 'ASC');
                 },
                 'attr' => [
                     'class' => 'mt-4 fs-4'

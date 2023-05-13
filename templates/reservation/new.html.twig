@@ -9,6 +9,12 @@
 		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)! <br>
 		Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
+		
+		{% for restaurant in restaurants %}
+		<h3>Nombre totale de places:{{ restaurant.nbTotalPlaces}}</h3>
+		<h3>Disponibilité de places: 	{{ restaurant.nbAvailablePlaces}}	</h3>
+		{% endfor %}
+	
 		{{ form_start(form) }}
 				<div class="row form-row mt-4">
 					<div class="form-group  col-6 mb-4">
@@ -34,11 +40,12 @@
 				<br>
 				<div class="choiceList-wrapper" style="border: none;">
 					{% for field in form.daySlot %}
-						<div style="min-width: 15%; background-color: rgb(239, 1, 1); padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; border-radius: 5px;">
+						<div style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;">
 							{{ form_widget(field) }}
 							{{ form_label(field) }}
 						</div>
 					{% endfor %}
+				
 				</div>
 			</div>
 		<div class="form-group text-light">

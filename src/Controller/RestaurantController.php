@@ -15,11 +15,14 @@ class RestaurantController extends AbstractController
 {
     #[Route('/', name: 'restaurant')]
     public function index(RestaurantRepository $restaurantRepository,
-    // ReservationRepository $reservationRepository
+     ReservationRepository $reservationRepository,
+     Reservation $reservation
    
     ): Response
     {
         $restaurants = $restaurantRepository->findAll();
+        $reservations = $reservationRepository->findBy(['date' => getDate()]);
+        $same_date_orders = $this->getReservation()->getDate();
         // $daySlot = $reservationRepository->findOneByDaySlot('daySlot');
         // $nbAvailablePlaces = $restaurant->getNbAvailablePlaces();
         return $this->render('restaurant/index.html.twig', [

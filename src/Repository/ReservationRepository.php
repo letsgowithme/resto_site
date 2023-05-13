@@ -72,5 +72,14 @@ class ReservationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function findOneByDate($date): ?Reservation
+   {
+       return $this->createQueryBuilder('r')
+           ->andWhere('r.date = :date')
+           ->setParameter('date', $date)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 
 }

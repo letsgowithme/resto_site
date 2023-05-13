@@ -14,7 +14,7 @@ class DaySlotController extends AbstractController
     public function index(DaySlotRepository $daySlotRepository): Response
     {
         return $this->render('day_slot/index.html.twig', [
-            'daySlots' => $daySlotRepository->findAll(),
+            'daySlots' => $daySlotRepository->findAvailableDaySlots(18),
         ]);
     }
    }

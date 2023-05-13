@@ -19,7 +19,7 @@ class DaySlot
     private ?string $time = null;
 
     #[ORM\Column]
-    private ?bool $isAvailable = false;
+    private ?bool $isAvailable = true;
 
 
     public function getId(): ?int

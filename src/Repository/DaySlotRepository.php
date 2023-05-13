@@ -46,8 +46,8 @@ class DaySlotRepository extends ServiceEntityRepository
      */
     public function findAvailableDaySlots(?int $nbDaySlots) : array {
         return  $this->createQueryBuilder('d')
-                ->where('d.isAvailable = 1')
-                // ->orderBy('d.time', 'ASC')
+                ->where('d.isAvailable = true')
+                ->orderBy('d.time', 'ASC')
                 ->setMaxResults($nbDaySlots)
                 ->getQuery()
                 ->getResult();

@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\DaySlotRepository;
 use App\Repository\ReservationRepository;
+use App\Repository\RestaurantRepository;
 use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +47,7 @@ class ReservationController extends AbstractController
      ): Response
      {    
          $reservation = new Reservation();
-         $daySlots = $daySlotRepository->findAvailableDaySlots(20);
+         $daySlots = $daySlotRepository->findAvailableDaySlots(18);
          $schedules = $scheduleRepository->findAll(); 
  
          if($user) {
@@ -95,12 +96,34 @@ class ReservationController extends AbstractController
     EntityManagerInterface $manager,
     DaySlotRepository $daySlotRepository,
     ScheduleRepository $scheduleRepository,
+    RestaurantRepository $restoRepository,
+    ReservationRepository $reservationRepository
     ): Response
     {    
-        $reservation = new Reservation();
-        $daySlots = $daySlotRepository->findAvailableDaySlots(20);
+        $restaurants = $restoRepository->findAll();
+        $daySlots = $daySlotRepository->findALL();
         $schedules = $scheduleRepository->findAll(); 
+        $nbTotalPlaces = 44;
+        $reservation = new Reservation();
+        $res_date = $reservationRepository->findBy(['date' => $reservation->getDate()]);
+        $same_date_orders = $reservation->getDate();
+        $nbAvailablePlaces = null;
+       
+       
 
+        if ($same_date_orders) {
+            $orders = $reservationRepository->findByDate($same_date_orders);
+            if ($orders) {
+                $nbBusyPlaces = $reservation->getNbPeople();
+                $nbAvailablePlaces = $nbTotalPlaces - $nbBusyPlaces;
+                // $nbAvailablePlaces = $this->setNbAvailablePlaces();
+            }
+           
+          
+
+        }
+       
+        
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -119,6 +142,8 @@ class ReservationController extends AbstractController
           'form' => $form->createView(),
           'daySlots' =>  $daySlots,
           'schedules' => $schedules,
+          'restaurants' => $restaurants,
+          'nbAvailablePlaces' => $nbAvailablePlaces
        
       ]);
     }
