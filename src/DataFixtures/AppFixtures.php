@@ -149,17 +149,17 @@ class AppFixtures extends Fixture
             $manager->persist($schedule);
         }
         // //DaySlot
-        $daySlots = [];
-        for ($n = 0; $n < 13; $n++) {
-            $daySlot = new DaySlot();
-            $daySlot->setTime($this->faker->time('H:i'))
-                ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
+        // $daySlots = [];
+        // for ($n = 0; $n < 13; $n++) {
+        //     $daySlot = new DaySlot();
+        //     $daySlot->setTime($this->faker->time('H:i'))
+        //         ->setIsAvailable(mt_rand(0, 1) == 1 ? true : false);
 
-            $daySlots[] = $daySlot;
-            $manager->persist($daySlot);
+        //     $daySlots[] = $daySlot;
+        //     $manager->persist($daySlot);
 
-            $manager->persist($daySlot);
-        }
+        //     $manager->persist($daySlot);
+        // }
         
 
         //table
@@ -182,7 +182,7 @@ class AppFixtures extends Fixture
                          ->setNbChildren(mt_rand(1, 8)) 
                          ->setFullname($this->faker->name())
                          ->setUser($users[mt_rand(0, count($users) - 1)])
-                         ->setDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)])
+                        //  ->setDaySlot($daySlots[mt_rand(0, count($daySlots) - 1)])
                          ;
                          for ($b = 0; $b < mt_rand(0, 5); $b++) {
                                  $reservation->addAllergy($allergies[mt_rand(0, count($allergies) - 1)]);

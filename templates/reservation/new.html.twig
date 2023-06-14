@@ -10,10 +10,10 @@
 		Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
 		
-		{% for restaurant in restaurants %}
+		{# {% for restaurant in restaurants %}
 		<h3>Nombre totale de places:{{ restaurant.nbTotalPlaces}}</h3>
 		<h3>Disponibilité de places: 	{{ restaurant.nbAvailablePlaces}}	</h3>
-		{% endfor %}
+		{% endfor %} #}
 	
 		{{ form_start(form) }}
 				<div class="row form-row mt-4">
@@ -25,8 +25,8 @@
 						</div>
 					</div>
 			<div class="form-group col-6 mb-4">
-				{{ form_label(form.date) }} 
-				{{ form_widget(form.date) }}
+				{{ form_label(form.date) }}
+				<div>{{ form_widget(form.date) }}</div>
 				<div class="form-error">
 					{{ form_errors(form.date) }}
 				</div>
@@ -34,26 +34,39 @@
 		</div>
 		<br>
 		<div class="row">
-    
+    	
 			<div class="form-group text-light bold text-start">
-				{{ form_label(form.daySlot) }}
+				{{ form_label(form.lunchTime) }}
 				<br>
 				<div class="choiceList-wrapper" style="border: none;">
-					{% for field in form.daySlot %}
-						<div style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;">
-							{{ form_widget(field) }}
-							{{ form_label(field) }}
-						</div>
+					{% for field in form.lunchTime %}
+						<button style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;" class="d-flex text-center">
+						<div id="lunchTime">{{ form_widget(field) }}</div>
+							<div>{{ form_label(field) }}</div>
+						</button>
 					{% endfor %}
-				
 				</div>
 			</div>
+			<div class="form-group text-light bold text-start">
+				{{ form_label(form.dinnerTime) }}
+				<br>
+				<div class="choiceList-wrapper" style="border: none;">
+					{% for field in form.dinnerTime %}
+						<button style="min-width: 15%; background-color: red; padding: 10px; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;" id="dinnerTime">
+						<div>
+						{{ form_widget(field) }}
+							{{ form_label(field) }}</div>
+						</button>
+					{% endfor %}
+				</div>
+			</div>
+				
 		<div class="form-group text-light">
 			{{ form_label(form.allergies) }}
 			<br>
 			<div class="choiceList-wrapper" style="border: none;">
 				{% for field in form.allergies %}
-					<div style="min-width: 15%;" class="fs-4">
+					<div style="min-width: 15%; padding: 0 10px" class="fs-4">
 						{{ form_widget(field) }}
 						{{ form_label(field) }}
 					</div>
@@ -61,7 +74,7 @@
 			</div>
 		</div>
 			<div class="form-group text-start">
-					<div class="form-group  col-6 mb-4">
+					<div class="form-group col-sm-12 col-6  mb-4">
 						{{ form_label(form.fullName) }}
 						{{ form_widget(form.fullName) }}
 						<div class="form-error">
@@ -69,7 +82,7 @@
 						</div>
 					</div>
 </div>
-<div class="form-group  col-6 mb-4">
+<div class="form-group col-sm-12 col-6 mb-4">
 						{{ form_label(form.nbChildren) }}
 						{{ form_widget(form.nbChildren) }}
 						<div class="form-error">

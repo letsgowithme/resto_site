@@ -31,8 +31,12 @@ class ReservationCrudController extends AbstractCrudController
                 ->setLabel('Enfants'),
             AssociationField::new('allergies')
                 ->setLabel('Allèrgies'),
-            AssociationField::new('daySlot')
-                ->setLabel('Heure'),
+                // TextField::new('time')
+                //  ->setLabel('Heure'),
+                TextField::new('lunchTime')
+                ->setLabel('Heure midi'),
+                TextField::new('dinnerTime')
+                ->setLabel('Heure soir'),
             DateField::new('date')
                 ->setLabel('Date'),
                 // AssociationField::new('table')

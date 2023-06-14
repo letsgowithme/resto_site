@@ -22,12 +22,15 @@ class ReservationController extends AbstractController
 {
     // #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'reservation.index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository): Response
+    public function index(ReservationRepository $reservationRepository,
+    ScheduleRepository $scheduleRepository
+    ): Response
     {
         $reservations = $reservationRepository->findAll();
-        
+        $schedules = $scheduleRepository->findAll(); 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservations,
+            'schedules' => $schedules,
         ]);
       
     }
@@ -41,13 +44,13 @@ class ReservationController extends AbstractController
      #[Route('/user_new', name: 'reservation.user_new', methods: ['GET', 'POST'])]
      public function user_new(Request $request,
      EntityManagerInterface $manager,
-     DaySlotRepository $daySlotRepository,
+    //  DaySlotRepository $daySlotRepository,
      ScheduleRepository $scheduleRepository,
      UserInterface $user,
      ): Response
      {    
          $reservation = new Reservation();
-         $daySlots = $daySlotRepository->findAvailableDaySlots(18);
+        //  $daySlots = $daySlotRepository->findAvailableDaySlots(18);
          $schedules = $scheduleRepository->findAll(); 
  
          if($user) {
@@ -79,7 +82,7 @@ class ReservationController extends AbstractController
         
          return $this->render('reservation/new.html.twig', [
            'form' => $form->createView(),
-           'daySlots' =>  $daySlots,
+        //    'daySlots' =>  $daySlots,
            'schedules' => $schedules,
          
        ]);
@@ -91,37 +94,40 @@ class ReservationController extends AbstractController
      * @return Response
      */
 
-    #[Route('/new', name: 'reservation.new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'reservation.new_js', methods: ['GET', 'POST'])]
     public function new(Request $request,
     EntityManagerInterface $manager,
-    DaySlotRepository $daySlotRepository,
+    // DaySlotRepository $daySlotRepository,
     ScheduleRepository $scheduleRepository,
-    RestaurantRepository $restoRepository,
     ReservationRepository $reservationRepository
     ): Response
-    {    
-        $restaurants = $restoRepository->findAll();
-        $daySlots = $daySlotRepository->findALL();
+    {  
+        $schedule = $scheduleRepository->findByDay('Lundi');
         $schedules = $scheduleRepository->findAll(); 
-        $nbTotalPlaces = 44;
+        // $scheduleDay = $schedule->getDay();
         $reservation = new Reservation();
+   
+
+
+        // $midi = ['12:00', '12:15', '12:30', '12:45', '13:00'];
+        // $evening = ['19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00'];
+        // $weekdays = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        // 
+       
+        // $day = $this->$date->getDay();
+        // if ( $day == 0) {
+        //     $scheduleDay = $this->$scheduleRepository->findByDay($day);
+        // };
+        // if ($day) {
+        // $scheduleDay = $this->$scheduleRepository->getOpeningTimeMidday();
+        // $scheduleEvenings = $this->$scheduleRepository->getOpeningTimeMiddayEvenings();
+        // }
+        // $date = $this->$reservations->find($reservation['date']);
+       
+        // $daySlots = $daySlotRepository->findALL();
+       
         $res_date = $reservationRepository->findBy(['date' => $reservation->getDate()]);
-        $same_date_orders = $reservation->getDate();
-        $nbAvailablePlaces = null;
-       
-       
-
-        if ($same_date_orders) {
-            $orders = $reservationRepository->findByDate($same_date_orders);
-            if ($orders) {
-                $nbBusyPlaces = $reservation->getNbPeople();
-                $nbAvailablePlaces = $nbTotalPlaces - $nbBusyPlaces;
-                // $nbAvailablePlaces = $this->setNbAvailablePlaces();
-            }
-           
-          
-
-        }
+    
        
         
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -138,13 +144,15 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('menu.index', [], Response::HTTP_SEE_OTHER);
         }
        
-        return $this->render('reservation/new.html.twig', [
+        return $this->render('reservation/new_js.html.twig', [
           'form' => $form->createView(),
-          'daySlots' =>  $daySlots,
+        //   'daySlots' =>  $daySlots,
+        'reservation' => $reservation,
           'schedules' => $schedules,
-          'restaurants' => $restaurants,
-          'nbAvailablePlaces' => $nbAvailablePlaces
-       
+          'schedule' => $schedule,
+    
+        
+           
       ]);
     }
 

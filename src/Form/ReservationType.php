@@ -6,9 +6,11 @@ use App\Entity\Allergy;
 use App\Entity\DaySlot;
 use App\Entity\EveningSlot;
 use App\Entity\Reservation;
+use App\Entity\Schedule;
 use App\Repository\AllergyRepository;
 use App\Repository\DaySlotRepository;
 use App\Repository\EveningSlotRepository;
+use App\Repository\ScheduleRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -40,6 +42,7 @@ class ReservationType extends AbstractType
 
         ->add('nbPeople', ChoiceType::class, [
             'choices' => [
+                'Le nombre de couverts' => 0,
                 '1 couvert' => 1,
                 '2 couverts' => 2,
                 '3 couverts' => 3,
@@ -57,7 +60,8 @@ class ReservationType extends AbstractType
             'label' => 'Nombre de couverts',
             'label_attr' => [
                 'class' => 'form-label mt-4 d-none'
-            ]
+            ],
+            'required' => true,
 
         ])
         ->add('nbChildren', ChoiceType::class, [
@@ -85,14 +89,14 @@ class ReservationType extends AbstractType
        
         ->add('date', DateType::class, [
             'widget' => 'single_text',
-            // 'html5' => false,
+            'html5' => false,
             'input'  => 'datetime',
             // 'format' => 'dd-MM',
             
-            // 'attr' => ['class' => 'js-datepicker'],
+        //  'attr' => ['class' => 'js-datepicker'],
             
             'attr' => [
-                'class' => 'form-control fs-4 mb-4 d-flex justify-content-between'
+                'class' => 'form-control fs-4 mb-4 d-flex justify-content-between js-datepicker'
             ],
             'label' => 'Choisir la date',
             'label_attr' => [
@@ -100,31 +104,98 @@ class ReservationType extends AbstractType
             ],
             
         ])
-        
-        ->add('daySlot', EntityType::class,[
-            'class' => DaySlot::class,
-            'query_builder' => function (DaySlotRepository $r) {
-                return $r->createQueryBuilder('i')
-                         ->where('i.isAvailable = true')
-                         ->orderBy('i.time', 'ASC');
-                },
-                'attr' => [
-                    'class' => 'mt-4 fs-4'
-                ],
-            'label' => 'Choisir l\'heure',
-            'label_attr' => [
-                'class' => 'form-label mt-4 fs-4'
+       
+        ->add('lunchTime', ChoiceType::class, [
+            'choices' => [
+                // 'Heure' => 0,
+                '12:00' =>  '12:00',
+                '12:15' => '12:15',
+                '12:30' => '12:30',
+                '12:45' => '12:45',
+                '13:00' => '13:00',              
             ],
-
-            
-            'choice_label' => 'time',
-            'choice_attr' => [
-                'class' => 'mt-4 fs-5 ms-4 me-4'
+            'attr' => [
+                'class' => 'form-select mb-4 fs-4 btn btn_slot lunch_slot_btn'
+            ],
+            'label' => 'MIDI',
+            'label_attr' => [
+                'class' => 'form-label mt-4 slots_name fs-4 text-start ln_slot_n'
             ],
             'multiple' => false,
-            'expanded' => true
-
+            'expanded' => true,
+            'required' => false,
+           
         ])
+
+        ->add('dinnerTime', ChoiceType::class, [
+            'choices' => [
+                // 'Heure' => 0,
+                '19:00' =>  '19:00',
+                '19:15' => '19:15',
+                '19:30' => '19:30',
+                '19:45' => '19:45',
+                '20:00' => '20:00',              
+            ],
+            'attr' => [
+                'class' => 'form-select mb-4 fs-4'
+            ],
+            'label' => 'SOIR',
+            'label_attr' => [
+                'class' => 'form-label mt-4 slots_name fs-4 text-start ev_slot_n'
+            ],
+            'multiple' => false,
+            'expanded' => true,
+            'required' => false,
+            
+        ])
+
+        // ->add('schedule', EntityType::class,[
+        //     'class' => Schedule::class,
+        //     'query_builder' => function (ScheduleRepository $r) {
+        //         return $r->createQueryBuilder('s')
+        //                 //   ->where('s.day = :day')
+        //                 //  ->orderBy('s.day', 'ASC')
+        //                  ;
+        //         },
+        //         'attr' => [
+        //             'class' => 'mt-4 fs-4'
+        //         ],
+        //     'label' => 'Choisir l\'heure',
+        //     'label_attr' => [
+        //         'class' => 'form-label mt-4 fs-4'
+        //     ],
+        //     'choice_label' => 'day',
+        //     'choice_attr' => [
+        //         'class' => 'mt-4 fs-5 ms-4 me-4'
+        //     ],
+        //     'multiple' => false,
+        //     'expanded' => true,
+           
+
+        // ])
+        // ->add('schedule', EntityType::class,[
+        //     'class' => Schedule::class,
+        //     'query_builder' => function (ScheduleRepository $r) {
+        //         return $r->createQueryBuilder('s')
+        //                 //  ->where('i.isAvailable = true')
+        //                  ->orderBy('s.day', 'ASC');
+        //         },
+        //         'attr' => [
+        //             'class' => 'mt-4 fs-4'
+        //         ],
+        //     'label' => 'Choisir l\'heure',
+        //     'label_attr' => [
+        //         'class' => 'form-label mt-4 fs-4'
+        //     ],
+
+        //     'choice_label' => 'eveningTime',
+        //     'choice_attr' => [
+        //         'class' => 'mt-4 fs-5 ms-4 me-4'
+        //     ],
+        //     'multiple' => false,
+        //     'expanded' => true
+
+        // ])
       
             ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,

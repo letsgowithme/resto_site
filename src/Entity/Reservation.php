@@ -32,17 +32,21 @@ class Reservation
     #[ORM\ManyToMany(targetEntity: Allergy::class)]
     private Collection $allergies;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $lunchTime = null;
 
-    // #[ORM\ManyToOne]
-    // private ?Table $table = null;
-
+    #[ORM\Column(nullable: true)]
+    private ?string $dinnerTime = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
-    private ?DaySlot $daySlot = null;
+    private ?Schedule $schedule = null;
 
     #[ORM\ManyToOne]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?Restaurant $restaurant = null;
 
  
 
@@ -110,29 +114,19 @@ class Reservation
     }
 
 
-    public function getDaySlot(): ?DaySlot
+    public function getSchedule(): ?Schedule
     {
-        return $this->daySlot;
+        return $this->schedule;
     }
 
-    public function setDaySlot(?DaySlot $daySlot): self
+    public function setSchedule(?Schedule $schedule): self
     {
-        $this->daySlot = $daySlot;
+        $this->schedule = $schedule;
 
         return $this;
     }
 
-        // public function getTable(): ?Table
-    // {
-    //     return $this->table;
-    // }
-
-    // public function setTable(?Table $table): self
-    // {
-    //     $this->table = $table;
-
-    //     return $this;
-    // }
+    
 
 
     /**
@@ -192,6 +186,60 @@ class Reservation
     public function setNbChildren($nbChildren)
     {
         $this->nbChildren = $nbChildren;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+   
+
+    /**
+     * Get the value of lunchTime
+     */ 
+    public function getLunchTime()
+    {
+        return $this->lunchTime;
+    }
+
+    /**
+     * Set the value of lunchTime
+     *
+     * @return  self
+     */ 
+    public function setLunchTime($lunchTime)
+    {
+        $this->lunchTime = $lunchTime;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dinnerTime
+     */ 
+    public function getDinnerTime()
+    {
+        return $this->dinnerTime;
+    }
+
+    /**
+     * Set the value of dinnerTime
+     *
+     * @return  self
+     */ 
+    public function setDinnerTime($dinnerTime)
+    {
+        $this->dinnerTime = $dinnerTime;
 
         return $this;
     }

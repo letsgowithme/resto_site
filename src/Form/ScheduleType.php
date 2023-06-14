@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\DaySlot;
 use App\Entity\Schedule;
+use App\Repository\DaySlotRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -80,6 +83,99 @@ class ScheduleType extends AbstractType
                    
                 ]
             ])
+            // ->add('daySlots', EntityType::class, [
+            //     'class' => DaySlot::class,
+            //     'query_builder' => function (DaySlotRepository $r) {
+            //         return $r->createQueryBuilder('i')
+            //             ->orderBy('i.name', 'ASC');
+            //     },
+            //     'label' => 'Heure d\'arriver',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4 text-dark fs-5'
+            //     ],
+            //     'choice_label' => 'name',
+            //     'multiple' => false,
+            //     'expanded' => true
+
+            // ])
+             ->add('dayTime', ChoiceType::class, [
+            'attr' => [
+                'class' => 'form-control ms-4 mb-4'
+            ],
+            'multiple' => false,
+            'expanded' => true,
+            'choices'  => [
+                '12:00' =>  '12:00',
+                    '12:15' => '12:15',
+                    '12:30' => '12:30',
+                    '12:45' => '12:45',
+                    '13:00' => '13:00',   
+            ]
+        ])
+
+        ->add('eveningTime', ChoiceType::class, [
+            'attr' => [
+                'class' => 'form-control ms-4 mb-4'
+            ],
+            'multiple' => false,
+            'expanded' => true,
+            'choices'  => [
+                '19:00' =>  '19:00',
+                    '19:15' => '19:15',
+                    '19:30' => '19:30',
+                    '19:45' => '19:45',
+                    '20:00' => '20:00',   
+            ]
+        ])
+
+            // ->add('dayTime', ChoiceType::class, [
+            //     'choices' => [
+            //         '12:00' =>  '12:00',
+            //         '12:15' => '12:15',
+            //         '12:30' => '12:30',
+            //         '12:45' => '12:45',
+            //         '13:00' => '13:00',
+            //         '13:15' => '13:15',
+            //         '13:30' => '13:30',
+            //         '13:45' => '13:45',
+            //         '14:00' => '14:00',              
+            //     ],
+            //     'attr' => [
+            //         'class' => 'form-select mb-4 fs-4'
+            //     ],
+            //     'label' => 'MIDI',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4 d-none'
+            //     ],
+            //     'multiple' => false,
+            // 'expanded' => true
+    
+            // ])
+
+            // ->add('eveningTime', ChoiceType::class, [
+            //     'choices' => [
+            //         '12:00' =>  '12:00',
+            //         '12:15' => '12:15',
+            //         '12:30' => '12:30',
+            //         '12:45' => '12:45',
+            //         '13:00' => '13:00',
+            //         '13:15' => '13:15',
+            //         '13:30' => '13:30',
+            //         '13:45' => '13:45',
+            //         '14:00' => '14:00',              
+            //     ],
+            //     'attr' => [
+            //         'class' => 'form-select mb-4 fs-4'
+            //     ],
+            //     'label' => 'SOIR',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4 d-none'
+            //     ],
+            //     'multiple' => false,
+            // 'expanded' => true
+    
+            // ])
+            
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4 fs-4'

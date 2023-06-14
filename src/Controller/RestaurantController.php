@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Entity\Restaurant;
 use App\Repository\ReservationRepository;
 use App\Repository\RestaurantRepository;
+use App\Repository\ScheduleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,17 +17,23 @@ class RestaurantController extends AbstractController
     #[Route('/', name: 'restaurant')]
     public function index(RestaurantRepository $restaurantRepository,
      ReservationRepository $reservationRepository,
-     Reservation $reservation
+     ScheduleRepository $scheduleRepository
+    
    
     ): Response
     {
         $restaurants = $restaurantRepository->findAll();
-        $reservations = $reservationRepository->findBy(['date' => getDate()]);
-        $same_date_orders = $this->getReservation()->getDate();
+        $schedules = $scheduleRepository->findAll();
+        // $reservations = $restaurantRepository->findAll();
+        // $reservations = $reservationRepository->findBy(['date' => getDate()]);
+        // $same_date_orders = $restaurant->getReservations();
         // $daySlot = $reservationRepository->findOneByDaySlot('daySlot');
         // $nbAvailablePlaces = $restaurant->getNbAvailablePlaces();
         return $this->render('restaurant/index.html.twig', [
-            'restaurants' => $restaurants,
+           'restaurants' => $restaurants,
+           'schedules' => $schedules,
+            // 'reservations' => $reservations,
+           
             // 'daySlot' => $daySlot,
         ]);
     }

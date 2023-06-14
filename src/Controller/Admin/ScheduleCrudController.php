@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Schedule;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -38,7 +39,14 @@ class ScheduleCrudController extends AbstractCrudController
                TextField::new('openingTimeEvening')
                ->setLabel('S\'ouvre le soir'),
                TextField::new('closingTimeEvening')
-               ->setLabel('Se ferme le soir')
+               ->setLabel('Se ferme le soir'),
+               ArrayField::new('dayTime')
+               ->setLabel('MIDI')
+               ->hideOnIndex(),
+               ArrayField::new('eveningTime')
+               ->setLabel('SOIR')
+               ->hideOnIndex(),
+              
         ];
     }
     

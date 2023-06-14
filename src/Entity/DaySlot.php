@@ -21,6 +21,14 @@ class DaySlot
     #[ORM\Column]
     private ?bool $isAvailable = true;
 
+    // #[ORM\ManyToMany(targetEntity: Schedule::class, mappedBy: 'daySlots')]
+    // private Collection $schedules;
+
+    // public function __construct()
+    // {
+    //     $this->schedules = new ArrayCollection();
+    // }
+
 
     public function getId(): ?int
     {
@@ -62,6 +70,33 @@ class DaySlot
     {
         return (string) $this->time;
     }
+
+    /**
+     * @return Collection<int, Schedule>
+     */
+    // public function getSchedules(): Collection
+    // {
+    //     return $this->schedules;
+    // }
+
+    // public function addSchedule(Schedule $schedule): self
+    // {
+    //     if (!$this->schedules->contains($schedule)) {
+    //         $this->schedules->add($schedule);
+    //         $schedule->addDaySlot($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeSchedule(Schedule $schedule): self
+    // {
+    //     if ($this->schedules->removeElement($schedule)) {
+    //         $schedule->removeDaySlot($this);
+    //     }
+
+    //     return $this;
+    // }
   
 
 }

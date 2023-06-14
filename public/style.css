@@ -235,4 +235,41 @@ transition: ease-in-out;
     text-shadow: #fce1a6;
     color: rgb(239, 1, 1);
   }
-  
+  /* reservation */
+  /* .slot {
+    width: 100px; 
+    padding: 10px;
+    margin: 15px;
+    background-color: rgb(223, 3, 3);
+    border-radius: 10px;
+    
+  } */
+  .slots_name {
+    color:white;
+    font-weight: bold;
+  }
+
+  .hidden {
+    display: none;
+  }
+ .visible {
+  display: block;
+ }
+ #message_closed {
+  background: rgb(4, 168, 56)!important; 
+  color: white; 
+  height: 5em;
+ }
+ #other_date_choose:hover {
+    color: rgb(160, 160, 7)!important;
+    background-color: white!important;
+    transition: 1.5s linear;
+ }
+ .disabled {
+  cursor: not-allowed;
+ }
+ .chosen {
+  cursor: pointer;
+  background-color: blue!important;
+ }
+ 

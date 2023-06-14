@@ -31,6 +31,20 @@ class Schedule
     #[ORM\Column(nullable: true)]
     private ?string $closingTimeEvening = null;
 
+    // #[ORM\Column(nullable: true)]
+    // private ?array $dayTimes = []; 
+
+    // #[ORM\Column(nullable: true)]
+    // private ?array $eveningTimes  = [];
+
+    // #[ORM\ManyToMany(targetEntity: DaySlot::class, inversedBy: 'schedules')]
+    // private Collection $daySlots;
+
+    // public function __construct()
+    // {
+    //     $this->daySlots = new ArrayCollection();
+    // } 
+
 
     public function getId(): ?int
     {
@@ -128,4 +142,69 @@ class Schedule
 
         return $this;
     }
+    public function __toString()
+    {
+        return (string) $this->day;
+        
+    }
+
+    // public function getDayTimes(): array
+    // {
+    //     $dayTimes = $this->dayTimes;
+       
+    //     $dayTimes[] = $dayTimes;
+
+    //     return array_unique($dayTimes);
+    // }
+
+    // public function setDayTimes(array $dayTimes): self
+    // {
+    //     $this->dayTimes = $dayTimes;
+
+    //     return $this;
+    // }
+
+
+    // public function getEveningTimes(): array
+    // {
+    //     $eveningTimes = $this->eveningTimes;
+     
+    //  $eveningTimes[] = $eveningTimes;
+
+    //     return array_unique($eveningTimes);
+    // }
+
+    // public function setEveningTimes(array $eveningTimes): self
+    // {
+    //     $this->eveningTimes = $eveningTimes;
+
+    //     return $this;
+    // }
+
+    // /**
+    //  * @return Collection<int, DaySlot>
+    //  */
+    // public function getDaySlots(): Collection
+    // {
+    //     return $this->daySlots;
+    // }
+
+    // public function addDaySlot(DaySlot $daySlot): self
+    // {
+    //     if (!$this->daySlots->contains($daySlot)) {
+    //         $this->daySlots->add($daySlot);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeDaySlot(DaySlot $daySlot): self
+    // {
+    //     $this->daySlots->removeElement($daySlot);
+
+    //     return $this;
+    // }
+
+
+   
 }
