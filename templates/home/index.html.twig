@@ -16,9 +16,15 @@
 <div class="gallery" style="z-index: 1;">
  {% include "card/index.html.twig" %}
  </div>
-<button type="button" class="btn btn-reservation btn-lg  mb-4">
+ 	{% if app.user %}
+<button type="button" class="btn btn-reservation btn-lg mb-4">
+<a class="nav-link" href="/reservation/user_new">Réserver la table</a>
+</button>
+{% else %}
+<button type="button" class="btn btn-reservation btn-lg mb-4">
 <a class="nav-link" href="/reservation/new">Réserver la table</a>
 </button>
+{% endif %}
 	</div>
 
 	

@@ -1,54 +1,56 @@
 {% extends 'base.html.twig' %}
 {% block head %}
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" integrity="sha512-T3VL1q6jMUIzGLRB9z86oJg9PgF7A55eC2XkB93zyWSqQw3Ju+6IEJZYBfT7E9wOHM7HCMCOZSpcssxnUn6AeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" integrity="sha512-T3VL1q6jMUIzGLRB9z86oJg9PgF7A55eC2XkB93zyWSqQw3Ju+6IEJZYBfT7E9wOHM7HCMCOZSpcssxnUn6AeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 {% block title %}Reservation
 {% endblock %}
+{% block stylesheet %}
 
-{% block javascripts %}{% endblock %}
+ {% endblock %}
+{% block javascripts %}
+
+{% endblock %} 
 
 {% block body %}
 	<div class="container mt-4 text-center mb-4" style="min-height: 80vh;">
-		<h1 class="h5-page">Page de la reservation</h1>
+
+			<h1 class="h5-page text-light reserve_title">Page de la reservation</h1>
+		
+		
 		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)!
 			<br>
 			Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
 		{{ form_start(form) }}
-		{# <form id="myForm"> #}
+	
 		
 			<div class="row form-row mt-4">
 
 				<div class="form-group col-md-6 nbPeople_date">
 										{{ form_label(form.nbPeople) }}
-						{{ form_widget(form.nbPeople) }}
+					<div class="nbPeople>">{{ form_widget(form.nbPeople) }}</div>
 						<div class="form-error">
 							{{ form_errors(form.nbPeople) }}
 						</div>
 					</div>
 
-<div class="form-group col-md-6 nbPeople_date">
-										{{ form_label(form.date) }}
-						{{ form_widget(form.date) }}
-						<div class="form-error">
-							{{ form_errors(form.date) }}
-						</div>
-					</div>
-
-				{# <div class="form-group col-md-6 mb-4 nbPeople_date">
-				<input type="text" name="date_debut" id="js-datepicker" class="js-datepicker form-select fs-4" placeholder="Choisir la date">
-			</div>	  #}
+				<div class="form-group col-md-6 mb-4 nbPeople_date">
+				<input type="text" name="date_debut" autocomplete="off" 
+				class="form-select fs-4" id="js-datepicker"
+				 placeholder="Choisir la date">
+				
+			</div>	 
 </div>
-
 		<div class="fs-2 mt-4 mb-4 hidden" id="message_closed" style="color: white; height: 5em; border: 2px solid white; border-radius: 0 30% 0 100%; padding-top: 1.5em; padding-left: 3em;">Désole le restaurant est fermé les Mercredis</div>
 		<div class="other_date_choose mt-4 mb-4 fs-2 hidden" style="cursor: pointer; color: white;" id="other_date_choose">
 		Choisir une date</div>
 		{# *************************************** #}
 		<div class="all_slots">
       <div class="row d-flex flex-wrap lunch_slots " id="lunch_slots_block">	
-			<div class="form-group text-light bold text-start day_slot hidden">
+			<div class="form-group text-light bold text-start day_slot 
+			hidden
+			">
 				{{ form_label(form.lunchTime) }}
 				<br>
 				<div class="choiceList-wrapper" style="border: none;">
@@ -63,13 +65,14 @@
 </div>
 
  <div class="row d-flex flex-wrap dinner_slots " id="dinner_slots_block">	
-			<div class="form-group text-light bold text-start evening_slot hidden">
+			<div class="form-group text-light bold text-start evening_slot 
+			hidden
+			">
 				{{ form_label(form.dinnerTime) }}
 				<br>
 				<div class="choiceList-wrapper" style="border: none;">
 					{% for field in form.dinnerTime %}
 						<button class="btn btn_slot dinner_slot_btn d-flex text-center slot d-flex" type="button" style="min-width: 15%; background-color: red; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;" id="dinnerTime">
-						
 						<div class="dinner_slot_btn wbtn_di">{{ form_widget(field) }}</div>
 						<div class="dinner_slot_btn lbtn_di ac_btn">{{ form_label(field) }}</div>
 						</button>
@@ -79,7 +82,9 @@
 		</div>
 </div>
   
-<div class="form-group text-light info hidden">
+<div class="form-group text-light info 
+hidden
+">
 			{{ form_label(form.allergies) }}
 			<br>
 			<div class="choiceList-wrapper" style="border: none;">
@@ -91,7 +96,9 @@
 				{% endfor %}
 			</div>
 		</div>
-			<div class="form-group text-start info hidden">
+			<div class="form-group text-start info 
+			hidden
+			">
 					<div class="form-group col-sm-12 col-6  mb-4">
 						{{ form_label(form.fullName) }}
 						{{ form_widget(form.fullName) }}
@@ -100,13 +107,15 @@
 						</div>
 					</div>
 </div>
-<div class="form-group col-sm-12 col-6 mb-4 info hidden">
+<div class="form-group col-sm-12 col-6 mb-4 info 
+hidden
+">
 						{{ form_label(form.nbChildren) }}
-						{{ form_widget(form.nbChildren) }}
+					<div class="nbChildren">	{{ form_widget(form.nbChildren) }} </div>
 						<div class="form-error">
 							{{ form_errors(form.nbChildren) }}
 						</div>
-		<div class="form-group mb-4 info">
+		<div class="form-group mb-4 info p-4 d-1 text-bold">
 			{{ form_row(form.submit) }}
 		</div>
 		
@@ -114,53 +123,57 @@
 		<button type="button" class="btn btn-info" id="btn_reload" onclick="reload();">Reinitialiser</button>
 		
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js" integrity="sha512-ztxZscxb55lKL+xmWGZEbBHekIzy+1qYKHGZTWZYH1GUwxy0hiA18lW6ORIMj4DHRgvmP/qGcvqwEyFFV7OYVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-	$(function () {
-$(".js-datepicker").datepicker({
-dateFormat: "D d MM",
-dayNamesShort: [
-'Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-dayNamesMin: [
-'Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
-firstDay: 1,
-minDate: -0,
-maxDate: "+2M +10D",
-monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-onSelect: function() {
-var date = $( ".js-datepicker" ).datepicker('getDate');
- 
-{# $(this).datepicker('setDate', date); #}
-var day = date.getDay();
-if(day == 3) {
+         $(function() {
+				
+            $( "#js-datepicker" ).datepicker({
+							dateFormat: "D d MM",
+							dayNamesShort: [
+							'Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+							dayNamesMin: [
+							'Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
+							firstDay: 1,
+							minDate: 0,
+							maxDate: "+2M +10D",
+							autoclose: true,
+							monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+
+ onSelect: function(date, value) {
+	if(date != "") {
+	 		$('#reservation_date').datepicker({
+dateFormat: "yy-mm-dd",
+		}).val();
+	var myDate = $('#js-datepicker').datepicker('getDate');		
+	var newDate = $('#reservation_date').datepicker('setDate', myDate);
+  	} 
+		
+		 	
+var myDay = myDate.getDay();
+if(myDay == 3) {
 			$('.all_slots').addClass('hidden');
 			$('.nbPeople_date').addClass('hidden');
 			$("#other_date_choose").removeClass('hidden');
 			$('#message_closed').removeClass('hidden');
-      
  			$('#other_date_choose').click(function(){
-				   // location.reload(true);
-						 $('.all_slots').addClass('visible');
+				    location.reload(true);
+						$('.all_slots').addClass('visible');
 						$('.nbPeople_date').addClass('visible');
 						$('.info').addClass('visible');
 						$('#message_closed').addClass('hidden');
 						$("#other_date_choose").addClass('hidden'); 
-						// $('.btn_slot').addClass('disabled'); 
-
- });
-} else if(day == 6) {
+				
+ })
+} else if(myDay == 6) {
 		$('.day_slot').addClass('hidden');
 		$('.ln_slot_n').addClass('hidden');
 		$('.evening_slot').removeClass('hidden');
 		$('.ev_slot_n').removeClass('hidden');
 				console.log('C\'est Samedi');
-} else if(day == 0) {
+} else if(myDay == 0) {
 		$('.day_slot').removeClass('hidden');
 		$('.ln_slot_n').removeClass('hidden');
 		$('.evening_slot').addClass('hidden');
@@ -174,22 +187,12 @@ if(day == 3) {
 				$('.evening_slot').removeClass('hidden');
 				console.log('C\'est le jour de la semaine');
 }
-
-}
-});
-}
-);
+	
+	}
+						});
+         });
 </script>
 
-<script>
-$(document).ready(function() {
-$("#btn_reload").click(function() {
-location.reload(true);
-});
-});
-
-</script>
-{# Show reservation informtion #}
 <script>
 $('.ac_btn').click(function() {
 $('info').removeClass('hidden');
@@ -197,7 +200,7 @@ $('.ac_btn').addClass('active');
 });
 </script>
 
-{# Show lunch only ou dinner only  #}
+ {# Show lunch only ou dinner only   #}
 <script>
 $('.lunch_slot_btn').click(function(){
 	$('.evening_slot').addClass('hidden');
@@ -209,6 +212,14 @@ $('.dinner_slot_btn').click(function(){
 	$('.ln_slot_n').addClass('hidden');
 	$('.info').removeClass('hidden');
 });
- 
+</script>
+
+ <script>
+$(document).ready(function() {
+$("#btn_reload").click(function() {
+location.reload(true);
+}
+);
+});
 </script>
 {% endblock %}

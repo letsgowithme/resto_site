@@ -97,43 +97,19 @@ class ReservationController extends AbstractController
     #[Route('/new', name: 'reservation.new_js', methods: ['GET', 'POST'])]
     public function new(Request $request,
     EntityManagerInterface $manager,
-    // DaySlotRepository $daySlotRepository,
     ScheduleRepository $scheduleRepository,
-    ReservationRepository $reservationRepository
+    // ReservationRepository $reservationRepository
     ): Response
     {  
-        $schedule = $scheduleRepository->findByDay('Lundi');
         $schedules = $scheduleRepository->findAll(); 
-        // $scheduleDay = $schedule->getDay();
         $reservation = new Reservation();
-   
-
-
-        // $midi = ['12:00', '12:15', '12:30', '12:45', '13:00'];
-        // $evening = ['19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00'];
-        // $weekdays = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-        // 
-       
-        // $day = $this->$date->getDay();
-        // if ( $day == 0) {
-        //     $scheduleDay = $this->$scheduleRepository->findByDay($day);
-        // };
-        // if ($day) {
-        // $scheduleDay = $this->$scheduleRepository->getOpeningTimeMidday();
-        // $scheduleEvenings = $this->$scheduleRepository->getOpeningTimeMiddayEvenings();
-        // }
-        // $date = $this->$reservations->find($reservation['date']);
-       
-        // $daySlots = $daySlotRepository->findALL();
-       
-        $res_date = $reservationRepository->findBy(['date' => $reservation->getDate()]);
+          
+        // $res_date = $reservationRepository->(['date' => $reservation->getDatfindBye()]);
     
-       
-        
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $reservationRepository->save($reservation, true);
+            
             $reservation = $form->getData();
             $manager->persist($reservation);
             $manager->flush();
@@ -147,12 +123,9 @@ class ReservationController extends AbstractController
         return $this->render('reservation/new_js.html.twig', [
           'form' => $form->createView(),
         //   'daySlots' =>  $daySlots,
-        'reservation' => $reservation,
+          'reservation' => $reservation,
           'schedules' => $schedules,
-          'schedule' => $schedule,
-    
-        
-           
+          
       ]);
     }
 

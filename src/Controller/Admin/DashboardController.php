@@ -10,6 +10,7 @@ use App\Entity\Dish;
 use App\Entity\EveningSlot;
 use App\Entity\Gallery;
 use App\Entity\Menu;
+use App\Entity\Places;
 use App\Entity\Restaurant;
 use App\Entity\Schedule;
 use App\Entity\Reservation;
@@ -71,6 +72,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Vers le site', 'fas fa-list', 'home');
         yield MenuItem::linkToCrud('Reservations', 'fas fa-list', Reservation::class);
         yield MenuItem::linkToCrud('Heure', 'fas fa-list', DaySlot::class);
+        yield MenuItem::linkToCrud('Places', 'fas fa-list', Places::class);
         yield MenuItem::linkToCrud('Table', 'fas fa-list', Table::class);
         yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
         yield MenuItem::linkToCrud('Galerie', 'fas fa-list', Card::class);

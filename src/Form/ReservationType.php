@@ -85,24 +85,22 @@ class ReservationType extends AbstractType
                 'class' => 'form-label mt-4 d-none'
             ]
 
-        ])
-       
+        ])  
+       //  js-datepicker
         ->add('date', DateType::class, [
             'widget' => 'single_text',
             'html5' => false,
             'input'  => 'datetime',
-            // 'format' => 'dd-MM',
-            
-        //  'attr' => ['class' => 'js-datepicker'],
-            
+             'input_format' => 'yyyy-MM-dd',         
             'attr' => [
-                'class' => 'form-control fs-4 mb-4 d-flex justify-content-between js-datepicker'
+                'class' => 'form-control fs-4 mb-4 d-flex justify-content-between d-none'
             ],
             'label' => 'Choisir la date',
             'label_attr' => [
                 'class' => 'form-label d-none mt-4 mb-4 fs-4'
             ],
-            
+            'required' => false,
+           
         ])
        
         ->add('lunchTime', ChoiceType::class, [
@@ -149,54 +147,7 @@ class ReservationType extends AbstractType
             
         ])
 
-        // ->add('schedule', EntityType::class,[
-        //     'class' => Schedule::class,
-        //     'query_builder' => function (ScheduleRepository $r) {
-        //         return $r->createQueryBuilder('s')
-        //                 //   ->where('s.day = :day')
-        //                 //  ->orderBy('s.day', 'ASC')
-        //                  ;
-        //         },
-        //         'attr' => [
-        //             'class' => 'mt-4 fs-4'
-        //         ],
-        //     'label' => 'Choisir l\'heure',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 fs-4'
-        //     ],
-        //     'choice_label' => 'day',
-        //     'choice_attr' => [
-        //         'class' => 'mt-4 fs-5 ms-4 me-4'
-        //     ],
-        //     'multiple' => false,
-        //     'expanded' => true,
-           
-
-        // ])
-        // ->add('schedule', EntityType::class,[
-        //     'class' => Schedule::class,
-        //     'query_builder' => function (ScheduleRepository $r) {
-        //         return $r->createQueryBuilder('s')
-        //                 //  ->where('i.isAvailable = true')
-        //                  ->orderBy('s.day', 'ASC');
-        //         },
-        //         'attr' => [
-        //             'class' => 'mt-4 fs-4'
-        //         ],
-        //     'label' => 'Choisir l\'heure',
-        //     'label_attr' => [
-        //         'class' => 'form-label mt-4 fs-4'
-        //     ],
-
-        //     'choice_label' => 'eveningTime',
-        //     'choice_attr' => [
-        //         'class' => 'mt-4 fs-5 ms-4 me-4'
-        //     ],
-        //     'multiple' => false,
-        //     'expanded' => true
-
-        // ])
-      
+         
             ->add('allergies', EntityType::class,[
                 'class' => Allergy::class,
                 'query_builder' => function (AllergyRepository $r) {
@@ -220,7 +171,7 @@ class ReservationType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4 fs-4 px-4'
+                    'class' => 'btn btn-primary mt-4 fs-4 p-4 fw-2 reservation_submit'
                 ],
                 'label' => 'Réserver la table!',
             ]);

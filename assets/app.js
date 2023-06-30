@@ -9,17 +9,9 @@
 import './styles/app.css';
 
 
-console.log('Nanana');
+console.log('app.js works');
 
-const main_title = document.getElementById("main_title");
 
-main_title.addEventListener("click", changeColor);
-
-function changeColor() { 
-   $('main_title').style.color = 'green';
-  main_title.style.color = "red";
- 
-}
 
 /*
  * Welcome to your app's main JavaScript file!
@@ -27,11 +19,12 @@ function changeColor() {
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
- 
- 
+
 import jquery from 'jquery';
-const $ = require('jquery');
+import $ from 'jquery';
+// const $ = require('jquery');
 global.$ = global.jQuery = $;
+// const datepicker = require('js-datepicker')
  
 //import { Tooltip, Toast, Popover } from 'bootstrap';
   

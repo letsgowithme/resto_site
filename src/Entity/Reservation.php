@@ -38,17 +38,15 @@ class Reservation
     #[ORM\Column(nullable: true)]
     private ?string $dinnerTime = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Schedule $schedule = null;
+    // #[ORM\ManyToOne]
+    // #[ORM\JoinColumn(nullable: true)]
+    // private ?Schedule $schedule = null;
 
     #[ORM\ManyToOne]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Restaurant $restaurant = null;
-
- 
 
 
     public function __construct()
@@ -114,17 +112,17 @@ class Reservation
     }
 
 
-    public function getSchedule(): ?Schedule
-    {
-        return $this->schedule;
-    }
+    // public function getSchedule(): ?Schedule
+    // {
+    //     return $this->schedule;
+    // }
 
-    public function setSchedule(?Schedule $schedule): self
-    {
-        $this->schedule = $schedule;
+    // public function setSchedule(?Schedule $schedule): self
+    // {
+    //     $this->schedule = $schedule;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     
 
