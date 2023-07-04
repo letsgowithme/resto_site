@@ -4,8 +4,8 @@ namespace App\Controller;
 
 
 use App\Entity\Reservation;
+use App\Entity\Restaurant;
 use App\Form\ReservationType;
-use App\Repository\DaySlotRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\ScheduleRepository;
@@ -80,9 +80,8 @@ class ReservationController extends AbstractController
              return $this->redirectToRoute('menu.index', [], Response::HTTP_SEE_OTHER);
          }
         
-         return $this->render('reservation/new.html.twig', [
+         return $this->render('reservation/user_new.html.twig', [
            'form' => $form->createView(),
-        //    'daySlots' =>  $daySlots,
            'schedules' => $schedules,
          
        ]);
@@ -98,12 +97,32 @@ class ReservationController extends AbstractController
     public function new(Request $request,
     EntityManagerInterface $manager,
     ScheduleRepository $scheduleRepository,
-    // ReservationRepository $reservationRepository
+    ReservationRepository $reservationRepository,
+   
     ): Response
     {  
         $schedules = $scheduleRepository->findAll(); 
         $reservation = new Reservation();
-          
+                $date =  $reservationRepository->findBy(['date' => getDate()]);
+        $reservations = $reservationRepository->findAll();
+         $res_date = $reservationRepository->findByDate($date); 
+    //     $reservations = $reservationRepository->findBy(['date' => getDate(),
+    // 'nbPeople' => $reservation->getNbPeople()]);
+        $totalPlaces = 44;
+        $busyPlaces = null;
+        $availablePlaces = null;
+        if ($date) {
+            for($i = 0; $i < count($reservations); $i++){
+                $busyPlaces = sum($this->$reservation->getNbPeople());
+            //     $availablePlaces = $totalPlaces - $busyPlaces;
+           
+           
+        }
+    }
+        
+        
+        
+
         // $res_date = $reservationRepository->(['date' => $reservation->getDatfindBye()]);
     
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -122,9 +141,12 @@ class ReservationController extends AbstractController
        
         return $this->render('reservation/new_js.html.twig', [
           'form' => $form->createView(),
-        //   'daySlots' =>  $daySlots,
           'reservation' => $reservation,
+          'reservations' => $reservations,
           'schedules' => $schedules,
+          'busyPlaces' => $busyPlaces,
+          'availablePlaces' => $availablePlaces,
+          'totalPlaces' => $totalPlaces,
           
       ]);
     }

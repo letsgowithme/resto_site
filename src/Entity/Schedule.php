@@ -3,9 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ScheduleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ScheduleRepository::class)]
@@ -30,20 +27,6 @@ class Schedule
 
     #[ORM\Column(nullable: true)]
     private ?string $closingTimeEvening = null;
-
-    // #[ORM\Column(nullable: true)]
-    // private ?array $dayTimes = []; 
-
-    // #[ORM\Column(nullable: true)]
-    // private ?array $eveningTimes  = [];
-
-    // #[ORM\ManyToMany(targetEntity: DaySlot::class, inversedBy: 'schedules')]
-    // private Collection $daySlots;
-
-    // public function __construct()
-    // {
-    //     $this->daySlots = new ArrayCollection();
-    // } 
 
 
     public function getId(): ?int

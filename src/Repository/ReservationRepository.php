@@ -72,7 +72,7 @@ class ReservationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-public function findOneByDate($date): ?Reservation
+public function findByDate($date): ?Reservation
    {
        return $this->createQueryBuilder('r')
            ->andWhere('r.date = :date')

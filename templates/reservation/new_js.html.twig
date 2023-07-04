@@ -14,7 +14,32 @@
 
 {% block body %}
 	<div class="container mt-4 text-center mb-4" style="min-height: 80vh;">
-
+<p class = "totalPlaces">Nombre total de places est: {{ totalPlaces }}</p>
+<p class = "busyPlaces">Places occupées: {{ busyPlaces }}</p>
+  <p class = "availablesPlaces">Places disponibles: {{ availablePlaces }}</p>
+	
+	 <table class="table">
+        <thead>
+            <tr>
+               
+                <th>NbPeople</th>
+                <th>Date</th>
+                <th>Midi</th>
+                 <th>Soir</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td class="res_nbPeople">{{ reservation.nbPeople }}</td>
+                <td class="res_date">{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+                <td class="res_lunchTime">{{  reservation.lunchTime }} <td>
+								 <td class="res_dinnerTime">{{  reservation.dinnerTime }} <td>
+				{% endfor %}
+								</tbody>
+								</table>
+	
 			<h1 class="h5-page text-light reserve_title">Page de la reservation</h1>
 		
 		
@@ -150,7 +175,16 @@ dateFormat: "yy-mm-dd",
 	var myDate = $('#js-datepicker').datepicker('getDate');		
 	var newDate = $('#reservation_date').datepicker('setDate', myDate);
   	} 
-		
+		if(newDate == $('.res_date').val()) {
+		var res_nbPeople = $('.res_nbPeople');
+		var busyPlaces = $('.busyPlaces');
+		var lunchTime = $('.res_dinnerTime');
+    var dinnerTime = $('.res_dinnerTime');
+    var sum = array.reduce(function(sum, res_nbPeople) {	
+		return sum(res_nbPeople);
+		console.log(sum);
+		})
+		}
 		 	
 var myDay = myDate.getDay();
 if(myDay == 3) {
@@ -221,5 +255,8 @@ location.reload(true);
 }
 );
 });
+</script>
+<script>
+
 </script>
 {% endblock %}

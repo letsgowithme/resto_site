@@ -16,7 +16,7 @@ class PlacesController extends AbstractController
         ReservationRepository $reservationRepository
         ): Response
     {
-        $nbTotalPlaces = 40;
+        $nbTotalPlaces = 44;
         $reservations = $reservationRepository->findAll();
         $reserv_by_date = $reservationRepository->findBy(['date' => getDate()]);
         if($reserv_by_date) {

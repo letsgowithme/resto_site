@@ -48,6 +48,10 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Restaurant $restaurant = null;
 
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TimeSlot $timeSlots = null;
+
 
     public function __construct()
     {
@@ -238,6 +242,22 @@ class Reservation
     public function setDinnerTime($dinnerTime)
     {
         $this->dinnerTime = $dinnerTime;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return (string) $this->fullName;
+    }
+
+    public function getTimeSlots(): ?TimeSlot
+    {
+        return $this->timeSlots;
+    }
+
+    public function setTimeSlots(?TimeSlot $timeSlots): self
+    {
+        $this->timeSlots = $timeSlots;
 
         return $this;
     }
