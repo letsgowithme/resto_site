@@ -4,8 +4,8 @@
 
 {% block body %}
 	<div class="container mt-4 text-cente" style="max-width: 550px;">
-		<h1 class="mb-4 h5-page">Horaires d'ouverture</h1>
-		<table class="table mt-4" style="background-color: #fce1a6;; border-radius: 5px;">
+		<h1 class="mb-4 mt-4 h5-page">Horaires d'ouverture</h1>
+		<table class="table mt-4 schedule_tab" style="background-color: #f9cd6ee2; border-radius: 5px; ">
 			{# <thead>
 				<tr>
 					<th class="fs-4 text-center h5-page text-light">Jour</th>
@@ -39,4 +39,5 @@
 		</tr>
 	{% endfor %}
 </tbody></table></div>
+{% include "partials/_btn_reserver.html.twig" %}
  {% endblock %}

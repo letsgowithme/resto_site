@@ -40,6 +40,7 @@ flex-direction: column;
 .footer {
   background-color: var(--nav_bg_color);
  
+ 
 }
 .navbar a,
 .footer a {
@@ -74,12 +75,17 @@ flex-direction: column;
 .menu_block-title {
   font-family: 'Lora', serif;
 }
+.reserve_btn {
+color: white;
+font-size: 2em;
+font-weight: 600;
+font-family: 'Lora', serif;
+text-decoration: none;
+letter-spacing: 2px;
+}
 .btn-reservation {
 background-color: var(--gold);
-color: white;
-font-size: 1.8em;
-font-weight: 500;
-font-family: 'Lora', serif;
+
 }
 .btn-reservation:hover {
   background-color: var(--nav_bg_color);
@@ -113,6 +119,9 @@ select {
 }
 .h5-page {
   font-family: 'Lora', serif;
+  color: #b5a10a;
+  z-index: 3;
+  /* background-color: white; */
 }
 .card-text {
   font-family: 'Hind Madurai', sans-serif;
@@ -139,7 +148,10 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
   flex-wrap: wrap;
   border: 1px solid gray;
 }
-.choiceList-wrapper:nth-child(1) {
+#reservation_lunchTime_0:disabled {
+  background-color: blue;
+}
+.label:first-child() {
   visibility: hidden;
   display: none;
 }
@@ -221,8 +233,13 @@ transition: ease-in-out;
     box-shadow: 5px 7px 2px #cdc58b;
     /* border-radius: 50%;  */
   }
+  .cat_name {
+    padding: 100px;
+    
+  }
   .h1-cat_name { 
     font-weight: bold; 
+  
     /* letter-spacing: 2px; color: #b5a10a; */
     /* text-shadow: -4px 1px 3px #cdc58b; */
     font-family: 'Lora', serif;
@@ -236,7 +253,7 @@ transition: ease-in-out;
     color: silver; 
     color: #a39d6b; 
     color: #1f1b1b; 
-    text-shadow: #fce1a6;
+    text-shadow: #f9cd6ee2;
     color: rgb(239, 1, 1);
   }
   /* reservation */
@@ -294,4 +311,68 @@ span.ui-icon-circle-triangle-w
 
   color: white;
   background-color: black;
+}
+.title_text{
+    color: #222;
+    font-weight: 900;
+    color: transparent;
+    font-size: 0px;
+}
+#main_title span, 
+#sub_main_title span {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  /* font-size: clamp(20px, 8vw, 120px); */
+  color: white;
+}
+#main_title span::after,
+#sub_main_title span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+#main_title:nth-child(1),
+#sub_main_title:nth-child(1)
+ {
+  font-weight: 300;
+  animation: txt-appearance 0s 1s forwards;
+}
+#main_title:nth-child(2),
+#sub_main_title:nth-child(2) {
+  animation: txt-appearance 0s 1.25s forwards;
+}
+#main_title:nth-child(1) span::after {
+  background: rgba(246, 180, 26, 0.929);
+  animation: slide-in 1s ease-out forwards,
+  slide-out 1s 1.3s ease-out forwards;
+}
+#sub_main_title:nth-child(2) span::after {
+  background: rgba(147, 147, 152, 0.945);
+  animation: slide-in 1s 0.3s ease-out forwards,
+  slide-out  1s 1.2s ease-out forwards;
+}
+
+@keyframes slide-in {
+  100% {
+      transform: translateX(0%);
+  }
+}
+@keyframes slide-out {
+  100% {
+      transform: translateX(100%)
+  }
+}
+@keyframes txt-appearance {
+  100% {
+      color: #222;
+  }
+}
+.red {
+color: red;
 }

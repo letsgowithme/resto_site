@@ -20,7 +20,7 @@ class Reservation
     #[ORM\Column]
     private ?string $fullName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: false)]
     private ?int $nbPeople = null;
 
     #[ORM\Column]
@@ -48,9 +48,9 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Restaurant $restaurant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TimeSlot $timeSlots = null;
+    // #[ORM\ManyToOne(inversedBy: 'reservations')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?TimeSlot $timeSlots = null;
 
 
     public function __construct()
@@ -250,15 +250,15 @@ class Reservation
         return (string) $this->fullName;
     }
 
-    public function getTimeSlots(): ?TimeSlot
-    {
-        return $this->timeSlots;
-    }
+    // public function getTimeSlots(): ?TimeSlot
+    // {
+    //     return $this->timeSlots;
+    // }
 
-    public function setTimeSlots(?TimeSlot $timeSlots): self
-    {
-        $this->timeSlots = $timeSlots;
+    // public function setTimeSlots(?TimeSlot $timeSlots): self
+    // {
+    //     $this->timeSlots = $timeSlots;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

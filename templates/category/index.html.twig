@@ -9,7 +9,7 @@
 			<div class="cat-card mb-3 me-3 text-sm-center" style="width: 500px;">
 				<button type="button" class="bnt-primary p-2 cat-btn"> 
 				<a href="{{ path('app_category_show', {id: category.id}) }}" 
-				class="text-light capitalize" 
+				class="text-light capitalize cat_name" 
 				style="text-decoration: none; font-weight: bold;">{{ category.name }}
 				</a>
 				</button>
@@ -23,5 +23,5 @@
 	</div>
 </div>
 </div>
-c
+{% include "partials/_btn_reserver.html.twig" %}
 {% endblock %}

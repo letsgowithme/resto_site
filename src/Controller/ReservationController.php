@@ -103,17 +103,16 @@ class ReservationController extends AbstractController
     {  
         $schedules = $scheduleRepository->findAll(); 
         $reservation = new Reservation();
-                $date =  $reservationRepository->findBy(['date' => getDate()]);
+        $res_date =  $reservationRepository->findBy(['date' => getDate()]);
         $reservations = $reservationRepository->findAll();
-         $res_date = $reservationRepository->findByDate($date); 
-    //     $reservations = $reservationRepository->findBy(['date' => getDate(),
-    // 'nbPeople' => $reservation->getNbPeople()]);
+        $resNbPeople = $reservation->getNbPeople();
+     
         $totalPlaces = 44;
         $busyPlaces = null;
         $availablePlaces = null;
-        if ($date) {
+        if ($res_date) {
             for($i = 0; $i < count($reservations); $i++){
-                $busyPlaces = sum($this->$reservation->getNbPeople());
+                $busyPlaces = $resNbPeople;
             //     $availablePlaces = $totalPlaces - $busyPlaces;
            
            
@@ -123,7 +122,7 @@ class ReservationController extends AbstractController
         
         
 
-        // $res_date = $reservationRepository->(['date' => $reservation->getDatfindBye()]);
+        // $res_date = $reservationRepository->(['date' => $reservation->getDate()]);
     
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -147,6 +146,7 @@ class ReservationController extends AbstractController
           'busyPlaces' => $busyPlaces,
           'availablePlaces' => $availablePlaces,
           'totalPlaces' => $totalPlaces,
+          'res_date' => $res_date
           
       ]);
     }

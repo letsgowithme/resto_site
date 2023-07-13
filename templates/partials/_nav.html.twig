@@ -1,13 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-center" style="z-index: 5;">
+<head>
+	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+</head>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary text-center" style="z-index: 5;">
   <div class="container-fluid">
     
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" 
+    type="button" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#navbarColor01" 
+    aria-controls="navbarColor01" 
+    aria-expanded="false" 
+    aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="/" id="up">Accueil
+          <a class="nav-link active" href="/">Accueil
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
@@ -46,8 +55,11 @@
       <div class="d-flex">
 		<ul class="navbar-nav me-auto">
 			{% if app.user %}
-				<li class="nav-item dropdown" style="margin-right: 5rem;">
-					<a class="nav-link dropdown-toggle fs-5 fw-bold" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: white;">{{ app.user.fullName }}
+				<li class="dropdown nav-item" style="margin-right: 5rem;">
+					<a class="nav-link dropdown-toggle fs-5 fw-bold" 
+          data-bs-toggle="dropdown" href="#" role="button" 
+          aria-haspopup="true" aria-expanded="false" 
+          style="color: white;">{{ app.user.fullName }}
           </a>
 					<div class="dropdown-menu">
 						{% if 'ROLE_ADMIN' in app.user.roles %}
@@ -68,3 +80,4 @@
     </div>
   </div>
 </nav>
+

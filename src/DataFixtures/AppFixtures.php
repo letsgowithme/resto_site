@@ -137,7 +137,7 @@ class AppFixtures extends Fixture
         $schedules = [];
         for ($n = 0; $n < 7; $n++) {
             $schedule = new Schedule();
-            $schedule->setDay($this->faker->word())
+            $schedule->setDay($this->faker->dayOfWeek())
                 ->setOpeningTimeMidday($this->faker->time('H:i'))
                 ->setClosingTimeMidday($this->faker->time('H:i'))
                 ->setOpeningTimeEvening($this->faker->time('H:i'))

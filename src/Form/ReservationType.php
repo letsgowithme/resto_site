@@ -42,7 +42,7 @@ class ReservationType extends AbstractType
 
         ->add('nbPeople', ChoiceType::class, [
             'choices' => [
-                'Le nombre de couverts' => 0,
+                'Le nombre de couverts' => "",
                 '1 couvert' => 1,
                 '2 couverts' => 2,
                 '3 couverts' => 3,
@@ -105,7 +105,7 @@ class ReservationType extends AbstractType
        
         ->add('lunchTime', ChoiceType::class, [
             'choices' => [
-                // 'Heure' => 0,
+                 'Choisir' => '',
                 '12:00' =>  '12:00',
                 '12:15' => '12:15',
                 '12:30' => '12:30',
@@ -127,7 +127,7 @@ class ReservationType extends AbstractType
 
         ->add('dinnerTime', ChoiceType::class, [
             'choices' => [
-                // 'Heure' => 0,
+                 'Choisir' => "",
                 '19:00' =>  '19:00',
                 '19:15' => '19:15',
                 '19:30' => '19:30',

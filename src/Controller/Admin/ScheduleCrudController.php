@@ -40,12 +40,12 @@ class ScheduleCrudController extends AbstractCrudController
                ->setLabel('S\'ouvre le soir'),
                TextField::new('closingTimeEvening')
                ->setLabel('Se ferme le soir'),
-               ArrayField::new('dayTime')
-               ->setLabel('MIDI')
-               ->hideOnIndex(),
-               ArrayField::new('eveningTime')
-               ->setLabel('SOIR')
-               ->hideOnIndex(),
+            //    ArrayField::new('dayTime')
+            //    ->setLabel('MIDI')
+            //    ->hideOnIndex(),
+            //    ArrayField::new('eveningTime')
+            //    ->setLabel('SOIR')
+            //    ->hideOnIndex(),
               
         ];
     }
