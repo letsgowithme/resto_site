@@ -69,11 +69,7 @@
 						{% endfor %}
 					</div>
 				</div>
-			
-
-			<p class="hidden" style="color: red; font-size: 1.4em;" id="alert_lunch_time">"Veuillez choisir l'heure d'arrivée'"</p>
 		</div>
-	
 
 	<div class="row d-flex flex-wrap dinner_slots " id="dinner_slots_block">
 		<div class="form-group text-light bold text-start evening_slot
@@ -90,11 +86,7 @@
 				{% endfor %}
 			</div>
 		</div>
-		<p class="hidden" style="color: red; font-size: 1.4em;" id="alert_dinner_time">"Veuillez choisir l'heure d'arrivée'"</p>
 	</div>
-
-	
-
 </div>
 
 
@@ -149,13 +141,7 @@
 					  $( ".dinner_slot_btn" ).first().css( "position", "absolute" );
            $( ".dinner_slot_btn" ).first().css( "visibility", "hidden" );
          });
-      </script>
-{# <script>
-$(".btn_slot").first().addClass("hidden");
-$("#reservation_lunchTime_0").addClass("hidden");
-$("#reservation_lunchTime_0").addClass("disabled");
-</script> #}
-
+</script>
 <script>
 $(function () {
 
@@ -279,43 +265,20 @@ console.log('C\'est le jour de la semaine');
 	<script>
 $('.lunch_slot_btn').click(function () {
 	if ($(".lunch_slot_btn input").val() == "") {
-		{# $('#alert_lunch_time').removeClass('hidden'); #}
-
-	$('.evening_slot').addClass('hidden');
+	  $('.evening_slot').addClass('hidden');
 		$('.ev_slot_n').addClass('hidden');
 		$('.info').removeClass('hidden');
 	}
-	
 		});
 
 $('.dinner_slot_btn').click(function () {
 	if ($(".dinner_slot_btn input").val() == "") {
-		{# $('#alert_lunch_time').removeClass('hidden'); #}
-
-	$('.day_slot').addClass('hidden');
+	  $('.day_slot').addClass('hidden');
 		$('.ln_slot_n').addClass('hidden');
 		$('.info').removeClass('hidden');
 	}
-	
 		});
 
-
-
-{# $('.dinner_slot_btn').click(function () {
-$('.day_slot').addClass('hidden');
-$('.ln_slot_n').addClass('hidden');
-$('.info').removeClass('hidden');
-if ($('.dinner_slot_btn input').val() == '') {
-$('#alert_dinner_time').removeClass('hidden');
-$(".dinner_slot_btn").on("click", function () {
-if ($(".dinner_slot_btn input").val() != "") {
-$("#alert_dinner_time").addClass("hidden");
-return $("#dinner_slot_btn input").val();
-};
-});
-}
-});
-#}
 </script>
 <script>
 $(document).ready(function () {
