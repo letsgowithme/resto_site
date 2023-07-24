@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "bootstrap-datepicker": "^1.10.0",
-        "js-datepicker": "^5.18.2"
+        "js-datepicker": "^5.18.2",
+        "moment": "^2.29.4"
     }
 }

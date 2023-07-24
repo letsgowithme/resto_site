@@ -3,17 +3,21 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
-    <h1>Reservation index</h1>
+<div class="container mt-4">
+    <h1 class="mt-4">Réservations</h1>
 
     <table class="table">
         <thead>
-            <tr>
+            <tr class="text-light fs-4">
                 <th>Id</th>
                 <th>FullName</th>
-                <th>NbPeople</th>
+                <th>Nombre de couverts</th>
                 <th>Date</th>
                 <th>Midi</th>
-                 <th>Soir</th>
+                <th></th>
+                <th>Soir</th>
+                <th></th>
+                <th>Allergie</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,19 +28,12 @@
                 <td>{{ reservation.fullName }}</td>
                 <td>{{ reservation.nbPeople }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
-
-                <td>
-		{{  reservation.daySlot }}
-			
-        <td>
-		{# {% for eveningSlot in reservation.eveningSlots %}
-			<span class="badge bg-primary mb-4 fs-6">{{ eveningSlot.name }}</span>
-		{% endfor %}</td> #}
-        <td>{% for allergies in reservation.allergies %}
-				<span class="bg-primary mb-4 fs-6">{{ allergies.name|raw }}</span>	
-		{% endfor %}</td>
-                {# <td>{{ reservation.timeMidday ? reservation.timeMidday|date('H:i') : '' }}</td> #}
-                {# <td>{{ reservation.timeEvening ? reservation.timeEvening|date('H:i') : '' }}</td> #}
+                <td>{{  reservation.lunchTime }}<td>
+                <td>{{  reservation.dinnerTime }}<td>
+                <td>{% for allergies in reservation.allergies %}
+				<span class="text-light bg-danger mb-4 fs-6">{{ allergies.name|raw }}</span>	
+	             	{% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('reservation.show', {'id': reservation.id}) }}">show</a>
                     <a href="{{ path('reservation.edit', {'id': reservation.id}) }}">edit</a>
@@ -49,6 +46,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('reservation.new') }}">Create new</a>
+</div>
 {% endblock %}

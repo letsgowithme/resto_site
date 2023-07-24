@@ -148,13 +148,7 @@ box-shadow: 12px 12px 2px 1px rgba(171, 159, 46, 0.568);
   flex-wrap: wrap;
   border: 1px solid gray;
 }
-#reservation_lunchTime_0:disabled {
-  background-color: blue;
-}
-.label:first-child() {
-  visibility: hidden;
-  display: none;
-}
+
 /* card */
 .card-title {
   /* cursor: pointer; */
@@ -375,4 +369,8 @@ span.ui-icon-circle-triangle-w
 }
 .red {
 color: red;
+}
+td {
+  color: white;
+ 
 }

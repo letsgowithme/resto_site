@@ -27,6 +27,19 @@ class ReservationController extends AbstractController
     ): Response
     {
         $reservations = $reservationRepository->findAll();
+        // $reservations = $reservationRepository->findBy(['date' => getDate()]);
+        $today = new \DateTime();
+        foreach ($reservations as $reservation) {
+             $resTime = strtotime($reservation);
+            //  $todayTime = strtotime($today);
+             
+             if($today <= $resTime){
+                $reservations = $reservationRepository->findBy(['date' => $resTime]);
+                 echo 'Le ' .$resTime. ' est apres le ' .$today;
+             }else{
+                  echo 'Le ' .$resTime. ' est avant le ' .$today;
+             }
+        }
         $schedules = $scheduleRepository->findAll(); 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservations,
@@ -101,23 +114,38 @@ class ReservationController extends AbstractController
    
     ): Response
     {  
+        // $reservations = $reservationRepository->findAll();
+        // $reservation_date = $reservationRepository->findBy(['date' => getDate()]);
+        // $today = new \DateTime();
+        // foreach ($reservations as $reservation) {
+        //       $resTime = strtotime($reservation_date);
+                         
+        //      if($today <= $reservation_date){
+        //         $reservations = $reservationRepository->findBy(['date' => $reservation_date]);
+        //         //  echo 'Le ' .$resTime. ' est apres le ' .$today;
+        //      }else{
+        //           echo 'Pas de dates';
+        //      }
+        // }
+
+
         $schedules = $scheduleRepository->findAll(); 
         $reservation = new Reservation();
-        $res_date =  $reservationRepository->findBy(['date' => getDate()]);
+        // $res_date =  $reservationRepository->findBy(['date' => getDate()]);
         $reservations = $reservationRepository->findAll();
         $resNbPeople = $reservation->getNbPeople();
      
         $totalPlaces = 44;
-        $busyPlaces = null;
-        $availablePlaces = null;
-        if ($res_date) {
-            for($i = 0; $i < count($reservations); $i++){
-                $busyPlaces = $resNbPeople;
-            //     $availablePlaces = $totalPlaces - $busyPlaces;
+        $busyPlaces = 0;
+        $availablePlaces = 0;
+        // if ($res_date) {
+        //     for($i = 0; $i < count($reservations); $i++){
+        //         $busyPlaces = $resNbPeople;
+        //     //     $availablePlaces = $totalPlaces - $busyPlaces;
            
            
-        }
-    }
+        // }
+    // }
         
         
         
@@ -146,7 +174,8 @@ class ReservationController extends AbstractController
           'busyPlaces' => $busyPlaces,
           'availablePlaces' => $availablePlaces,
           'totalPlaces' => $totalPlaces,
-          'res_date' => $res_date
+        //   'reservation_date' => $reservation_date,
+        //   'res_date' => $res_date
           
       ]);
     }

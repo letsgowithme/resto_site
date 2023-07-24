@@ -11,6 +11,10 @@ import './styles/app.css';
 
 console.log('app.js works');
 
+const moment = require ('moment');
+const now = moment ();
+console.log (now.format ());
+
 
 
 /*

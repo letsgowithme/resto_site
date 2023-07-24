@@ -12,14 +12,9 @@
 {% block body %}
 	<div
 		class="container mt-4 text-center mb-4" style="min-height: 80vh;">
+     <div  id="today_date"></div> 
 
-		{# <p class = "totalPlaces">Nombre total de places est: {{ totalPlaces }}</p>
-		<p class = "busyPlaces">Places occupées: {{ busyPlaces }}</p>
-		  <p class = "availablesPlaces">Places disponibles: {{ availablePlaces }}</p>
-			 #}
 		<h1 class="h5-page text-light reserve_title">Page de la reservation</h1>
-
-
 		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)!
 			<br>
 			Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
@@ -69,6 +64,7 @@
 						{% endfor %}
 					</div>
 				</div>
+				<p class="hidden alert_res_time mt-4 fs-3 bg-primary text-center text-light">Veuillez choisir l'heure d'arrivée</p>
 		</div>
 
 	<div class="row d-flex flex-wrap dinner_slots " id="dinner_slots_block">
@@ -91,11 +87,12 @@
 
 
 <div class="form-group text-light info
-	hidden
+	hidden 
 	">
-{{ form_label(form.allergies) }}
+<div class="label fs-2 fw-bolder">{{ form_label(form.allergies) }}</div>
 <br>
-<div class="choiceList-wrapper" style="border: none;">
+<div class="choiceList-wrapper d-flex flex-column text-start" 
+style="border: none;  transform: translateX(40%);">
 	{% for field in form.allergies %}
 		<div style="min-width: 15%; padding: 0 10px" class="fs-4">
 			{{ form_widget(field) }}
@@ -129,18 +126,28 @@
 <button type="button" class="btn btn-info" id="btn_reload" onclick="reload();">Reinitialiser</button>
 </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script><script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js" integrity="sha512-ztxZscxb55lKL+xmWGZEbBHekIzy+1qYKHGZTWZYH1GUwxy0hiA18lW6ORIMj4DHRgvmP/qGcvqwEyFFV7OYVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>{# <script src="jquery.js"></script> 
 				<script src="jquery-ui.min.js"></script> 
 					 <script src="jquery.modal.min.jss"></script>  #}{# <script src="assets/scripts/popper.min.js"></script>
 					 {# <script src="assets/scripts/bootstrap.min.js"></script>  #}
 
  <script>
-         $(document).ready(function(){
-					 $( ".lunch_slot_btn" ).first().css( "position", "absolute" );
-           $( ".lunch_slot_btn" ).first().css( "visibility", "hidden" );
-					  $( ".dinner_slot_btn" ).first().css( "position", "absolute" );
-           $( ".dinner_slot_btn" ).first().css( "visibility", "hidden" );
-         });
+
+
+var fullDate = new Date(); 
+var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+var today = fullDate.getFullYear() + "-" + twoDigitMonth + "-" + fullDate.getDate();
+
+var dateShow = $("#today_date").append(today).show();
+console.log("Aujourd\'hui: " + today);
+
+  $(document).ready(function(){
+		$( ".lunch_slot_btn" ).first().remove();
+		$( ".dinner_slot_btn" ).first().remove();
+		$(".btn_slot" ).css({cursor : 'default'});
+		$("input[type=radio]").css({cursor : 'pointer'});		
+         });       
 </script>
 <script>
 $(function () {
@@ -189,7 +196,14 @@ if (date != "") {
 $('#reservation_date').datepicker({dateFormat: "yy-mm-dd"}).val();
 var myDate = $('#js-datepicker').datepicker('getDate');
 var newDate = $('#reservation_date').datepicker('setDate', myDate);
+console.log("Date choisie: " + newDate.val());
 
+{# var todayTime = today.getTime();
+if(resTime >= todayTime) {
+   console.log("Date choisie est valide");
+} else {
+	console.log("Date choisie n'est pas valide");
+} #}
 
 if ($("#reservation_nbPeople").val() == "") {
 $("#alert").removeClass("hidden");
@@ -203,16 +217,24 @@ return $("#reservation_nbPeople").val();
 });
 };
 
-{# if (newDate == $('.res_date').val()) {
-var res_nbPeople = $('.res_nbPeople');
+{# if( $(".date_reserved") == myDate) {
+ $(".res_nbPeople")
+ $(".res_lunch_time")
+ $(".res_dinner_time")
+              
+
+} #}
+ if (newDate == $('.res_date')) {
+	console.log('date');
+{#var res_nbPeople = $('.res_nbPeople');
 var busyPlaces = $('.busyPlaces');
 var lunchTime = $('.res_dinnerTime');
 var dinnerTime = $('.res_dinnerTime');
 var sum = array.reduce(function (sum, res_nbPeople) {
 return sum(res_nbPeople);
 console.log(sum);
-})
-}#}
+})#}
+}
 
 var myDay = myDate.getDay();
 if (myDay == 3) {
@@ -227,7 +249,6 @@ $('.nbPeople_date').addClass('visible');
 $('.info').addClass('visible');
 $('#message_closed').addClass('hidden');
 $("#other_date_choose").addClass('hidden');
-
 })
 } else if (myDay == 6) {
 $('.day_slot').addClass('hidden');
@@ -235,6 +256,7 @@ $('.ln_slot_n').addClass('hidden');
 $('.evening_slot').removeClass('hidden');
 $('.ev_slot_n').removeClass('hidden');
 console.log('C\'est Samedi');
+
 } else if (myDay == 0) {
 $('.day_slot').removeClass('hidden');
 $('.ln_slot_n').removeClass('hidden');
@@ -247,39 +269,46 @@ $('.ln_slot_n').removeClass('hidden');
 $('.day_slot').removeClass('hidden');
 $('.ev_slot_n').removeClass('hidden');
 $('.evening_slot').removeClass('hidden');
+{# $("reservation_dinnerTime_10").addClass('hidden'); #}
+$( ".dinner_slot_btn:nth-child(10)" ).remove();
+$( ".dinner_slot_btn:nth-child(10n)" ).remove();
+$( ".dinner_slot_btn:nth-child(10n)" ).remove();
+$( ".dinner_slot_btn:nth-child(10n)" ).remove();
+
 console.log('C\'est le jour de la semaine');
 }
-
 }
 }
 });
 });
 </script>
-{# <script>
-	$('.ac_btn').click(function() {
-	$('info').removeClass('hidden');
-	$('.ac_btn').addClass('active');
-	});
-	</script> #}
+
 	{# Show lunch only ou dinner only   #}
 	<script>
-$('.lunch_slot_btn').click(function () {
-	if ($(".lunch_slot_btn input").val() == "") {
+	$(".lunch_slot_btn").click(function () {
+		$(".alert_res_time").removeClass('hidden');
+		});
+	$(".dinner_slot_btn").click(function () {
+		$(".alert_res_time").removeClass('hidden');
+	});
+	
+	$(".wbtn_lu input[type=radio]").click(function () {
 	  $('.evening_slot').addClass('hidden');
 		$('.ev_slot_n').addClass('hidden');
 		$('.info').removeClass('hidden');
-	}
+		$(".alert_res_time").css('opacity', 0);	
+	  $(".wbtn_di input[type=radio]").prop("checked", false)
 		});
-
-$('.dinner_slot_btn').click(function () {
-	if ($(".dinner_slot_btn input").val() == "") {
+	
+  $(".wbtn_di input[type=radio]").click(function () {
 	  $('.day_slot').addClass('hidden');
 		$('.ln_slot_n').addClass('hidden');
 		$('.info').removeClass('hidden');
-	}
+		$(".alert_res_time").css('opacity', 0);	
+    $(".wbtn_lu input[type=radio]").prop("checked", false)
 		});
-
 </script>
+
 <script>
 $(document).ready(function () {
 $("#btn_reload").click(function () {
@@ -287,4 +316,5 @@ location.reload(true);
 });
 });
 </script>
+
 {% endblock %}
