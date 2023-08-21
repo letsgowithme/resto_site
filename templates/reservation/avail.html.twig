@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation available{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mt-4">Réservations data</h1>
+{% for data in datas %}
+    <table class="table">
+        <thead>
+            <tr class="text-light fs-4">
+                <th>Id</th>
+                <th>FullName</th>
+                <th>Nombre de couverts</th>
+                <th>Date</th>
+                <th>Midi</th>
+                <th></th>
+                <th>Soir</th>
+                <th></th>
+                <th>Allergie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.fullName }}</td>
+                <td>{{ reservation.nbPeople }}</td>
+                <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+                <td>{{  reservation.lunchTime }}<td>
+                <td>{{  reservation.dinnerTime }}<td>
+                <td>{% for allergies in reservation.allergies %}
+				<span class="text-light bg-danger mb-4 fs-6">{{ allergies.name|raw }}</span>	
+	             	{% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('reservation.show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation.edit', {'id': reservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+</div>
+{% endblock %}

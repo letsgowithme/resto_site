@@ -11,6 +11,7 @@ use App\Repository\RestaurantRepository;
 use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,26 +21,21 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
+    public function __construct(private ReservationRepository $reservationRepository)
+    {
+        
+        $this->reservationRepository = $reservationRepository;
+    }
     // #[IsGranted('ROLE_ADMIN')]
     #[Route('/', name: 'reservation.index', methods: ['GET'])]
     public function index(ReservationRepository $reservationRepository,
-    ScheduleRepository $scheduleRepository
+    ScheduleRepository $scheduleRepository,
+    
     ): Response
     {
         $reservations = $reservationRepository->findAll();
-        // $reservations = $reservationRepository->findBy(['date' => getDate()]);
-        $today = new \DateTime();
-        foreach ($reservations as $reservation) {
-             $resTime = strtotime($reservation);
-            //  $todayTime = strtotime($today);
-             
-             if($today <= $resTime){
-                $reservations = $reservationRepository->findBy(['date' => $resTime]);
-                 echo 'Le ' .$resTime. ' est apres le ' .$today;
-             }else{
-                  echo 'Le ' .$resTime. ' est avant le ' .$today;
-             }
-        }
+     
+     
         $schedules = $scheduleRepository->findAll(); 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservations,
@@ -114,49 +110,26 @@ class ReservationController extends AbstractController
    
     ): Response
     {  
-        // $reservations = $reservationRepository->findAll();
-        // $reservation_date = $reservationRepository->findBy(['date' => getDate()]);
-        // $today = new \DateTime();
-        // foreach ($reservations as $reservation) {
-        //       $resTime = strtotime($reservation_date);
-                         
-        //      if($today <= $reservation_date){
-        //         $reservations = $reservationRepository->findBy(['date' => $reservation_date]);
-        //         //  echo 'Le ' .$resTime. ' est apres le ' .$today;
-        //      }else{
-        //           echo 'Pas de dates';
-        //      }
-        // }
-
-
+        
         $schedules = $scheduleRepository->findAll(); 
         $reservation = new Reservation();
-        // $res_date =  $reservationRepository->findBy(['date' => getDate()]);
-        $reservations = $reservationRepository->findAll();
+        $reservations =  $reservationRepository->findBy(['date' => getDate()]);
+        // $reservations = $reservationRepository->findAll();
         $resNbPeople = $reservation->getNbPeople();
      
         $totalPlaces = 44;
         $busyPlaces = 0;
         $availablePlaces = 0;
-        // if ($res_date) {
-        //     for($i = 0; $i < count($reservations); $i++){
-        //         $busyPlaces = $resNbPeople;
-        //     //     $availablePlaces = $totalPlaces - $busyPlaces;
-           
-           
-        // }
-    // }
-        
-        
-        
-
-        // $res_date = $reservationRepository->(['date' => $reservation->getDate()]);
+        // *****************************************
+   
+        // *****************************************************
     
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
             $reservation = $form->getData();
+            // $res_date = $form->getData();
             $manager->persist($reservation);
             $manager->flush();
             $this->addFlash(
@@ -216,4 +189,30 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('reservation.index', [], Response::HTTP_SEE_OTHER);
     }
+    // /**
+    // * This function creates a reservation
+    //  * @param Request $request
+    //  * @param EntityManagerInterface $manager
+    //  * @return Response
+    //  */
+    // #[IsGranted('ROLE_USER')]
+    // #[Route('/all', name: 'reservation.avail', methods: ['GET'])]
+    // public function findReservations(Reservation $reservation,
+    // EntityManagerInterface $manager,
+    // ReservationRepository $reservationRepository,
+    // ): Response
+    // {
+       
+    //     $reservations = $reservationRepository->findBy(array('date' => $reservation->getDate()), 
+    //     array('date' => 'DESC'));
+    //     $datas = array();
+    //     foreach ($reservations as $key => $reservation) {
+    //     $datas[$key]['date'] = $reservation->getDate();
+    //     $datas[$key]['lunchTime'] = $reservation->getLunchTime();
+    //     $datas[$key]['dinnerTime'] = $reservation->getDinnerTime();
+    //     $datas[$key]['nbPeople'] = $reservation->getNbPeople();
+
+    //     }
+    //     return new JsonResponse($datas);
+    // }
 }

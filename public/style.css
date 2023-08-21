@@ -10,7 +10,7 @@
 
 
 :root {
-  --main_bg_color: rgb(54, 50, 50);
+  --main_bg_color: #363232;
   --nav_bg_color: #B6AC97;
   --gold: #906427;
   --darkbrown: #392C1E;
@@ -295,14 +295,14 @@ transition: ease-in-out;
   visibility: hidden;
 } */
 .ui-corner-all {
-  color: black;
-  /* background-color: black; */
+  color: darkblue;
+
 }
 
-span.ui-icon-circle-triangle-e,
-span.ui-icon-circle-triangle-w
+a  .ui-icon-circle-triangle-e,
+a  .ui-icon-circle-triangle-w
  {
-
+  
   color: white;
   background-color: black;
 }
@@ -367,10 +367,21 @@ span.ui-icon-circle-triangle-w
       color: #222;
   }
 }
-.red {
-color: red;
-}
+
 td {
   color: white;
  
+}
+.down_line_names {
+  width: 330px; 
+
+  border-radius: 0 100% 0 100%; 
+  background-color: #b5a10a;
+ 
+  box-shadow: 5px 7px 2px #8f8640;
+  font-family: 'Montserrat', sans-serif;
+}
+.down_link {
+  text-decoration: none;
+  color: white;
 }
