@@ -4,10 +4,9 @@ namespace App\Controller;
 
 
 use App\Entity\Reservation;
-use App\Entity\Restaurant;
 use App\Form\ReservationType;
+use App\Repository\LunchHoursRepository;
 use App\Repository\ReservationRepository;
-use App\Repository\RestaurantRepository;
 use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +42,7 @@ class ReservationController extends AbstractController
         ]);
       
     }
-/**
+     /**
     * This function creates a reservation of a user
      * @param Request $request
      * @param EntityManagerInterface $manager
@@ -53,15 +52,26 @@ class ReservationController extends AbstractController
      #[Route('/user_new', name: 'reservation.user_new', methods: ['GET', 'POST'])]
      public function user_new(Request $request,
      EntityManagerInterface $manager,
-    //  DaySlotRepository $daySlotRepository,
      ScheduleRepository $scheduleRepository,
-     UserInterface $user,
+     ReservationRepository $reservationRepository,
+     LunchHoursRepository $lunchHoursRepository,
+     UserInterface $user
      ): Response
      {    
          $reservation = new Reservation();
         //  $daySlots = $daySlotRepository->findAvailableDaySlots(18);
          $schedules = $scheduleRepository->findAll(); 
- 
+         $reservations_by_order =  $reservationRepository->findByDate(['date' => getDate()]);
+
+         $reservations = $reservationRepository->findAll();
+         $resNbPeople = $reservation->getNbPeople();
+         $lunchHours = $reservation->getLunchHours();
+         $reservation_date = $reservation->getDate();
+         $dinnerHours = $reservation->getDinnerHours();
+         $placesAvailable = null;
+         $busyPlaces = 0;
+         $availablePlaces = 0;
+       
          if($user) {
              $user = $reservation->getUser();
              if ($this->getUser()->getNbPeople()) {
@@ -92,6 +102,14 @@ class ReservationController extends AbstractController
          return $this->render('reservation/user_new.html.twig', [
            'form' => $form->createView(),
            'schedules' => $schedules,
+           'reservation' => $reservation,
+           'reservations' => $reservations,
+           'busyPlaces' => $busyPlaces,
+           'placesAvailable' => $placesAvailable,
+           'lunchHours' => $lunchHours,
+           'dinnerHours' => $dinnerHours,
+            'reservation_date' => $reservation_date,
+            'reservations_by_order' => $reservations_by_order
          
        ]);
      }
@@ -107,20 +125,26 @@ class ReservationController extends AbstractController
     EntityManagerInterface $manager,
     ScheduleRepository $scheduleRepository,
     ReservationRepository $reservationRepository,
+    LunchHoursRepository $lunchHoursRepository
    
     ): Response
     {  
         
         $schedules = $scheduleRepository->findAll(); 
         $reservation = new Reservation();
-        $reservations =  $reservationRepository->findBy(['date' => getDate()]);
-        // $reservations = $reservationRepository->findAll();
+        $today = new \DateTime("now");
+         $reservations_by_date =  $reservationRepository->findBy(['date' => $today]);
+         $reservations_by_order =  $reservationRepository->findByDate(['date' => getDate()]);
+
+        $reservations = $reservationRepository->findAll();
         $resNbPeople = $reservation->getNbPeople();
-     
-        $totalPlaces = 44;
+        $lunchHours = $reservation->getLunchHours();
+        $reservation_date = $reservation->getDate();
+        $dinnerHours = $reservation->getDinnerHours();
+        $placesAvailable = null;
         $busyPlaces = 0;
         $availablePlaces = 0;
-        // *****************************************
+      
    
         // *****************************************************
     
@@ -145,10 +169,13 @@ class ReservationController extends AbstractController
           'reservations' => $reservations,
           'schedules' => $schedules,
           'busyPlaces' => $busyPlaces,
-          'availablePlaces' => $availablePlaces,
-          'totalPlaces' => $totalPlaces,
-        //   'reservation_date' => $reservation_date,
-        //   'res_date' => $res_date
+          'placesAvailable' => $placesAvailable,
+          'lunchHours' => $lunchHours,
+          'dinnerHours' => $dinnerHours,
+           'reservations_by_date' => $reservations_by_date,
+           'reservation_date' => $reservation_date,
+           'reservations_by_order' => $reservations_by_order
+       
           
       ]);
     }

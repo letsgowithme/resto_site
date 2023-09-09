@@ -6,9 +6,11 @@ use App\Entity\Allergy;
 use App\Entity\Card;
 use App\Entity\Category;
 use App\Entity\DaySlot;
+use App\Entity\DinnerHours;
 use App\Entity\Dish;
 use App\Entity\EveningSlot;
 use App\Entity\Gallery;
+use App\Entity\LunchHours;
 use App\Entity\Menu;
 use App\Entity\Places;
 use App\Entity\Restaurant;
@@ -71,9 +73,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToRoute('Vers le site', 'fas fa-list', 'home');
         yield MenuItem::linkToCrud('Reservations', 'fas fa-list', Reservation::class);
-        yield MenuItem::linkToCrud('Heure', 'fas fa-list', DaySlot::class);
-        yield MenuItem::linkToCrud('Places', 'fas fa-list', Places::class);
-        yield MenuItem::linkToCrud('Table', 'fas fa-list', Table::class);
+        yield MenuItem::linkToCrud('Heure du midi', 'fas fa-list', LunchHours::class);
+        yield MenuItem::linkToCrud('Heure du soir', 'fas fa-list', DinnerHours::class);
         yield MenuItem::linkToCrud('Menu', 'fas fa-list', Menu::class);
         yield MenuItem::linkToCrud('Galerie', 'fas fa-list', Card::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
@@ -81,7 +82,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Horaires', 'fas fa-list', Schedule::class);
         yield MenuItem::linkToCrud('Allergie', 'fas fa-list', Allergy::class);       
-        yield MenuItem::linkToCrud('Restaurant', 'fas fa-list', Restaurant::class);
+      
       
        
     }

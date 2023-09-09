@@ -162,19 +162,6 @@ class AppFixtures extends Fixture
         // }
         
 
-        //table
-        $tables = [];
-        for ($n = 0; $n < 20; $n++) {
-            $table = new Table();
-            $table->setNumber(mt_rand(1, 20))
-                  ->setNbPlaces(mt_rand(1, 8))
-                  ->setisAvailable(mt_rand(0, 1) == 1 ? true : false);
-
-            $tables[] = $table;
-            $manager->persist($table);
-
-            $manager->persist($table);
-        }
         $reservations = [];
         for ($i = 0; $i < 10; $i++) {
             $reservation = new Reservation();

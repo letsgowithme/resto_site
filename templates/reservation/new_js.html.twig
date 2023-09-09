@@ -12,16 +12,51 @@
 {% block body %}
 	<div
 		class="container mt-4 text-center mb-4" style="min-height: 80vh;">
-     {# <div  id="today_date" class="hidden"></div>  #}
+     <div  id="today_date" class="hidden"></div> 
 
 		<h1 class="h5-page text-light reserve_title my-4">Page de la réservation</h1>
-		<p class="text-center text-light">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)!
+		<p class="text-center text-light fs-5">Merce d'avance de précisier en commaintaire le nombre d'enfants présent à table (s'il y en a)!
 			<br>
 			Pour tout retard de plus de 20 min votre table sera donnée à d'autre client!!
 		</p>
+		  <div id="lunchAvailPlacesInfo" class="hidden text-light fs-4"></div>
+			<div id="dinnerAvailPlacesInfo" class="hidden text-light fs-4"></div>
+			<div id="availPlacesError" class="hidden fs-3" style="font-weight: bold;">
+			<span style="color: red;">Pas de places disponible pour cette date et cette heure. </span>
+			<br>
+			<span style="color: green;" class="hidden" id="anotherDateMessage">Veuillez choisir une autre date.</span>
+			<br>
+			<span style="color: green;" id="redirectMessage" class="hidden">Rédirection sur la page de la réservation </span></div>
 		{{ form_start(form) }}
 
-
+{# ***************************** #}
+ <table id="table" 
+ class="hidden"
+ >
+        <thead>
+            <tr class="text-light fs-4">        
+                <th class="px-4">Places</th>
+                <th class="px-4">Date</th>
+                <th class="px-4">Hour</th>
+							
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations_by_order %}
+          <tr classe="reserve_line">
+            <td class="nbPeople">{{ reservation.nbPeople }}</td>
+            <td class="reserve_date">{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
+            <td class="hour">{{  reservation.lunchHours ? reservation.lunchHours : reservation.dinnerHours}}<td>
+            
+          </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+		{# *********************************************** #}
 		<div class="row form-row mt-4">
 
 			<div class="form-group col-md-6 nbPeople_date" required>
@@ -30,7 +65,7 @@
 				<div class="form-error">
 					{{ form_errors(form.nbPeople) }}
 				</div>
-				<p class="hidden" style="color: red; font-size: 1.4em;" id="alert">"Veuillez choisir le nombre de couverts"</p>
+				<p class="hidden" style="color: red; font-size: 2em; font-weight: bold;" id="alert">"Veuillez choisir le nombre de couverts"</p>
 			</div>
 
 			<div class="form-group col-md-6 mb-4 nbPeople_date">
@@ -45,20 +80,19 @@
 		<br>
 		<br>
 		{# *************************************** #}
+		
 		<div class="all_slots">
-
-			<div class="row d-flex flex-wrap lunch_slots " id="lunch_slots_block">
+      <div id="lunch_places_avail"  style="color: red;" class="fs-2 fw-4 bg-light"></div>
+			<div class="row d-flex flex-wrap lunch_slots mb-4" id="lunch_slots_block">
 				<div class="form-group text-light bold text-start day_slot
 									hidden
 									">
-					{{ form_label(form.lunchTime) }}
+					{{ form_label(form.lunchHours) }}
 					<br>
 					<div class="choiceList-wrapper" style="border: none;">
-						{% for field in form.lunchTime %}
+						{% for field in form.lunchHours %}
 							<div class="btn btn_slot lunch_slot_btn  d-flex text-center slot mt-4" type="button" style="min-width: 15%; background-color: red;margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;">
-								<div class="lunch_slot_btn wbtn_lu">
-								{{ form_widget(field) }}
-								</div>
+								<div class="lunch_slot_btn wbtn_lu">{{ form_widget(field) }}</div>
 								<div class="lunch_slot_btn lbtn_lu ac_btn">{{ form_label(field) }}</div>
 							</div>
 						{% endfor %}
@@ -66,15 +100,15 @@
 				</div>
 				<p class="hidden alert_res_time mt-4 fs-3 bg-primary text-center text-light">Veuillez choisir l'heure d'arrivée</p>
 		</div>
-
+<div id="dinner_places_avail" class="fs-2 fw-4 bg-light"></div>
 	<div class="row d-flex flex-wrap dinner_slots " id="dinner_slots_block">
 		<div class="form-group text-light bold text-start evening_slot
 							hidden
 							">
-			{{ form_label(form.dinnerTime) }}
+			{{ form_label(form.dinnerHours) }}
 			<br>
 			<div class="choiceList-wrapper" style="border: none;">
-				{% for field in form.dinnerTime %}
+				{% for field in form.dinnerHours %}
 					<button class="btn btn_slot dinner_slot_btn d-flex text-center slot d-flex" type="button" style="min-width: 15%; background-color: red; margin-right: 20px; color: white; margin-bottom: 10px; box-shadow: 1px 5px 7px; cursor: pointer;" id="dinnerTime">
 						<div class="dinner_slot_btn wbtn_di">{{ form_widget(field) }}</div>
 						<div class="dinner_slot_btn lbtn_di ac_btn">{{ form_label(field) }}</div>
@@ -82,9 +116,9 @@
 				{% endfor %}
 			</div>
 		</div>
+
 	</div>
 </div>
-
 
 <div class="form-group text-light info
 	hidden 
@@ -123,7 +157,8 @@ style="border: none;  transform: translateX(40%);">
 </div>
 
 {{ form_end(form) }}
-<button type="button" class="btn btn-info" id="btn_reload" onclick="reload();">Reinitialiser</button>
+
+<button type="button" class="btn btn-info mt-4" id="btn_reload" onclick="reload();">Reinitialiser</button>
 </div>
 </div>
 
@@ -135,7 +170,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>{# <script src="jq
 				<script src="jquery-ui.min.js"></script> 
 					 <script src="jquery.modal.min.jss"></script>  #}{# <script src="assets/scripts/popper.min.js"></script>
 					 {# <script src="assets/scripts/bootstrap.min.js"></script>  #}
+<script>
 
+$(document).ready(function () {
+$("#btn_reload").click(function () {
+location.reload(true);
+});
+});
+</script>
  <script>
 
 
@@ -146,6 +188,35 @@ var today = fullDate.getFullYear() + "-" + twoDigitMonth + "-" + fullDate.getDat
 var dateShow = $("#today_date").append(today).show();
 console.log("Aujourd\'hui: " + today);
 
+
+
+var reserve_nbPeople = $(".nb_people");
+var reserve_line = $(".reserve_line");
+var reserve_ids = $(".reserve_ids");
+var reserve_date = document.getElementsByClassName(".reserve_date");
+
+var today_date = $("#today_date");
+var hour = $(".hour");
+
+
+var today_month = today_date.text().split("-")[1];
+var today_day = today_date.text().split("-")[2];
+
+console.log(today_month);
+console.log(today_day);
+
+
+{# affiche les réservations à partir de la date courante #}
+	$(".reserve_date").each(function( index ) {
+		var reserve_month =  $( this ).text().split("-")[1];
+		var reserve_day =  $( this ).text().split("-")[2];
+
+ 		 	if (reserve_month < today_month && reserve_day < today_day) {
+        $(this).parent().remove();
+				reserve_line.addClass("hidden");
+	}
+});
+
   $(document).ready(function(){
 		$( ".lunch_slot_btn" ).first().remove();
 		$( ".dinner_slot_btn" ).first().remove();
@@ -153,93 +224,99 @@ console.log("Aujourd\'hui: " + today);
 		$("input[type=radio]").css({cursor : 'pointer'});		
          });       
 </script>
+
 <script>
-$(function () {
+	$(function () {
 
-$("#js-datepicker").datepicker({
-dateFormat: "D d MM",
-dayNamesShort: [
-'Dim.',
-'Lun.',
-'Mar.',
-'Mer.',
-'Jeu.',
-'Ven.',
-'Sam.'
-],
-dayNamesMin: [
-'Di',
-'Lu',
-'Ma',
-'Me',
-'Je',
-'Ve',
-'Sa'
-],
-firstDay: 1,
-minDate: 0,
-maxDate: "+2M +10D",
-autoclose: true,
-monthNames: [
-'Janvier',
-'Février',
-'Mars',
-'Avril',
-'Mai',
-'Juin',
-'Juillet',
-'Août',
-'Septembre',
-'Octobre',
-'Novembre',
-'Décembre'
-],
+			$("#js-datepicker").datepicker({
+			dateFormat: "D d MM",
+			dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'
+			],
+			dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'
+			],
+			firstDay: 1,
+			minDate: 0,
+			maxDate: "+2M +10D",
+			autoclose: true,
+			monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'
+			],
 
-onSelect: function (date, value) {
-if (date != "") {
-$('#reservation_date').datepicker({dateFormat: "yy-mm-dd"}).val();
-var myDate = $('#js-datepicker').datepicker('getDate');
-var newDate = $('#reservation_date').datepicker('setDate', myDate);
-console.log("Date choisie: " + newDate.val());
-{# var newDateToJson = newDate.ToJSON(); #}
+			onSelect: function (date, value) {
+			if (date != "") {
+			$('#reservation_date').datepicker({dateFormat: "yy-mm-dd"}).val();
+			var myDate = $('#js-datepicker').datepicker('getDate');
+			var newDate = $('#reservation_date').datepicker('setDate', myDate);
+			var newDateVal = newDate.val();
+			console.log('Chosen date: ' + '"' + newDateVal + '"');
 
-{# var todayTime = today.getTime();
-if(resTime >= todayTime) {
-   console.log("Date choisie est valide");
-} else {
-	console.log("Date choisie n'est pas valide");
-} #}
+      var nbPeople_total_lunch = [];
+			var nbPeople_total_dinner = [];
+	    var placesTotal = 44;
+			var placesAvailableLunch = 0;
+		  var placesAvailableDinner = 0;
+			var nbPeople_total_lunch_sum = 0;
+			var nbPeople_total_dinner_sum = 0;
+			var chosenNbPeople = $("#reservation_nbPeople").val();
+	      console.log("Chosen qn of people " + chosenNbPeople); 
+				console.log(""); 
+				console.log("Réservations: "); 
+
+			$(".reserve_date").each(function(index) {
+			    var $this = $( this ); 
+					if($this.text() == newDateVal) {
+							var nbPeople = $this.prev().text(); 
+							var res_time = $this.next().text();
+							var res_time_hour = res_time.slice(0, 2);
+
+							var res_time_dinner_hour;
+							var res_time_lunch_hour;
+					}
+
+					if(res_time_hour > 12){
+							res_time_dinner_hour = res_time_hour;
+							nbPeople_total_dinner.push(parseInt(nbPeople));
+							nbPeople_total_dinner_sum = nbPeople_total_dinner.reduce(function(a, b){
+							return a + b;
+							});
+					}	
+									
+					if(res_time_hour == 12){
+							res_time_lunch_hour = res_time_hour;
+							nbPeople_total_lunch.push(parseInt(nbPeople));
+							nbPeople_total_lunch_sum = nbPeople_total_lunch.reduce(function(a, b){
+							return a + b;
+							}); 
+							
+					}
+
+					placesAvailableLunch = placesTotal - nbPeople_total_lunch_sum;
+					
+					$("#lunchAvailPlacesInfo").text("Places disponibles midi: " + placesAvailableLunch.toString()); 
+					$("#lunchAvailPlacesInfo").removeClass("hidden");
+					$("#lunchAvailPlacesInfo").addClass("visible");
+					
+
+					placesAvailableDinner = placesTotal - nbPeople_total_dinner_sum;
+					
+					$("#dinnerAvailPlacesInfo").text("Places disponibles soir: " + placesAvailableDinner.toString()); 
+					$("#dinnerAvailPlacesInfo").removeClass("hidden");
+					$("#dinnerAvailPlacesInfo").addClass("visible");
+										
+			});
+
+   
+		
 
 if ($("#reservation_nbPeople").val() == "") {
 $("#alert").removeClass("hidden");
 $('.all_slots').addClass('hidden');
-$("#reservation_nbPeople").on("click", function () {
-if ($("#reservation_nbPeople").val() != "") {
-$("#alert").addClass("hidden");
-$('.all_slots').removeClass('hidden');
-return $("#reservation_nbPeople").val();
-};
-});
+window.setTimeout(function() {
+	location.reload();
+}, 2000);
+
 };
 
-{# if( $(".date_reserved") == myDate) {
- $(".res_nbPeople")
- $(".res_lunch_time")
- $(".res_dinner_time")
-              
 
-} #}
- if (newDate == $('.res_date')) {
-	console.log('date');
-{#var res_nbPeople = $('.res_nbPeople');
-var busyPlaces = $('.busyPlaces');
-var lunchTime = $('.res_dinnerTime');
-var dinnerTime = $('.res_dinnerTime');
-var sum = array.reduce(function (sum, res_nbPeople) {
-return sum(res_nbPeople);
-console.log(sum);
-})#}
-}
 
 var myDay = myDate.getDay();
 if (myDay == 3) {
@@ -257,24 +334,25 @@ $("#other_date_choose").addClass('hidden');
 })
 } else if (myDay == 6) {
 $('.day_slot').addClass('hidden');
-$('.ln_slot_n').addClass('hidden');
+$('.lunch_slot_btn').addClass('hidden');
 $('.evening_slot').removeClass('hidden');
-$('.ev_slot_n').removeClass('hidden');
+$('.dinner_slot_btn').removeClass('hidden');
+
 console.log('C\'est Samedi');
 
 } else if (myDay == 0) {
 $('.day_slot').removeClass('hidden');
-$('.ln_slot_n').removeClass('hidden');
+$('.lunch_slot_btn').removeClass('hidden');
 $('.evening_slot').addClass('hidden');
-$('.ev_slot_n').addClass('hidden');
+$('.dinner_slot_btn').addClass('hidden');
 console.log('C\'est Dimanche');
 
 } else {
-$('.ln_slot_n').removeClass('hidden');
+$('.lunch_slot_btn').removeClass('hidden');
 $('.day_slot').removeClass('hidden');
-$('.ev_slot_n').removeClass('hidden');
+$('.dinner_slot_btn').removeClass('hidden');
 $('.evening_slot').removeClass('hidden');
-{# $("reservation_dinnerTime_10").addClass('hidden'); #}
+$("reservation_dinnerTime_10").addClass('hidden');
 $( ".dinner_slot_btn:nth-child(10)" ).remove();
 $( ".dinner_slot_btn:nth-child(10n)" ).remove();
 $( ".dinner_slot_btn:nth-child(10n)" ).remove();
@@ -282,45 +360,70 @@ $( ".dinner_slot_btn:nth-child(10n)" ).remove();
 
 console.log('C\'est le jour de la semaine');
 }
+function nbPlacesAvailable() {
+if(chosenNbPeople <= placesAvailableLunch){
+		console.log("res possible pour midi");  
+}else{
+		$("#lunch_places_avail").text("Désolé, pas de places pour midi.");
+	  $(".nbPeople_date").addClass("hidden");
+		$('.day_slot').addClass('hidden');
+    $('.lunch_slot_btn').addClass('hidden');		
+		$("#other_date_choose").removeClass('hidden');
+    $("#other_date_choose").css('background', 'green');
+    $('#other_date_choose').click(function () {
+    location.reload(true);
+     });			
+		}
+if(chosenNbPeople <= placesAvailableDinner) {
+            console.log("res possible pour soir"); 
+}else{
+		$("#dinner_places_avail").text("Désolé, pas de places pour le soir")
+		$("#dinner_slots_block").removeClass('visible');
+		$("#dinner_slots_block").addClass('info');   
+		$("#other_date_choose").removeClass('hidden');
+    $("#other_date_choose").css('background', 'green');
+    $('#other_date_choose').click(function () {
+    location.reload(true);
+     });						
+       
+	  }
+		return chosenNbPeople;
+ }
+nbPlacesAvailable();
+
 }
 }
 });
 });
-</script>
 
-	{# Show lunch only ou dinner only   #}
-	<script>
-
+{# Be sure to choose the time   #}
 	$(".lunch_slot_btn").click(function () {
 		$(".alert_res_time").removeClass('hidden');
 		});
 	$(".dinner_slot_btn").click(function () {
 		$(".alert_res_time").removeClass('hidden');
 	});
-	
+
+	{# Show lunch only or dinner only   #}
 	$(".wbtn_lu input[type=radio]").click(function () {
 	  $('.evening_slot').addClass('hidden');
-		$('.ev_slot_n').addClass('hidden');
+		$('.dinner_slot_btn').addClass('hidden');
+		$('.dinner_slots').addClass('hidden');
 		$('.info').removeClass('hidden');
 		$(".alert_res_time").css('opacity', 0);	
 	  $(".wbtn_di input[type=radio]").prop("checked", false)
 		});
 		
   $(".wbtn_di input[type=radio]").click(function () {
-	  $('.day_slot').addClass('hidden');
-		$('.ln_slot_n').addClass('hidden');
+		$('.day_slot').addClass('hidden');
+    $('.lunch_slot_btn').addClass('hidden');
+	  $('.lunch_slots').addClass('hidden');
 		$('.info').removeClass('hidden');
 		$(".alert_res_time").css('opacity', 0);	
     $(".wbtn_lu input[type=radio]").prop("checked", false)
 		});
 </script>
 
-<script>
-$(document).ready(function () {
-$("#btn_reload").click(function () {
-location.reload(true);
-});
-});
-</script>
+
 
 {% endblock %}

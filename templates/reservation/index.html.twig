@@ -28,8 +28,8 @@
                 <td>{{ reservation.fullName }}</td>
                 <td>{{ reservation.nbPeople }}</td>
                 <td>{{ reservation.date ? reservation.date|date('Y-m-d') : '' }}</td>
-                <td>{{  reservation.lunchTime }}<td>
-                <td>{{  reservation.dinnerTime }}<td>
+                {# <td>{{  reservation.lunchTime }}<td> #}
+                {# <td>{{  reservation.dinnerTime }}<td> #}
                 <td>{% for allergies in reservation.allergies %}
 				<span class="text-light bg-danger mb-4 fs-6">{{ allergies.name|raw }}</span>	
 	             	{% endfor %}
