@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Proxies\__CG__\App\Entity\LunchHours;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -32,31 +33,27 @@ class Reservation
     #[ORM\ManyToMany(targetEntity: Allergy::class)]
     private Collection $allergies;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $lunchTime = null;
+    
 
-    #[ORM\Column(nullable: true)]
-    private ?string $dinnerTime = null;
-
-    // #[ORM\ManyToOne]
-    // #[ORM\JoinColumn(nullable: true)]
-    // private ?Schedule $schedule = null;
 
     #[ORM\ManyToOne]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
-    private ?Restaurant $restaurant = null;
+     #[ORM\ManyToOne]
+     #[ORM\JoinColumn(nullable: true)]
+    private ?LunchHours $lunchHours = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'reservations')]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?TimeSlot $timeSlots = null;
+    #[ORM\ManyToOne]
+     #[ORM\JoinColumn(nullable: true)]
+    private ?DinnerHours $dinnerHours = null;
 
-
+  
+    
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
         $this->date = new \DateTime();
+       
     }
 
     public function getId(): ?int
@@ -84,9 +81,7 @@ class Reservation
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-        // $day = $date->format('d');
-        // $month = $date->format('m');
-        // $date = $day.' '.$month;
+
 
         return $this;
     }
@@ -115,20 +110,6 @@ class Reservation
         return $this;
     }
 
-
-    // public function getSchedule(): ?Schedule
-    // {
-    //     return $this->schedule;
-    // }
-
-    // public function setSchedule(?Schedule $schedule): self
-    // {
-    //     $this->schedule = $schedule;
-
-    //     return $this;
-    // }
-
-    
 
 
     /**
@@ -192,73 +173,52 @@ class Reservation
         return $this;
     }
 
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
-
-        return $this;
-    }
-
    
 
-    /**
-     * Get the value of lunchTime
-     */ 
-    public function getLunchTime()
-    {
-        return $this->lunchTime;
-    }
-
-    /**
-     * Set the value of lunchTime
-     *
-     * @return  self
-     */ 
-    public function setLunchTime($lunchTime)
-    {
-        $this->lunchTime = $lunchTime;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of dinnerTime
-     */ 
-    public function getDinnerTime()
-    {
-        return $this->dinnerTime;
-    }
-
-    /**
-     * Set the value of dinnerTime
-     *
-     * @return  self
-     */ 
-    public function setDinnerTime($dinnerTime)
-    {
-        $this->dinnerTime = $dinnerTime;
-
-        return $this;
-    }
+    
     public function __toString()
     {
         return (string) $this->fullName;
     }
 
-    // public function getTimeSlots(): ?TimeSlot
-    // {
-    //     return $this->timeSlots;
-    // }
+     /**
+     * Get the value of lunchHours
+     */ 
+    public function getLunchHours()
+    {
+        return $this->lunchHours;
+    }
 
-    // public function setTimeSlots(?TimeSlot $timeSlots): self
-    // {
-    //     $this->timeSlots = $timeSlots;
+    /**
+     * Set the value of lunchHours
+     *
+     * @return  self
+     */ 
+    public function setLunchHours($lunchHours)
+    {
+        $this->lunchHours = $lunchHours;
 
-    //     return $this;
-    // }
+        return $this;
+    }
+
+     /**
+     * Get the value of dinnerHours
+     */ 
+    public function getDinnerHours()
+    {
+        return $this->dinnerHours;
+    }
+
+    /**
+     * Set the value of dinnerHours
+     *
+     * @return  self
+     */ 
+    public function setDinnerHours($dinnerHours)
+    {
+        $this->dinnerHours = $dinnerHours;
+
+        return $this;
+    }
+    
 }

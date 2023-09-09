@@ -3,14 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Allergy;
-use App\Entity\DaySlot;
-use App\Entity\EveningSlot;
+use App\Entity\DinnerHours;
+use App\Entity\LunchHours;
 use App\Entity\Reservation;
-use App\Entity\Schedule;
 use App\Repository\AllergyRepository;
-use App\Repository\DaySlotRepository;
-use App\Repository\EveningSlotRepository;
-use App\Repository\ScheduleRepository;
+use App\Repository\DinnerHoursRepository;
+use App\Repository\LunchHoursRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -102,58 +100,55 @@ class ReservationType extends AbstractType
             'required' => false,
            
         ])
-       
-        ->add('lunchTime', ChoiceType::class, [
-            'choices' => [
-                 'Choisir' => '',
-                '12:00' =>  '12:00',
-                '12:15' => '12:15',
-                '12:30' => '12:30',
-                '12:45' => '12:45',
-                '13:00' => '13:00',              
-            ],
-            'attr' => [
-                'class' => 'form-select mb-4 fs-4 btn btn_slot lunch_slot_btn'
-            ],
-            'label' => 'MIDI',
+        ->add('lunchHours', EntityType::class,[
+            'class' => LunchHours::class,
+            'query_builder' => function (LunchHoursRepository $r) {
+                return $r->createQueryBuilder('i')
+                    ->orderBy('i.hour', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'mt-4 fs-5 ms-4 me-4'
+                ],
+            'label' => 'Midi',
             'label_attr' => [
-                'class' => 'form-label mt-4 slots_name fs-4 text-start ln_slot_n'
+                'class' => 'form-label mt-4 fs-3 ms-4 me-4'
+            ],
+            'choice_label' => 'hour',
+            'choice_attr' => [
+                'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
             'multiple' => false,
             'expanded' => true,
-            'required' => false,
-           
+            'required' => false
+
         ])
 
-        ->add('dinnerTime', ChoiceType::class, [
-            'choices' => [
-                 'Choisir' => "",
-                '19:00' =>  '19:00',
-                '19:15' => '19:15',
-                '19:30' => '19:30',
-                '19:45' => '19:45',
-                '20:00' => '20:00', 
-                '20:15' => '20:15', 
-                '20:30' => '20:30', 
-                '20:45' => '20:45', 
-                '21:00' => '21:00', 
-                '21:15' => '21:15', 
-                '21:30' => '21:30', 
-                '21:45' => '21:45', 
-                '22:00' => '22:00',               
-            ],
-            'attr' => [
-                'class' => 'form-select mb-4 fs-4'
-            ],
-            'label' => 'SOIR',
+        ->add('dinnerHours', EntityType::class,[
+            'class' => DinnerHours::class,
+            'query_builder' => function (DinnerHoursRepository $r) {
+                return $r->createQueryBuilder('i')
+                    ->orderBy('i.hour', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'mt-4 fs-5 ms-4 me-4'
+                ],
+            'label' => 'Soir',
             'label_attr' => [
-                'class' => 'form-label mt-4 slots_name fs-4 text-start ev_slot_n'
+                'class' => 'form-label mt-4 fs-3 ms-4 me-4'
+            ],
+            'choice_label' => 'hour',
+            'choice_attr' => [
+                'class' => 'mt-4 fs-5 ms-4 me-4'
             ],
             'multiple' => false,
             'expanded' => true,
-            'required' => false,
-            
+            'required' => false
+
         ])
+    
+
+    
+
 
          
             ->add('allergies', EntityType::class,[
