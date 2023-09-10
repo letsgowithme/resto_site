@@ -275,14 +275,39 @@ transition: ease-in-out;
   color: white; 
   height: 5em;
  }
- #other_date_choose:hover {
+ #btn_reload {
+  display: inline-block;
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  cursor: pointer; 
+  color: rgb(244, 248, 244); 
+  background:  rgb(160, 160, 7); 
+  font-weight: bold;
+ }
+ #btn_reload:hover {
     color: rgb(160, 160, 7)!important;
     background-color: white!important;
-    transition: 1.5s linear;
+    transition: 0.4s linear;
  }
+ .alert_res_time {
+  color: red;
+  padding: 10px;
+  background: rgb(253, 253, 247);
+ }
+  /* #reservation_nbPeople:disabled {
+    cursor: not-allowed;
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+  } */
  .disabled {
   cursor: not-allowed;
- }
+  background-color: dimgrey;
+  color: linen;
+  opacity: 1;
+}
+
  .chosen {
   cursor: pointer;
   background-color: blue!important;

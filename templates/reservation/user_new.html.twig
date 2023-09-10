@@ -65,24 +65,28 @@
 				<div class="form-error">
 					{{ form_errors(form.nbPeople) }}
 				</div>
-				<p class="hidden" style="color: red; font-size: 2em; font-weight: bold;" id="alert">"Veuillez choisir le nombre de couverts"</p>
+				
 			</div>
+
 
 			<div class="form-group col-md-6 mb-4 nbPeople_date">
 				<input type="text" name="date_debut" autocomplete="off" class="form-select fs-4" id="js-datepicker" placeholder="Choisir la date">
 
 			</div>
 		</div>
+		<div><p class="hidden" style="color: red; font-size: 2em; font-weight: bold;" id="alert_nbPeople">"Veuillez choisir le nombre de couverts. <br><span style="color: green;"  id="nbPeople_redirection">Rédirection sur la page de réservation."</span></p>
+</div>
 
-		<div class="fs-2 mt-4 mb-4 hidden" id="message_closed" style="color: white; height: 5em; border: 2px solid white; border-radius: 0 30% 0 100%; padding-top: 1.5em; padding-left: 3em;">Désole le restaurant est fermé les Mercredis</div>
-		<div class="other_date_choose mt-4 mb-4 fs-2 hidden" style="cursor: pointer; color: white;" id="other_date_choose">
-			Choisir une date</div>
+		<div class="fs-2 mt-4 mb-4 hidden" id="message_closed" style="color: white; border: 2px solid white; padding-top: 15px;">Désole,<br> le restaurant est fermé les Mercredis</div>
+	
 		<br>
 		<br>
 		{# *************************************** #}
 		
 		<div class="all_slots">
-      <div id="lunch_places_avail"  style="color: red;" class="fs-2 fw-4 bg-light"></div>
+		
+      <div id="lunch_places_avail"  style="color: red;" class="fs-2 fw-4 bg-light">
+			</div>
 			<div class="row d-flex flex-wrap lunch_slots mb-4" id="lunch_slots_block">
 				<div class="form-group text-light bold text-start day_slot
 									hidden
@@ -98,7 +102,7 @@
 						{% endfor %}
 					</div>
 				</div>
-				<p class="hidden alert_res_time mt-4 fs-3 bg-primary text-center text-light">Veuillez choisir l'heure d'arrivée</p>
+				<p class="hidden alert_res_time mt-4 fs-3 text-center" >Veuillez choisir l'heure d'arrivée</p>
 		</div>
 <div id="dinner_places_avail" class="fs-2 fw-4 bg-light"></div>
 	<div class="row d-flex flex-wrap dinner_slots " id="dinner_slots_block">
@@ -158,8 +162,10 @@ style="border: none;  transform: translateX(40%);">
 
 {{ form_end(form) }}
 
-<button type="button" class="btn btn-info mt-4" id="btn_reload" onclick="reload();">Reinitialiser</button>
+
 </div>
+<div class="text-center">
+<button type="button" class="btn btn-info mt-4  hidden" style="width: 50%;"  id="btn_reload" onclick="reload();">Reinitialiser</button></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -179,7 +185,9 @@ location.reload(true);
 });
 </script>
  <script>
+$("js-datepicker").click(function () {
 
+});
 
 var fullDate = new Date(); 
 var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
@@ -222,11 +230,16 @@ console.log(today_day);
 		$( ".dinner_slot_btn" ).first().remove();
 		$(".btn_slot" ).css({cursor : 'default'});
 		$("input[type=radio]").css({cursor : 'pointer'});		
-         });       
+         });   
+
+  
+	
 </script>
 
 <script>
 	$(function () {
+
+			
 
 			$("#js-datepicker").datepicker({
 			dateFormat: "D d MM",
@@ -240,6 +253,7 @@ console.log(today_day);
 			autoclose: true,
 			monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'
 			],
+    
 
 			onSelect: function (date, value) {
 			if (date != "") {
@@ -248,6 +262,18 @@ console.log(today_day);
 			var newDate = $('#reservation_date').datepicker('setDate', myDate);
 			var newDateVal = newDate.val();
 			console.log('Chosen date: ' + '"' + newDateVal + '"');
+
+      if(date !== value.lastVal){
+				 $(this).change();
+			}
+			
+		
+			if ($("#reservation_nbPeople").val() != "") {
+					$("#reservation_nbPeople").prop('disabled', true);
+					$("#btn_reload").removeClass("info").removeClass("hidden");
+					
+					}
+			
 
       var nbPeople_total_lunch = [];
 			var nbPeople_total_dinner = [];
@@ -308,12 +334,12 @@ console.log(today_day);
 		
 
 if ($("#reservation_nbPeople").val() == "") {
-$("#alert").removeClass("hidden");
+$("#alert_nbPeople").removeClass("hidden");
+$("#nbPeople_redirection").removeClass("hidden");
 $('.all_slots').addClass('hidden');
 window.setTimeout(function() {
 	location.reload();
-}, 2000);
-
+}, 2500);
 };
 
 
@@ -322,8 +348,10 @@ var myDay = myDate.getDay();
 if (myDay == 3) {
 $('.all_slots').addClass('hidden');
 $('.nbPeople_date').addClass('hidden');
-$("#other_date_choose").removeClass('hidden');
 $('#message_closed').removeClass('hidden');
+$("#lunchAvailPlacesInfo").addClass('hidden').removeClass('visible');
+$("#dinnerAvailPlacesInfo").addClass('hidden').removeClass('visible');
+$("#btn_reload").text("Choisir une autre date.");
 $('#other_date_choose').click(function () {
 location.reload(true);
 $('.all_slots').addClass('visible');
@@ -331,13 +359,15 @@ $('.nbPeople_date').addClass('visible');
 $('.info').addClass('visible');
 $('#message_closed').addClass('hidden');
 $("#other_date_choose").addClass('hidden');
+console.log('C\'est Mercredi');
 })
 } else if (myDay == 6) {
 $('.day_slot').addClass('hidden');
 $('.lunch_slot_btn').addClass('hidden');
 $('.evening_slot').removeClass('hidden');
 $('.dinner_slot_btn').removeClass('hidden');
-
+$("#lunchAvailPlacesInfo").removeClass('visible');
+$("#lunchAvailPlacesInfo").addClass('hidden');
 console.log('C\'est Samedi');
 
 } else if (myDay == 0) {
@@ -345,6 +375,9 @@ $('.day_slot').removeClass('hidden');
 $('.lunch_slot_btn').removeClass('hidden');
 $('.evening_slot').addClass('hidden');
 $('.dinner_slot_btn').addClass('hidden');
+$("#dinnerAvailPlacesInfo").removeClass('visible');
+$("#dinnerAvailPlacesInfo").addClass('hidden');
+
 console.log('C\'est Dimanche');
 
 } else {
@@ -365,14 +398,10 @@ if(chosenNbPeople <= placesAvailableLunch){
 		console.log("res possible pour midi");  
 }else{
 		$("#lunch_places_avail").text("Désolé, pas de places pour midi.");
-	  $(".nbPeople_date").addClass("hidden");
+	  $(".nbPeople_date").prop("disabled", true);
 		$('.day_slot').addClass('hidden');
     $('.lunch_slot_btn').addClass('hidden');		
-		$("#other_date_choose").removeClass('hidden');
-    $("#other_date_choose").css('background', 'green');
-    $('#other_date_choose').click(function () {
-    location.reload(true);
-     });			
+		$("#btn_reload").text("Choisir une autre date.");			
 		}
 if(chosenNbPeople <= placesAvailableDinner) {
             console.log("res possible pour soir"); 
@@ -380,11 +409,7 @@ if(chosenNbPeople <= placesAvailableDinner) {
 		$("#dinner_places_avail").text("Désolé, pas de places pour le soir")
 		$("#dinner_slots_block").removeClass('visible');
 		$("#dinner_slots_block").addClass('info');   
-		$("#other_date_choose").removeClass('hidden');
-    $("#other_date_choose").css('background', 'green');
-    $('#other_date_choose').click(function () {
-    location.reload(true);
-     });						
+		$("#btn_reload").text("Choisir une autre date.");				
        
 	  }
 		return chosenNbPeople;
@@ -398,6 +423,7 @@ nbPlacesAvailable();
 
 {# Be sure to choose the time   #}
 	$(".lunch_slot_btn").click(function () {
+		
 		$(".alert_res_time").removeClass('hidden');
 		});
 	$(".dinner_slot_btn").click(function () {
