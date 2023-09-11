@@ -1,4 +1,4 @@
-<head>
+sa<head>
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 </head>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary text-center" style="z-index: 5;">
@@ -54,11 +54,11 @@
 		<ul class="navbar-nav me-auto">
 			{% if app.user %}
 				<li class="dropdown nav-item" style="margin-right: 5rem;">
-					<a class="nav-link dropdown-toggle fs-5 fw-bold" 
+					<a class="nav-link dropdown-toggle fs-4 fw-bold" 
           data-bs-toggle="dropdown" href="#" role="button" 
           aria-haspopup="true" aria-expanded="false" 
-          style="color: white;">{{ app.user.fullName }}
-          </a>
+          style="color: white;"><span id="username">{{ app.user.fullName }}
+          </span></a>
 					<div class="dropdown-menu">
 						{% if 'ROLE_ADMIN' in app.user.roles %}
 							<a class="dropdown-item  fw-bold" href="/admin">Tableau de bord</a>
@@ -66,6 +66,7 @@
 						<div class="dropdown-divider"></div>
             <a class="dropdown-item fw-bold" href="{{ path('app_user.edit', {id : app.user.id}) }}">Modifier le profil</a>
 						<a class="dropdown-item fw-bold" href="{{ path('app_logout') }}">Déconnextion</a>
+            <hr>
             <a class="dropdown-item fw-bold" href="{{ path('app_user_delete', {id : app.user.id}) }}">Supprimer le profil</a>
 										{% endif %}
 				</li>

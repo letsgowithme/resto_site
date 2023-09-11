@@ -62,7 +62,7 @@ class MenuType extends AbstractType
             'min' => 10,
             'max' => 35
             ],
-            'label' => 'Temps de repos en minutes',
+            'label' => 'Prix',
             'label_attr' => [
                 'class' => 'form-label mt-4 text-dark fs-5'
             ],
